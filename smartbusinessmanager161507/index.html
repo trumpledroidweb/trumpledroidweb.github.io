@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Business Manager</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Mobile Overlay -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-slate-900/60 z-30 hidden transition-opacity"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col transition-transform duration-300 -translate-x-full lg:translate-x-0">
+    <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-600 flex items-center justify-center text-white font-black shadow-lg shadow-indigo-500/30 text-lg">
+          SB
+        </div>
+        <div>
+          <h1 id="sidebar-biz-name" class="font-bold text-base tracking-tight leading-tight text-slate-900 dark:text-white">SmartBiz Hub</h1>
+          <p class="text-xs text-slate-400 font-medium flex items-center gap-1.5 mt-0.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Offline Ready
+          </p>
+        </div>
+      </div>
+      <button id="close-sidebar-btn" class="lg:hidden text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Navigation links -->
+    <nav class="flex-1 overflow-y-auto px-4 py-6 space-y-1.5" id="nav-list">
+      <button data-view="dashboard" class="nav-item active flex items-center gap-3.5 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+        <span>Dashboard</span>
+      </button>
+
+      <button data-view="products" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        <span>Inventory & Items</span>
+        <span id="nav-stock-badge" class="ml-auto text-xs px-2 py-0.5 rounded-full font-bold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">0</span>
+      </button>
+
+      <button data-view="sales" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span>Sales & Invoices</span>
+      </button>
+
+      <button data-view="expenses" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <span>Expense Tracker</span>
+      </button>
+
+      <button data-view="customers" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <span>Customer Directory</span>
+      </button>
+
+      <button data-view="reports" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <span>Financial Reports</span>
+      </button>
+
+      <button data-view="settings" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <span>Settings & Backup</span>
+      </button>
+    </nav>
+
+    <!-- Quick stats mini badge -->
+    <div class="p-4 mx-4 mb-4 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/60">
+      <div class="flex items-center justify-between text-xs text-indigo-700 dark:text-indigo-300 font-medium mb-1">
+        <span>Storage Mode</span>
+        <span class="font-bold">Local Web</span>
+      </div>
+      <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">Data stays secure inside your browser.</p>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="flex-1 lg:pl-72 flex flex-col min-w-0 min-h-screen">
+
+    <!-- Top Navbar -->
+    <header class="sticky top-0 z-20 h-18 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between px-4 sm:px-8">
+      <div class="flex items-center gap-4">
+        <button id="open-sidebar-btn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div>
+          <h2 id="top-title" class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white capitalize">Dashboard</h2>
+          <p id="top-date-display" class="text-xs text-slate-400 font-medium hidden sm:block"></p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-4">
+        <!-- New Quick Action Button -->
+        <button id="quick-sale-btn" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl text-xs sm:text-sm font-semibold shadow-md shadow-indigo-500/20 transition-all hover:shadow-indigo-500/30">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <span>New Sale</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle-btn" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          <svg id="theme-sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="theme-moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Views -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
+
+      <!-- ================= VIEW 1: DASHBOARD ================= -->
+      <section id="view-dashboard" class="view-panel space-y-6">
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <!-- Total Revenue -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-500/10 rounded-full group-hover:scale-125 transition-transform"></div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Revenue</span>
+              <div class="p-2.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400 rounded-xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+            </div>
+            <div id="dash-revenue" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">$0.00</div>
+            <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-2 flex items-center gap-1">
+              <span>Lifetime recorded sales</span>
+            </div>
+          </div>
+
+          <!-- Total Expenses -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-rose-500/10 rounded-full group-hover:scale-125 transition-transform"></div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Expenses</span>
+              <div class="p-2.5 bg-rose-50 text-rose-600 dark:bg-rose-950/50 dark:text-rose-400 rounded-xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+              </div>
+            </div>
+            <div id="dash-expenses" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">$0.00</div>
+            <div class="text-xs text-rose-600 dark:text-rose-400 font-semibold mt-2 flex items-center gap-1">
+              <span>Operating spending</span>
+            </div>
+          </div>
+
+          <!-- Net Profit -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-indigo-500/10 rounded-full group-hover:scale-125 transition-transform"></div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Net Profit</span>
+              <div class="p-2.5 bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400 rounded-xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </div>
+            </div>
+            <div id="dash-profit" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">$0.00</div>
+            <div id="dash-profit-margin" class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold mt-2">
+              Margin: 0.0%
+            </div>
+          </div>
+
+          <!-- Total Orders / Products -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-purple-500/10 rounded-full group-hover:scale-125 transition-transform"></div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Completed Orders</span>
+              <div class="p-2.5 bg-purple-50 text-purple-600 dark:bg-purple-950/50 dark:text-purple-400 rounded-xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+              </div>
+            </div>
+            <div id="dash-orders" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">0</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-2">
+              <span id="dash-items-sold">0</span> items delivered
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Analytics and Quick Breakdown -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Financial Performance Chart (Vanilla Canvas/CSS) -->
+          <div class="lg:col-span-2 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-6 rounded-2xl shadow-sm">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base">Weekly Financial Trajectory</h3>
+                <p class="text-xs text-slate-400">Aggregated revenue vs operating costs</p>
+              </div>
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-indigo-500"></span> Revenue</div>
+                <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-rose-400"></span> Expenses</div>
+              </div>
+            </div>
+            <div id="weekly-chart-bars" class="h-56 flex items-end justify-between gap-3 pt-6 border-b border-slate-100 dark:border-slate-800 pb-2">
+              <!-- Dynamically populated 7 day bar comparison -->
+            </div>
+            <div id="weekly-chart-labels" class="flex justify-between text-[11px] font-semibold text-slate-400 pt-3">
+              <!-- Dynamically populated dates -->
+            </div>
+          </div>
+
+          <!-- Stock Health & Alerts -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-6 rounded-2xl shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-bold text-slate-900 dark:text-white text-base">Inventory Warnings</h3>
+                <span class="text-xs px-2.5 py-1 bg-amber-50 text-amber-600 dark:bg-amber-950/40 dark:text-amber-400 rounded-lg font-bold" id="low-stock-count-badge">0 Items Low</span>
+              </div>
+              <div id="low-stock-list" class="space-y-3 overflow-y-auto max-h-56 pr-1">
+                <!-- Low stock list elements -->
+              </div>
+            </div>
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+              <button onclick="app.navigate('products')" class="w-full py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                View All Catalog Items →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
+          <div class="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Latest Sales Activity</h3>
+              <p class="text-xs text-slate-400">Most recent customer receipts</p>
+            </div>
+            <button onclick="app.navigate('sales')" class="text-xs text-indigo-600 dark:text-indigo-400 font-bold hover:underline">
+              View All History
+            </button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-50/75 dark:bg-slate-800/40 text-xs uppercase font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800">
+                <tr>
+                  <th class="px-6 py-3.5">Invoice #</th>
+                  <th class="px-6 py-3.5">Customer</th>
+                  <th class="px-6 py-3.5">Date</th>
+                  <th class="px-6 py-3.5">Total Amount</th>
+                  <th class="px-6 py-3.5">Payment</th>
+                  <th class="px-6 py-3.5 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="dash-recent-sales-tbody" class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium">
+                <!-- Injected via script.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 2: PRODUCTS & INVENTORY ================= -->
+      <section id="view-products" class="view-panel hidden space-y-6">
+        <!-- Action Toolbar -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+          <div class="flex flex-1 items-center gap-3">
+            <div class="relative flex-1 max-w-md">
+              <svg class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input id="product-search-input" type="text" placeholder="Search products or SKU..." class="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <select id="product-category-filter" class="px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 font-medium">
+              <option value="all">All Categories</option>
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="add-product-btn" class="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold transition shadow-md shadow-indigo-600/20">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              <span>Add Product</span>
+            </button>
+            <button id="export-products-csv" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 title='Export to CSV'">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Products Table -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-50/75 dark:bg-slate-800/40 text-xs uppercase font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800">
+                <tr>
+                  <th class="px-6 py-4">Item Details</th>
+                  <th class="px-6 py-4">Category</th>
+                  <th class="px-6 py-4">Price</th>
+                  <th class="px-6 py-4">Cost</th>
+                  <th class="px-6 py-4">Stock In Hand</th>
+                  <th class="px-6 py-4">Status</th>
+                  <th class="px-6 py-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-tbody" class="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
+                <!-- Dynamic Product Rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 3: SALES & INVOICES ================= -->
+      <section id="view-sales" class="view-panel hidden space-y-6">
+        <!-- New POS Checkout Header -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+          <div class="flex items-center gap-3">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">Recorded Orders & Sales</h3>
+            <span id="sales-total-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400">0 orders</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <input id="sales-search-input" type="text" placeholder="Search order ID or customer..." class="px-3.5 py-2 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+            <button id="create-new-sale-modal-btn" class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl text-sm font-semibold transition shadow-md shadow-indigo-600/20">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              <span>Create Invoice / Sale</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sales Records Table -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-50/75 dark:bg-slate-800/40 text-xs uppercase font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800">
+                <tr>
+                  <th class="px-6 py-4">Invoice #</th>
+                  <th class="px-6 py-4">Date & Time</th>
+                  <th class="px-6 py-4">Customer</th>
+                  <th class="px-6 py-4">Items Count</th>
+                  <th class="px-6 py-4">Subtotal</th>
+                  <th class="px-6 py-4">Grand Total</th>
+                  <th class="px-6 py-4">Method</th>
+                  <th class="px-6 py-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="sales-table-tbody" class="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
+                <!-- Sales records -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 4: EXPENSE TRACKER ================= -->
+      <section id="view-expenses" class="view-panel hidden space-y-6">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+          <div class="flex flex-1 items-center gap-3">
+            <div class="relative flex-1 max-w-sm">
+              <input id="expense-search-input" type="text" placeholder="Search expenses by note..." class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+            </div>
+            <select id="expense-category-filter" class="px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 font-medium">
+              <option value="all">All Expense Types</option>
+              <option value="Rent">Rent</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Salaries">Salaries</option>
+              <option value="Supplies">Supplies & Stock</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Software">Software & Hosting</option>
+              <option value="Logistics">Shipping & Logistics</option>
+              <option value="Other">Other Expenses</option>
+            </select>
+          </div>
+          <button id="add-expense-btn" class="flex items-center gap-2 px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-sm font-semibold transition shadow-md shadow-rose-600/20">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            <span>Record Expense</span>
+          </button>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-50/75 dark:bg-slate-800/40 text-xs uppercase font-bold text-slate-400 border-b border-slate-100 dark:border-slate-800">
+                <tr>
+                  <th class="px-6 py-4">Expense Title</th>
+                  <th class="px-6 py-4">Category</th>
+                  <th class="px-6 py-4">Date</th>
+                  <th class="px-6 py-4">Payment Method</th>
+                  <th class="px-6 py-4">Amount</th>
+                  <th class="px-6 py-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="expenses-table-tbody" class="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
+                <!-- Expenses rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 5: CUSTOMER DIRECTORY ================= -->
+      <section id="view-customers" class="view-panel hidden space-y-6">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+          <div class="relative flex-1 max-w-sm">
+            <input id="customer-search-input" type="text" placeholder="Search customer name, email, phone..." class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+          </div>
+          <button id="add-customer-btn" class="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold transition shadow-md shadow-indigo-600/20">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+            <span>Add Customer</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="customers-cards-grid">
+          <!-- Dynamic Customer Cards -->
+        </div>
+      </section>
+
+      <!-- ================= VIEW 6: REPORTS & AUDIT ================= -->
+      <section id="view-reports" class="view-panel hidden space-y-6">
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg">Financial Statement & Ledger Summary</h3>
+            <p class="text-xs text-slate-400">Consolidated business health breakdown calculated instantly.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button id="print-reports-btn" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+              <span>Print Report</span>
+            </button>
+            <button id="export-full-csv-btn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Export CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <h4 class="text-xs uppercase font-bold text-slate-400 mb-2">Total Gross Sales</h4>
+            <div id="rep-total-sales" class="text-2xl font-black text-slate-900 dark:text-white">$0.00</div>
+            <p class="text-xs text-slate-400 mt-2"><span id="rep-sales-count">0</span> Transactions recorded</p>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <h4 class="text-xs uppercase font-bold text-slate-400 mb-2">Total Recorded Expenses</h4>
+            <div id="rep-total-expenses" class="text-2xl font-black text-rose-600">$0.00</div>
+            <p class="text-xs text-slate-400 mt-2"><span id="rep-expense-count">0</span> Expense items logged</p>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <h4 class="text-xs uppercase font-bold text-slate-400 mb-2">Net Business Profit</h4>
+            <div id="rep-net-profit" class="text-2xl font-black text-emerald-600">$0.00</div>
+            <p class="text-xs text-slate-400 mt-2">Overall Margin: <span id="rep-profit-margin">0%</span></p>
+          </div>
+        </div>
+
+        <!-- Inventory Value and Category Breakdowns -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <h4 class="font-bold text-slate-900 dark:text-white mb-4">Stock Valuation Breakdown</h4>
+            <div class="space-y-3">
+              <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800 text-sm">
+                <span class="text-slate-500">Total Catalog Stock Count</span>
+                <span id="rep-total-stock-count" class="font-bold text-slate-900 dark:text-white">0 units</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800 text-sm">
+                <span class="text-slate-500">Retail Inventory Valuation (At Sell Price)</span>
+                <span id="rep-stock-retail-val" class="font-bold text-slate-900 dark:text-white">$0.00</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800 text-sm">
+                <span class="text-slate-500">Cost Value of Inventory</span>
+                <span id="rep-stock-cost-val" class="font-bold text-slate-900 dark:text-white">$0.00</span>
+              </div>
+              <div class="flex justify-between py-2 text-sm">
+                <span class="text-slate-500">Projected Inventory Margin</span>
+                <span id="rep-stock-projected-margin" class="font-bold text-emerald-600">$0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800">
+            <h4 class="font-bold text-slate-900 dark:text-white mb-4">Top Revenue Generating Products</h4>
+            <div id="rep-top-products-list" class="space-y-3">
+              <!-- Dynamically populated top products -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 7: SETTINGS & BACKUP ================= -->
+      <section id="view-settings" class="view-panel hidden space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Business Profile Configuration -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-5">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">Store & Business Preferences</h3>
+            <form id="settings-form" class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Company / Store Name</label>
+                <input id="setting-biz-name" type="text" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold" required>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Currency Symbol</label>
+                  <input id="setting-currency" type="text" maxlength="4" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold" required>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Default Tax (%)</label>
+                  <input id="setting-tax-rate" type="number" min="0" max="100" step="0.1" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold" required>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Invoice Footer Note</label>
+                <input id="setting-invoice-note" type="text" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold">
+              </div>
+              <button type="submit" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold transition">
+                Save Preferences
+              </button>
+            </form>
+          </div>
+
+          <!-- Backup & Data Control -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-6">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Backup & Data Portability</h3>
+              <p class="text-xs text-slate-400 mt-1">Download your complete database to transfer or store safely.</p>
+            </div>
+            <div class="space-y-3">
+              <button id="backup-export-btn" class="w-full py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-700 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-center gap-2 transition">
+                <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <span>Export Full Backup (JSON)</span>
+              </button>
+
+              <div>
+                <label class="w-full py-3 px-4 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-700 font-semibold text-sm hover:border-indigo-500 flex items-center justify-center gap-2 cursor-pointer transition text-slate-600 dark:text-slate-300">
+                  <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                  <span>Restore from JSON File</span>
+                  <input id="backup-import-file" type="file" accept=".json" class="hidden">
+                </label>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+              <h4 class="text-xs font-bold uppercase text-slate-400">Data Management</h4>
+              <div class="flex gap-3">
+                <button id="load-sample-data-btn" class="flex-1 py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                  Reload Demo Data
+                </button>
+                <button id="wipe-data-btn" class="flex-1 py-2 px-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition">
+                  Erase All Data
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- 1. Product Modal (Add/Edit) -->
+  <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-lg shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transform transition-all">
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <h3 id="product-modal-title" class="font-bold text-slate-900 dark:text-white text-lg">Add Product</h3>
+        <button class="modal-close-btn text-slate-400 hover:text-slate-600 p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="product-form" class="p-6 space-y-4">
+        <input type="hidden" id="product-form-id">
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Product Name</label>
+          <input id="prod-name" type="text" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="e.g. Wireless Ergonomic Mouse" required>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">SKU / Code</label>
+            <input id="prod-sku" type="text" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="SKU-8921" required>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Category</label>
+            <input id="prod-category" type="text" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="Electronics, Apparel, etc." required>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Selling Price</label>
+            <input id="prod-price" type="number" step="0.01" min="0" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="0.00" required>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Cost Price</label>
+            <input id="prod-cost" type="number" step="0.01" min="0" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="0.00" required>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Stock Quantity</label>
+            <input id="prod-stock" type="number" min="0" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="0" required>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
+          <button type="button" class="modal-close-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-indigo-600/20">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Create Sale / POS Checkout Modal -->
+  <div id="sale-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transform transition-all max-h-[90vh] flex flex-col">
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between shrink-0">
+        <h3 class="font-bold text-slate-900 dark:text-white text-lg">Create New Sale & Invoice</h3>
+        <button class="modal-close-btn text-slate-400 hover:text-slate-600 p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="pos-sale-form" class="p-6 overflow-y-auto space-y-5 flex-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Select Customer</label>
+            <select id="pos-customer-select" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium">
+              <option value="Walk-in Customer">Walk-in Customer</option>
+              <!-- Populated customers -->
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Payment Method</label>
+            <select id="pos-payment-method" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium">
+              <option value="Cash">Cash</option>
+              <option value="Card">Credit/Debit Card</option>
+              <option value="Transfer">Bank Transfer / UPI</option>
+              <option value="Credit">Store Credit / Pay Later</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Add Items Picker -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700/60 space-y-3">
+          <label class="block text-xs font-bold uppercase text-slate-400">Add Item to Bill</label>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <select id="pos-product-picker" class="flex-1 px-3 py-2 rounded-xl text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium">
+              <!-- Populated products with stock -->
+            </select>
+            <input id="pos-item-qty" type="number" min="1" value="1" class="w-20 px-3 py-2 rounded-xl text-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center font-bold" title="Quantity">
+            <button id="pos-add-item-btn" type="button" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold shadow-sm transition">
+              + Add Item
+            </button>
+          </div>
+        </div>
+
+        <!-- Order Items Table -->
+        <div class="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold uppercase">
+              <tr>
+                <th class="px-4 py-2.5">Item</th>
+                <th class="px-4 py-2.5">Price</th>
+                <th class="px-4 py-2.5">Qty</th>
+                <th class="px-4 py-2.5">Total</th>
+                <th class="px-4 py-2.5 text-right">Remove</th>
+              </tr>
+            </thead>
+            <tbody id="pos-cart-tbody" class="divide-y divide-slate-100 dark:divide-slate-800">
+              <!-- Cart line items -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Bill Calculations -->
+        <div class="space-y-2 pt-2 text-sm max-w-xs ml-auto">
+          <div class="flex justify-between text-slate-500">
+            <span>Subtotal:</span>
+            <span id="pos-subtotal" class="font-bold text-slate-800 dark:text-slate-100">$0.00</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-500">
+            <span>Discount (%):</span>
+            <input id="pos-discount-input" type="number" min="0" max="100" value="0" class="w-20 px-2 py-1 rounded-lg text-right text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+          </div>
+          <div class="flex justify-between text-slate-500">
+            <span>Tax (<span id="pos-tax-label">0%</span>):</span>
+            <span id="pos-tax-amount" class="font-bold text-slate-800 dark:text-slate-100">$0.00</span>
+          </div>
+          <div class="flex justify-between text-base font-extrabold text-indigo-600 dark:text-indigo-400 pt-2 border-t border-slate-200 dark:border-slate-800">
+            <span>Total Payable:</span>
+            <span id="pos-grand-total">$0.00</span>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3 shrink-0">
+          <button type="button" class="modal-close-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-indigo-600/30">
+            Complete Sale & Issue Invoice
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Printable Invoice Viewer Modal -->
+  <div id="invoice-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transform transition-all max-h-[92vh] flex flex-col">
+      <div class="p-4 sm:p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between shrink-0">
+        <h3 class="font-bold text-slate-900 dark:text-white text-base">Sales Receipt / Invoice</h3>
+        <div class="flex items-center gap-2">
+          <button id="invoice-print-btn" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center gap-1.5 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <span>Print Invoice</span>
+          </button>
+          <button class="modal-close-btn text-slate-400 hover:text-slate-600 p-1">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="invoice-printable-area" class="p-6 sm:p-8 overflow-y-auto space-y-6 bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+        <!-- Injected via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Expense Modal (Add/Edit) -->
+  <div id="expense-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-md shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transform transition-all">
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <h3 id="expense-modal-title" class="font-bold text-slate-900 dark:text-white text-lg">Record Expense</h3>
+        <button class="modal-close-btn text-slate-400 hover:text-slate-600 p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="expense-form" class="p-6 space-y-4">
+        <input type="hidden" id="expense-form-id">
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Expense Description</label>
+          <input id="exp-title" type="text" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="Office Internet, Shipping Fees..." required>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Category</label>
+            <select id="exp-category" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium">
+              <option value="Rent">Rent</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Salaries">Salaries</option>
+              <option value="Supplies">Supplies & Stock</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Software">Software & Hosting</option>
+              <option value="Logistics">Shipping & Logistics</option>
+              <option value="Other">Other Expenses</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Payment Method</label>
+            <select id="exp-method" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium">
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="Cash">Cash</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Amount</label>
+          <input id="exp-amount" type="number" step="0.01" min="0.01" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold" placeholder="0.00" required>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Date</label>
+          <input id="exp-date" type="date" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" required>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
+          <button type="button" class="modal-close-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-rose-600/20">Save Expense</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Customer Modal (Add/Edit) -->
+  <div id="customer-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-md shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transform transition-all">
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <h3 id="customer-modal-title" class="font-bold text-slate-900 dark:text-white text-lg">Add Customer</h3>
+        <button class="modal-close-btn text-slate-400 hover:text-slate-600 p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form id="customer-form" class="p-6 space-y-4">
+        <input type="hidden" id="customer-form-id">
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Customer Full Name</label>
+          <input id="cust-name" type="text" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="Jane Doe" required>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Email Address</label>
+          <input id="cust-email" type="email" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="jane@example.com">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Phone Number</label>
+          <input id="cust-phone" type="text" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="+1 (555) 019-2834" required>
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Billing / Shipping Address</label>
+          <textarea id="cust-address" rows="2" class="w-full px-4 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium" placeholder="123 Market St, Suite 400"></textarea>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
+          <button type="button" class="modal-close-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-indigo-600/20">Save Customer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confirmation Dialog Modal -->
+  <div id="confirm-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-sm shadow-2xl border border-slate-200 dark:border-slate-800 p-6 text-center">
+      <div class="w-12 h-12 rounded-full bg-rose-100 dark:bg-rose-950/60 text-rose-600 flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      </div>
+      <h4 id="confirm-modal-title" class="font-bold text-slate-900 dark:text-white text-lg mb-1">Confirm Action</h4>
+      <p id="confirm-modal-desc" class="text-xs text-slate-500 dark:text-slate-400 mb-6">Are you sure you want to proceed? This cannot be undone.</p>
+      <div class="flex items-center gap-3">
+        <button id="confirm-modal-cancel" class="flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+          Cancel
+        </button>
+        <button id="confirm-modal-proceed" class="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-md shadow-rose-600/20">
+          Yes, Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
