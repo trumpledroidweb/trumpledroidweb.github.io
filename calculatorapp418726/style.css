@@ -7,3 +7,10 @@
 /* No specific custom CSS needed beyond Tailwind's utility classes and @apply rules. */
 /* The @layer base styles for buttons are defined directly in index.html's <style> block. */
 /* This file is kept for project structure consistency. */
+/* Added some responsive styling to the body and history section for better layout on smaller screens. */
+
+@media (max-width: 768px) {
+    .calculator, .history {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
