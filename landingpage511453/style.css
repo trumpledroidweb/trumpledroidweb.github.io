@@ -1,74 +1,80 @@
-/*
- * Custom CSS for landingpage.
- * Tailwind CSS is used for most styling, this file is for specific overrides
- * or custom animations not easily achieved with utility classes.
+/* 
+ * Custom Styling & Layer Customizations for landingpage
+ * Compliments Tailwind CSS Browser CDN
  */
 
-/* Custom Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.animate-fade-in-up {
-    animation: fadeInUp 1s ease-out forwards;
-}
-
-.animate-fade-in {
-    animation: fadeIn 1.2s ease-out forwards;
-}
-
-.animate-scale-in {
-    animation: scaleIn 0.6s ease-out forwards;
-}
-
-.delay-100 {
-    animation-delay: 0.1s;
-}
-
-/* Ensure images cover their containers responsively */
-.aspect-w-16 {
-  aspect-ratio: 16 / 9;
-}
-.aspect-h-9 {
-  height: auto; /* Allow height to adjust based on aspect ratio */
-}
-.object-cover {
-  object-fit: cover;
-}
-
-/* Base styles for a clean slate, though Tailwind resets most things */
-html {
-  scroll-behavior: smooth;
+:root {
+  color-scheme: dark;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+code, pre, .font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Feature Tab Button Active State */
+.active-tab-btn {
+  background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px -3px rgba(79, 70, 229, 0.4);
+}
+
+/* Range input track custom polish */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #6366f1;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+  transition: transform 0.1s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Responsive Image Fill Utility */
+.object-cover {
+  object-fit: cover;
 }
