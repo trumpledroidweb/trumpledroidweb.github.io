@@ -1,194 +1,739 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>landingpage</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-        @layer base {
-            body {
-                font-family: 'Inter', sans-serif;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>landingpage</title>
+  <!-- Tailwind CSS Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-indigo-600">MyBrand</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#features" class="text-gray-600 hover:text-indigo-600 transition duration-300">Features</a>
-                <a href="#testimonials" class="text-gray-600 hover:text-indigo-600 transition duration-300">Testimonials</a>
-                <a href="#cta" class="text-gray-600 hover:text-indigo-600 transition duration-300">Contact</a>
-                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">Get Started</button>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col font-sans overflow-x-hidden">
+
+  <!-- Ambient Glow Effects Background -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute top-1/3 -right-20 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40"></div>
+  </div>
+
+  <!-- Top Announcement Bar -->
+  <aside class="relative z-50 bg-gradient-to-r from-indigo-900/60 via-purple-900/60 to-slate-900/80 border-b border-indigo-500/20 backdrop-blur-md px-4 py-2 text-xs md:text-sm text-center font-medium text-slate-300 flex items-center justify-center gap-2">
+    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">Release v3.4</span>
+    <span>Supercharged browser-native workflow engine is live.</span>
+    <a href="#calculator" class="text-indigo-400 hover:text-indigo-300 underline font-semibold transition ml-1">Calculate Savings &rarr;</a>
+  </aside>
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/80 transition-all duration-300" id="main-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-200">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">NexusStack</span>
+          <span class="text-[10px] tracking-wider uppercase font-mono text-cyan-400 font-semibold">Web Operations</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#features" class="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150">Features</a>
+        <a href="#gallery" class="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150">Workflow</a>
+        <a href="#calculator" class="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150">ROI & Pricing</a>
+        <a href="#testimonials" class="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150">Reviews</a>
+        <a href="#faq" class="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150">FAQ</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="hidden sm:flex items-center gap-4">
+        <button id="book-demo-btn" class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white border border-slate-700/80 rounded-lg hover:border-slate-500 transition duration-150 bg-slate-900/40">
+          Book Demo
+        </button>
+        <a href="#calculator" class="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 rounded-lg shadow-md shadow-indigo-500/20 hover:shadow-indigo-500/40 transform hover:-translate-y-0.5 active:translate-y-0 transition duration-150">
+          Get Started
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-toggle" aria-label="Toggle navigation menu" class="lg:hidden p-2 text-slate-400 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <svg class="w-7 h-7" id="hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg class="w-7 h-7 hidden" id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-800 bg-slate-950/95 backdrop-blur-2xl px-6 py-6 space-y-4">
+      <div class="flex flex-col space-y-3 font-medium text-slate-200">
+        <a href="#features" class="mobile-nav-link py-2 border-b border-slate-800/50 hover:text-indigo-400">Features</a>
+        <a href="#gallery" class="mobile-nav-link py-2 border-b border-slate-800/50 hover:text-indigo-400">Workflow</a>
+        <a href="#calculator" class="mobile-nav-link py-2 border-b border-slate-800/50 hover:text-indigo-400">ROI Calculator</a>
+        <a href="#testimonials" class="mobile-nav-link py-2 border-b border-slate-800/50 hover:text-indigo-400">Customer Stories</a>
+        <a href="#faq" class="mobile-nav-link py-2 border-b border-slate-800/50 hover:text-indigo-400">FAQ</a>
+      </div>
+      <div class="pt-4 flex flex-col gap-3">
+        <button id="mobile-book-demo-btn" class="w-full py-2.5 text-center font-medium text-slate-200 border border-slate-700 rounded-lg bg-slate-900/60">
+          Book Demo
+        </button>
+        <a href="#calculator" class="w-full py-2.5 text-center font-semibold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-lg shadow-md">
+          Start Free Trial
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 flex-grow">
+    
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <!-- Live Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs font-medium text-slate-300 mb-8 shadow-inner animate-fade-in">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="text-slate-400">Next-Gen Architecture:</span>
+          <span class="text-emerald-400 font-semibold font-mono">10x Build Velocity</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.12]">
+          Build Modern Web Apps. <br>
+          <span class="bg-gradient-to-r from-indigo-400 via-cyan-300 to-teal-300 bg-clip-text text-transparent">
+            Without Friction or Bloat.
+          </span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
+          Unify your frontend layouts, instant reactivity, and deterministic logic in one unified developer workbench designed for hyper-growth teams.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#calculator" class="w-full sm:w-auto px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 rounded-xl shadow-xl shadow-indigo-600/25 transform hover:-translate-y-1 transition duration-200">
+            Launch Your Project &rarr;
+          </a>
+          <button id="open-interactive-preview" class="w-full sm:w-auto px-8 py-4 text-base font-semibold text-slate-200 bg-slate-900 hover:bg-slate-800 border border-slate-700/80 rounded-xl hover:border-slate-500 transition duration-200 flex items-center justify-center gap-3">
+            <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+            </svg>
+            Interactive Tour
+          </button>
+        </div>
+
+        <!-- Metric Cards Grid -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
+            <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">99.99%</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">Reliability SLA</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
+            <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">&lt; 14ms</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">Edge Latency</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
+            <div class="text-2xl sm:text-3xl font-extrabold text-indigo-400 font-mono">15,000+</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">Active Developers</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm">
+            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">0 Config</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">Instant Bundling</div>
+          </div>
+        </div>
+
+        <!-- Trust Logos -->
+        <div class="mt-16 pt-8 border-t border-slate-800/60">
+          <p class="text-xs font-semibold tracking-wider uppercase text-slate-500 mb-6">Trusted by innovators scaling web products globally</p>
+          <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition duration-300">
+            <span class="font-bold text-lg text-slate-300 tracking-wider">▲ VORTEX</span>
+            <span class="font-bold text-lg text-slate-300 tracking-wider">● SPHERE.IO</span>
+            <span class="font-bold text-lg text-slate-300 tracking-wider">✦ HYPERSCALE</span>
+            <span class="font-bold text-lg text-slate-300 tracking-wider">◼ MODULAR</span>
+            <span class="font-bold text-lg text-slate-300 tracking-wider">◆ NEXA LABS</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Interactive Feature Explorer Section -->
+    <section id="features" class="py-20 bg-slate-900/40 border-y border-slate-800/60 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs uppercase font-mono font-bold tracking-widest text-indigo-400">Capabilities</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Engineered For Unstoppable Performance</h2>
+          <p class="text-slate-400 mt-4 text-base sm:text-lg">Select a core module below to inspect the architectural advantages and live functionality.</p>
+        </div>
+
+        <!-- Feature Tab Controls -->
+        <div class="flex flex-wrap items-center justify-center gap-2 p-1.5 bg-slate-950/80 rounded-2xl border border-slate-800 max-w-xl mx-auto mb-12">
+          <button data-tab="ai" class="feature-tab-btn flex-1 min-w-[120px] py-2.5 px-4 text-sm font-semibold rounded-xl transition-all duration-200 active-tab-btn">
+            Edge Compute
+          </button>
+          <button data-tab="analytics" class="feature-tab-btn flex-1 min-w-[120px] py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-400 hover:text-white transition-all duration-200">
+            State Replicas
+          </button>
+          <button data-tab="security" class="feature-tab-btn flex-1 min-w-[120px] py-2.5 px-4 text-sm font-semibold rounded-xl text-slate-400 hover:text-white transition-all duration-200">
+            Security Shield
+          </button>
+        </div>
+
+        <!-- Feature Display Box -->
+        <div id="feature-display-content" class="bg-slate-950 border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl transition-all duration-300">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <!-- 3 Feature Highlight Cards -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-indigo-500/50 transition duration-300 group">
+            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+              </svg>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-indigo-600 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+            <h3 class="text-xl font-bold text-white mb-2">Deterministic Calculations</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Run offline computations, precision tax totals, and real-time algorithmic pipelines locally in the browser with zero round-trip lag.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-cyan-500/50 transition duration-300 group">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">End-to-End Type Safety</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Contract-level validation ensures every incoming parameter adheres strictly to structural schemas without runtime crashes.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-purple-500/50 transition duration-300 group">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Adaptive Context Injection</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Dynamically scales layouts between single-asset views and dense multi-image engineering dashboards with seamless flex-grid rules.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Adaptive Multi-Image Workflow Showcase -->
+    <section id="gallery" class="py-20 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span class="text-xs uppercase font-mono font-bold tracking-widest text-cyan-400">Workspaces & Environments</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Designed for High-Focus Flow States</h2>
+          </div>
+          <p class="text-slate-400 max-w-md mt-4 md:mt-0 text-sm">
+            Whether collaborating across distributed squads or debugging deeply locally, experience an interface built around clarity.
+          </p>
+        </div>
+
+        <!-- Adaptive Context Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+          
+          <!-- Large Feature Image -->
+          <div class="md:col-span-8 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group relative">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" 
+                 alt="High Performance Code Editor" 
+                 class="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+              <span class="text-xs font-mono font-semibold text-cyan-400 bg-cyan-950/80 px-2.5 py-1 rounded-md border border-cyan-800/60 w-fit mb-2">Live Debugger</span>
+              <h3 class="text-xl font-bold text-white">Full-Stack Context Inspector</h3>
+              <p class="text-slate-300 text-xs sm:text-sm mt-1 max-w-xl">Deep traces into offline calculation engines, payload trees, and reactive DOM bindings.</p>
+            </div>
+          </div>
+
+          <!-- Secondary Image 1 -->
+          <div class="md:col-span-4 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group relative">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" 
+                 alt="Collaborative Engineering Squad" 
+                 class="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+              <span class="text-xs font-mono font-semibold text-indigo-400 bg-indigo-950/80 px-2.5 py-1 rounded-md border border-indigo-800/60 w-fit mb-2">Pair Workflow</span>
+              <h3 class="text-lg font-bold text-white">Real-Time Team Sync</h3>
+              <p class="text-slate-300 text-xs mt-1">Multi-cursor peer review and shared staging states.</p>
+            </div>
+          </div>
+
+          <!-- Secondary Image 2 -->
+          <div class="md:col-span-4 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group relative">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" 
+                 alt="Hardware & Cloud Acceleration" 
+                 class="w-full h-72 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+              <span class="text-xs font-mono font-semibold text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-md border border-emerald-800/60 w-fit mb-2">Hardware-Accelerated</span>
+              <h3 class="text-base font-bold text-white">Zero Overhead Runtimes</h3>
+            </div>
+          </div>
+
+          <!-- Secondary Image 3 -->
+          <div class="md:col-span-8 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group relative">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" 
+                 alt="Metrics and Telemetry Dashboard" 
+                 class="w-full h-72 object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+              <span class="text-xs font-mono font-semibold text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-md border border-purple-800/60 w-fit mb-2">Observability</span>
+              <h3 class="text-xl font-bold text-white">Live Telemetry & In-Browser Diagnostics</h3>
+              <p class="text-slate-300 text-xs sm:text-sm mt-1">Audit DOM rendering budgets and execution micro-benchmarks continuously.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Interactive ROI & Pricing Calculator (Deterministic Client-Side Logic) -->
+    <section id="calculator" class="py-20 bg-slate-900/50 border-y border-slate-800/80 relative">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-xs uppercase font-mono font-bold tracking-widest text-emerald-400">Interactive Estimator</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Dynamic ROI & Pricing Calculator</h2>
+          <p class="text-slate-400 mt-3 text-sm sm:text-base">
+            Adjust team size and billing cadences to calculate instant annual cost reductions and hours saved.
+          </p>
+        </div>
+
+        <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Input Controls -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Team Size Slider -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label for="team-slider" class="text-sm font-semibold text-slate-200">Active Engineering Seats</label>
+                <span class="text-base font-mono font-bold text-indigo-400 bg-indigo-950/80 px-3 py-1 rounded-lg border border-indigo-800/50" id="team-size-display">12 Seats</span>
+              </div>
+              <input type="range" id="team-slider" min="1" max="100" value="12" class="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+              <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+                <span>1 seat</span>
+                <span>25 seats</span>
+                <span>50 seats</span>
+                <span>100 seats</span>
+              </div>
+            </div>
+
+            <!-- Tier Selection Radio Buttons -->
+            <div>
+              <span class="text-sm font-semibold text-slate-200 block mb-2">Platform Tier</span>
+              <div class="grid grid-cols-3 gap-3">
+                <label class="cursor-pointer">
+                  <input type="radio" name="tier" value="starter" class="peer sr-only">
+                  <div class="p-3 text-center rounded-xl border border-slate-800 bg-slate-900/60 peer-checked:border-indigo-500 peer-checked:bg-indigo-950/40 peer-checked:text-white transition">
+                    <div class="text-xs font-bold text-slate-300">Starter</div>
+                    <div class="text-[11px] text-slate-500 font-mono mt-0.5">$20/mo</div>
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="tier" value="pro" checked class="peer sr-only">
+                  <div class="p-3 text-center rounded-xl border border-slate-800 bg-slate-900/60 peer-checked:border-indigo-500 peer-checked:bg-indigo-950/40 peer-checked:text-white transition">
+                    <div class="text-xs font-bold text-slate-300">Pro Team</div>
+                    <div class="text-[11px] text-slate-500 font-mono mt-0.5">$45/mo</div>
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="tier" value="enterprise" class="peer sr-only">
+                  <div class="p-3 text-center rounded-xl border border-slate-800 bg-slate-900/60 peer-checked:border-indigo-500 peer-checked:bg-indigo-950/40 peer-checked:text-white transition">
+                    <div class="text-xs font-bold text-slate-300">Scale</div>
+                    <div class="text-[11px] text-slate-500 font-mono mt-0.5">$85/mo</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Billing Cycle Switch -->
+            <div class="flex items-center justify-between p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+              <div>
+                <div class="text-sm font-semibold text-white">Annual Commitment</div>
+                <div class="text-xs text-slate-400">Save 20% immediately on all seats</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="annual-billing-toggle" checked class="sr-only peer">
+                <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+              </label>
+            </div>
+
+            <!-- Dedicated Support Add-on -->
+            <div class="flex items-center justify-between p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+              <div>
+                <div class="text-sm font-semibold text-white">Dedicated Solutions Engineer</div>
+                <div class="text-xs text-slate-400">Includes 24/7 Slack channel access (+$150/mo flat)</div>
+              </div>
+              <input type="checkbox" id="support-addon-toggle" class="w-4 h-4 text-indigo-600 bg-slate-800 border-slate-700 rounded focus:ring-indigo-500">
+            </div>
+
+          </div>
+
+          <!-- Calculated Output Card -->
+          <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-xl">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-xs uppercase font-mono tracking-wider text-slate-400">Net Estimated Cost</span>
+                <span id="savings-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  20% OFF
+                </span>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-4xl sm:text-5xl font-extrabold text-white font-mono" id="calculated-cost-display">$432</span>
+                <span class="text-slate-400 text-sm" id="billing-cycle-label">/ month billed annually</span>
+              </div>
+              <div class="text-xs text-slate-500 mt-1 line-through" id="original-cost-display">$540/month</div>
+
+              <hr class="my-6 border-slate-800">
+
+              <div class="space-y-3">
+                <div class="flex justify-between text-xs text-slate-300">
+                  <span>Development Hours Saved / mo:</span>
+                  <span class="font-bold text-cyan-400 font-mono" id="hours-saved-display">180 hrs</span>
+                </div>
+                <div class="flex justify-between text-xs text-slate-300">
+                  <span>Estimated Dollar Savings / mo:</span>
+                  <span class="font-bold text-emerald-400 font-mono" id="dollar-saved-display">$10,800</span>
+                </div>
+                <div class="flex justify-between text-xs text-slate-300">
+                  <span>Monthly Discount Deduction:</span>
+                  <span class="font-mono text-slate-400" id="discount-amount-display">-$108</span>
+                </div>
+              </div>
+            </div>
+
+            <button id="calc-cta-btn" class="mt-8 w-full py-3.5 px-4 text-center font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 rounded-xl shadow-lg shadow-indigo-500/25 transition duration-200">
+              Claim This Plan &rarr;
             </button>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md absolute w-full left-0 py-2">
-            <a href="#features" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Features</a>
-            <a href="#testimonials" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Testimonials</a>
-            <a href="#cta" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Contact</a>
-            <button class="w-full text-left px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300">Get Started</button>
+          </div>
+
         </div>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20 md:py-32 relative overflow-hidden">
-            <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f94dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHw0OXx8d2ViJTIwZGV2ZWxvcG1lbnR8ZW58MHx8fHwxNzA1MjM0NjM2fDA&ixlib=rb-4.0.3&q=80&w=1080');"></div>
-            <div class="container mx-auto px-4 text-center relative z-10">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
-                    Build Your Dreams. <br> Faster, Smarter, Simpler.
-                </h1>
-                <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto opacity-90 animate-fade-in">
-                    Revolutionary tools for modern web developers. Empowering your next big idea.
-                </p>
-                <div class="space-x-4">
-                    <button class="bg-white text-indigo-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition duration-300 shadow-lg animate-scale-in">
-                        Explore Features
-                    </button>
-                    <button class="border border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-indigo-600 transition duration-300 shadow-lg animate-scale-in delay-100">
-                        Watch Demo
-                    </button>
-                </div>
-            </div>
-        </section>
+      </div>
+    </section>
 
-        <!-- Features Section -->
-        <section id="features" class="py-16 md:py-24 bg-gray-50">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-gray-900">Designed for Productivity</h2>
-                <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-                    Our platform provides everything you need to build stunning web applications with ease.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-                        <div class="text-indigo-600 mb-4 mx-auto w-16 h-16 flex items-center justify-center bg-indigo-100 rounded-full">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1l-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-gray-900">Intuitive Interface</h3>
-                        <p class="text-gray-600">
-                            A clean and user-friendly design ensures a smooth development experience from start to finish.
-                        </p>
-                    </div>
-                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-                        <div class="text-green-600 mb-4 mx-auto w-16 h-16 flex items-center justify-center bg-green-100 rounded-full">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-gray-900">Blazing Fast</h3>
-                        <p class="text-gray-600">
-                            Leverage optimized performance and rapid deployment to get your ideas live in no time.
-                        </p>
-                    </div>
-                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-                        <div class="text-red-600 mb-4 mx-auto w-16 h-16 flex items-center justify-center bg-red-100 rounded-full">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 8a8 8 0 01-8-8c0-5.429 3.243-9.5 8-9.5s8 4.071 8 9.5-3.243 9.5-8 9.5z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-gray-900">Scalable & Secure</h3>
-                        <p class="text-gray-600">
-                            Built on robust architecture, ensuring your applications grow with your needs, securely.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Image Section with Text -->
-        <section class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="relative overflow-hidden rounded-lg shadow-xl aspect-w-16 aspect-h-9">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHw1NXx8Y29kaW5nJTIwd29ya3N0YXRpb258ZW58MHx8fHwxNzA1MjM0NjM2fDA&ixlib=rb-4.0.3&q=80&w=1080"
-                         alt="Coding workspace"
-                         class="object-cover w-full h-full">
-                </div>
-                <div class="text-left">
-                    <h3 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Code Smarter, Not Harder</h3>
-                    <p class="text-lg text-gray-600 mb-6">
-                        Our integrated development environment provides intelligent code suggestions, real-time error checking,
-                        and powerful debugging tools, helping you write cleaner, more efficient code with less effort.
-                    </p>
-                    <ul class="list-disc list-inside text-gray-700 text-base space-y-2">
-                        <li>Intuitive code completion</li>
-                        <li>Live preview for instant feedback</li>
-                        <li>Version control integration</li>
-                        <li>Collaboration features for teams</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="py-16 md:py-24 bg-gray-100">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-gray-900">What Our Users Say</h2>
-                <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-                    Hear from developers and businesses who have transformed their workflow with our platform.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734b4a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHw1fHxhZnJpY2FuJTIwbWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzA1MzQ3OTgzfDA&ixlib=rb-4.0.3&q=80&w=1080"
-                             alt="User Avatar"
-                             class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
-                        <p class="text-gray-700 italic mb-4">"This platform has dramatically cut down our development time. The features are exactly what modern teams need!"</p>
-                        <p class="font-semibold text-indigo-600">- Jane Doe, Tech Lead at InnovateX</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwd29tYW4lMjBwb3J0cmFpdHxlbnwwfHwxfHwxNzA1MzQ3OTgzfDA&ixlib=rb-4.0.3&q=80&w=1080"
-                             alt="User Avatar"
-                             class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
-                        <p class="text-gray-700 italic mb-4">"The best tool for rapid prototyping and deployment. It handles everything, letting us focus on creativity."</p>
-                        <p class="font-semibold text-indigo-600">- John Smith, Founder of CreativeApps</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHwyfHxhZnJpY2FuJTIwbWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzA1MzQ3OTgzfDA&ixlib=rb-4.0.3&q=80&w=1080"
-                             alt="User Avatar"
-                             class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
-                        <p class="text-gray-700 italic mb-4">"Highly recommended! The support is fantastic and the platform is incredibly robust and easy to integrate."</p>
-                        <p class="font-semibold text-indigo-600">- Emily White, Lead Developer at Global Solutions</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Call to Action Section -->
-        <section id="cta" class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-16 md:py-24">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6">Ready to Transform Your Workflow?</h2>
-                <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto opacity-90">
-                    Join thousands of developers building amazing things with our powerful platform.
-                </p>
-                <button class="bg-white text-indigo-700 px-10 py-4 rounded-lg text-xl font-semibold hover:bg-gray-100 transition duration-300 shadow-lg">
-                    Get Started Today
-                </button>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300 py-10">
-        <div class="container mx-auto px-4 text-center">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-                <a href="#" class="text-2xl font-bold text-white mb-4 md:mb-0">MyBrand</a>
-                <div class="flex space-x-6">
-                    <a href="#features" class="hover:text-white transition duration-300">Features</a>
-                    <a href="#testimonials" class="hover:text-white transition duration-300">Testimonials</a>
-                    <a href="#cta" class="hover:text-white transition duration-300">Contact</a>
-                    <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
-                </div>
-            </div>
-            <p class="text-gray-500 text-sm">&copy; 2023 MyBrand. All rights reserved.</p>
+    <!-- Testimonials & Social Proof -->
+    <section id="testimonials" class="py-20 bg-slate-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-xs uppercase font-mono font-bold tracking-widest text-indigo-400">Social Proof</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Built and Trusted by Industry Leaders</h2>
+          <p class="text-slate-400 mt-3 text-base">Filter developer feedback from various industries.</p>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <!-- Filter Buttons -->
+        <div class="flex items-center justify-center gap-2 mb-10 overflow-x-auto pb-2">
+          <button data-filter="all" class="testimonial-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-indigo-600 text-white transition">All</button>
+          <button data-filter="saas" class="testimonial-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition">SaaS</button>
+          <button data-filter="fintech" class="testimonial-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition">FinTech</button>
+          <button data-filter="ecommerce" class="testimonial-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition">E-Commerce</button>
+        </div>
+
+        <!-- Testimonial Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="testimonials-grid">
+          
+          <div class="testimonial-card p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between" data-category="saas">
+            <div>
+              <div class="flex items-center gap-1 text-amber-400 mb-4">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <p class="text-slate-300 text-sm leading-relaxed italic">
+                "Our deployment cycles dropped from 45 minutes to under 30 seconds. The deterministic offline calculation architecture saved our engineering team dozens of redundant backend round-trips."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-800/80">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Sarah Lin" class="w-10 h-10 rounded-full object-cover">
+              <div>
+                <h4 class="text-sm font-bold text-white">Sarah Lin</h4>
+                <p class="text-xs text-slate-400">VP of Engineering at MetricHQ</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between" data-category="fintech">
+            <div>
+              <div class="flex items-center gap-1 text-amber-400 mb-4">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <p class="text-slate-300 text-sm leading-relaxed italic">
+                "Security and strict determinism are paramount in financial operations. The clean separation of concerns and responsive architecture delivered exact precision."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-800/80">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Marcus Vance" class="w-10 h-10 rounded-full object-cover">
+              <div>
+                <h4 class="text-sm font-bold text-white">Marcus Vance</h4>
+                <p class="text-xs text-slate-400">Principal Architect at PayPulse</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition flex flex-col justify-between" data-category="ecommerce">
+            <div>
+              <div class="flex items-center gap-1 text-amber-400 mb-4">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <p class="text-slate-300 text-sm leading-relaxed italic">
+                "We handled Black Friday flash sale surges without a single hitch. Layout adaptivity across devices allowed our mobile conversions to skyrocket by 42%."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-800/80">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734b4a2?auto=format&fit=crop&w=150&q=80" alt="Elena Rostova" class="w-10 h-10 rounded-full object-cover">
+              <div>
+                <h4 class="text-sm font-bold text-white">Elena Rostova</h4>
+                <p class="text-xs text-slate-400">Head of Tech at CartFlow</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="py-20 bg-slate-900/30 border-t border-slate-800/60">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-14">
+          <span class="text-xs uppercase font-mono font-bold tracking-widest text-cyan-400">Knowledge Base</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Frequently Asked Questions</h2>
+          <p class="text-slate-400 mt-3 text-base">Everything you need to know about architecture, pricing, and adoption.</p>
+        </div>
+
+        <div class="space-y-4" id="faq-container">
+          
+          <!-- Item 1 -->
+          <div class="faq-item border border-slate-800 rounded-xl bg-slate-950/70 overflow-hidden">
+            <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-slate-200 hover:text-white">
+              <span>How does browser-native deterministic calculation work?</span>
+              <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-400 leading-relaxed border-t border-slate-800/40 pt-3">
+              All formulas, subtotals, margin rates, and validation logic run locally inside the browser's JavaScript engine. It eliminates unneeded round-trip API delays and ensures an instant, offline-capable reactive user experience.
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="faq-item border border-slate-800 rounded-xl bg-slate-950/70 overflow-hidden">
+            <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-slate-200 hover:text-white">
+              <span>Can I customize seats and cancel at any time?</span>
+              <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-400 leading-relaxed border-t border-slate-800/40 pt-3">
+              Yes. You can scale your seat count up or down at any time. When switching between monthly and annual plans, credits are prorated automatically down to the second.
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="faq-item border border-slate-800 rounded-xl bg-slate-950/70 overflow-hidden">
+            <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-slate-200 hover:text-white">
+              <span>What external frameworks are mandatory to run this project?</span>
+              <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-400 leading-relaxed border-t border-slate-800/40 pt-3">
+              None! This project relies exclusively on standard HTML5, CSS3, ES6+ JavaScript, and the modern Tailwind CSS browser engine. There are no heavy bloated build pipelines required.
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="faq-item border border-slate-800 rounded-xl bg-slate-950/70 overflow-hidden">
+            <button class="faq-toggle w-full px-6 py-4 text-left flex items-center justify-between font-semibold text-slate-200 hover:text-white">
+              <span>Is our team data encrypted during transport and storage?</span>
+              <svg class="faq-icon w-5 h-5 text-slate-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-5 text-sm text-slate-400 leading-relaxed border-t border-slate-800/40 pt-3">
+              Yes. Transport uses TLS 1.3 encryption, and all persistent data utilizes AES-256 with role-based session token authorization.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Secondary Call-To-Action Banner -->
+    <section class="py-20 relative overflow-hidden">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative rounded-3xl p-8 sm:p-14 bg-gradient-to-r from-indigo-900/80 via-purple-900/60 to-slate-900 border border-indigo-500/40 shadow-2xl text-center overflow-hidden">
+          <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Ready to Elevate Your Web Workflow?</h2>
+          <p class="text-slate-300 text-base sm:text-lg max-w-xl mx-auto mt-4">
+            Join thousands of modern developers building reliable, lightning-fast web applications today.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button id="cta-demo-button" class="w-full sm:w-auto px-8 py-4 font-bold text-slate-950 bg-white hover:bg-slate-100 rounded-xl shadow-lg transition duration-150">
+              Request VIP Demo
+            </button>
+            <a href="#calculator" class="w-full sm:w-auto px-8 py-4 font-semibold text-white bg-indigo-600/60 hover:bg-indigo-600 border border-indigo-400/30 rounded-xl transition duration-150">
+              Calculate Plan Cost
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Demo / Lead Modal -->
+  <div id="demo-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden transition-opacity duration-300">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+      <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="mb-6">
+        <h3 class="text-2xl font-bold text-white">Schedule an Architecture Demo</h3>
+        <p class="text-slate-400 text-sm mt-1">Get custom benchmarks tailored directly to your engineering stack.</p>
+      </div>
+
+      <form id="lead-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1" for="modal-name">Full Name</label>
+          <input type="text" id="modal-name" required placeholder="Jane Doe" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1" for="modal-email">Work Email</label>
+          <input type="email" id="modal-email" required placeholder="jane@company.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1" for="modal-size">Company Scale</label>
+          <select id="modal-size" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-indigo-500 text-sm">
+            <option value="1-10">1 - 10 Engineers</option>
+            <option value="11-50">11 - 50 Engineers</option>
+            <option value="51-250">51 - 250 Engineers</option>
+            <option value="250+">250+ Engineers</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full py-3 px-4 font-bold text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 rounded-xl transition duration-150 shadow-md">
+          Confirm Demonstration Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-indigo-900 border border-indigo-500/50 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 animate-fade-in text-sm font-medium">
+    <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+    </svg>
+    <span id="toast-message">Request confirmed successfully!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 border-t border-slate-900 text-slate-400 pt-16 pb-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10 pb-12 border-b border-slate-800/80">
+        
+        <!-- Brand Info -->
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <span class="text-xl font-extrabold text-white">NexusStack</span>
+          </div>
+          <p class="mt-4 text-sm text-slate-400 max-w-sm leading-relaxed">
+            The next-generation framework for rapid, reactive, and offline-capable web application development.
+          </p>
+          <div class="mt-4 flex items-center gap-2 text-xs text-emerald-400 font-mono">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            All Global Edge Clusters Operational
+          </div>
+        </div>
+
+        <!-- Links Column 1 -->
+        <div>
+          <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">Architecture</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#features" class="hover:text-white transition">Edge Runtimes</a></li>
+            <li><a href="#features" class="hover:text-white transition">Deterministic Engine</a></li>
+            <li><a href="#features" class="hover:text-white transition">State Replicas</a></li>
+            <li><a href="#gallery" class="hover:text-white transition">Developer Tooling</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Column 2 -->
+        <div>
+          <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">Resources</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#calculator" class="hover:text-white transition">ROI Estimator</a></li>
+            <li><a href="#faq" class="hover:text-white transition">Documentation</a></li>
+            <li><a href="#testimonials" class="hover:text-white transition">Customer Stories</a></li>
+            <li><a href="#" class="hover:text-white transition">API Status</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Sign-up -->
+        <div>
+          <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">Release Radar</h4>
+          <p class="text-xs text-slate-400 mb-3">Subscribe for weekly architecture insights and engine release notes.</p>
+          <form id="newsletter-form" class="space-y-2">
+            <input type="email" id="newsletter-email" required placeholder="dev@company.com" class="w-full px-3 py-2 text-xs rounded-lg bg-slate-900 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500">
+            <button type="submit" class="w-full py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg transition">
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+        <p>&copy; 2025 NexusStack Web Operations. All rights reserved.</p>
+        <div class="flex gap-6 mt-4 sm:mt-0">
+          <a href="#" class="hover:text-slate-400 transition">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-400 transition">Terms of Service</a>
+          <a href="#" class="hover:text-slate-400 transition">Security Disclosure</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
