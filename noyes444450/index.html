@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>noyes - The Ultimate Decision Community</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-rose-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+            <span class="text-white font-extrabold text-lg tracking-wider">NY</span>
+          </div>
+          <div>
+            <h1 class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-teal-300 to-rose-400 bg-clip-text text-transparent">noyes</h1>
+            <p class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Binary Polls & Dilemmas</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Search & Filter Stats -->
+      <div class="hidden md:flex items-center max-w-md w-full mx-6">
+        <div class="relative w-full">
+          <input type="text" id="searchInput" placeholder="Search questions, dilemmas, tags..." 
+            class="w-full bg-slate-800/80 border border-slate-700/80 rounded-full py-2 pl-10 pr-4 text-sm text-slate-200 placeholder-slate-400 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Action Items -->
+      <div class="flex items-center gap-3">
+        <!-- Logged Out Actions -->
+        <div id="loggedOutNav" class="flex items-center gap-2">
+          <button id="navLoginBtn" class="px-4 py-2 text-sm font-semibold text-slate-200 hover:text-white transition">Sign In</button>
+          <button id="navRegisterBtn" class="px-4 py-2 text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl shadow-md transition">Get Started</button>
+        </div>
+
+        <!-- Logged In Actions -->
+        <div id="loggedInNav" class="hidden flex items-center gap-3">
+          <button id="createPollBtn" class="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-sm rounded-xl shadow-lg shadow-teal-500/20 transition cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+            <span>Ask Yes/No</span>
+          </button>
+          
+          <div class="relative">
+            <button id="userProfileBtn" class="flex items-center gap-2 py-1.5 px-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-slate-600 transition">
+              <div class="w-7 h-7 rounded-lg bg-teal-500/20 border border-teal-500/40 text-teal-400 font-bold flex items-center justify-center text-xs" id="userAvatarText">U</div>
+              <span id="userEmailNav" class="text-xs font-semibold text-slate-300 max-w-[120px] truncate">user</span>
+            </button>
+            <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl py-1 z-50">
+              <button id="viewMyPollsBtn" class="w-full text-left px-4 py-2 text-xs font-medium text-slate-300 hover:bg-slate-800 flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                My Questions
+              </button>
+              <div class="border-t border-slate-800 my-1"></div>
+              <button id="logoutBtn" class="w-full text-left px-4 py-2 text-xs font-medium text-rose-400 hover:bg-slate-800 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub-header Category Bar -->
+  <nav class="bg-slate-900/60 border-b border-slate-800/80 px-4 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 overflow-x-auto scrollbar-none">
+      <div class="flex items-center gap-2" id="categoryFilterContainer">
+        <button data-cat="all" class="category-btn active px-3.5 py-1.5 rounded-full text-xs font-semibold bg-teal-500 text-slate-950 transition">All Decisions</button>
+        <button data-cat="Lifestyle" class="category-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Lifestyle</button>
+        <button data-cat="Tech" class="category-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Tech & Gadgets</button>
+        <button data-cat="Fashion" class="category-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Fashion & Looks</button>
+        <button data-cat="Dilemmas" class="category-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Hard Dilemmas</button>
+        <button data-cat="Entertainment" class="category-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Entertainment</button>
+      </div>
+
+      <!-- Quick Metrics calculation summary pill -->
+      <div class="hidden lg:flex items-center gap-4 text-xs font-medium text-slate-400 shrink-0">
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Total Votes Cast: <strong id="totalCommunityVotes" class="text-white">0</strong></span>
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-teal-400"></span> Questions: <strong id="totalQuestionsCount" class="text-white">0</strong></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Feed Area -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <!-- Active View Banner (Shows when filtering "My Questions") -->
+    <div id="filterBanner" class="hidden mb-6 bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold">★</div>
+        <div>
+          <h2 class="text-sm font-bold text-white" id="filterBannerTitle">Showing Your Questions</h2>
+          <p class="text-xs text-slate-400">Manage, review live stats, or delete your posted dilemmas</p>
+        </div>
+      </div>
+      <button id="resetFilterBtn" class="text-xs font-semibold text-teal-400 hover:underline">Show All Dilemmas</button>
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden py-16 text-center">
+      <div class="w-20 h-20 mx-auto rounded-3xl bg-slate-900 border border-slate-800 flex items-center justify-center text-4xl mb-4">🤔</div>
+      <h3 class="text-xl font-bold text-white mb-2">No Dilemmas Found</h3>
+      <p class="text-sm text-slate-400 max-w-md mx-auto mb-6">Be the first to post a burning question with an image and let the world vote Yes or No!</p>
+      <button id="emptyCreateBtn" class="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold rounded-xl shadow-lg transition">Create First Question</button>
+    </div>
+
+    <!-- Polls Grid Layout -->
+    <div id="pollsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Dynamic Poll Cards rendered via script.js -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 border-t border-slate-900 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-extrabold text-white">noyes</span>
+        <span>— Instant Collective Consensus Engine</span>
+      </div>
+      <div class="text-slate-400">
+        Deterministic Local Calculations • 100% Cloud Synced • Image Worker Powered
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- AUTH MODAL (Login & Register) -->
+  <div id="authModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+      <button id="closeAuthModal" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+      
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-tr from-emerald-500 to-rose-500 flex items-center justify-center text-white font-extrabold text-xl mb-3 shadow-lg">
+          NY
+        </div>
+        <h3 id="authModalTitle" class="text-2xl font-extrabold text-white">Welcome to noyes</h3>
+        <p id="authModalSubtitle" class="text-xs text-slate-400 mt-1">Join the community to post dilemmas & cast your vote</p>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="flex bg-slate-800/80 p-1 rounded-xl mb-6">
+        <button id="tabLogin" class="flex-1 py-2 text-xs font-bold rounded-lg bg-teal-500 text-slate-950 transition">Sign In</button>
+        <button id="tabRegister" class="flex-1 py-2 text-xs font-bold rounded-lg text-slate-300 hover:text-white transition">Create Account</button>
+      </div>
+
+      <!-- Auth Form -->
+      <form id="authForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Email Address</label>
+          <input type="email" id="authEmail" required placeholder="you@domain.com"
+            class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500 transition">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Password</label>
+          <input type="password" id="authPassword" required placeholder="••••••••"
+            class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500 transition">
+        </div>
+
+        <div id="forgotPasswordWrap" class="text-right">
+          <button type="button" id="openForgotBtn" class="text-xs text-teal-400 hover:underline font-semibold">Forgot Password?</button>
+        </div>
+
+        <button type="submit" id="authSubmitBtn" class="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-extrabold text-sm rounded-xl shadow-lg shadow-teal-500/20 transition cursor-pointer">
+          Sign In
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD (OTP VIA GMAIL) MODAL -->
+  <div id="forgotModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+      <button id="closeForgotModal" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+      
+      <div class="text-center mb-6">
+        <h3 class="text-xl font-extrabold text-white">Reset Password</h3>
+        <p class="text-xs text-slate-400 mt-1">Receive a security OTP directly to your registered email</p>
+      </div>
+
+      <!-- Step 1: Request OTP -->
+      <form id="requestOtpForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase mb-1.5">Your Registered Email</label>
+          <input type="email" id="forgotEmail" required placeholder="name@example.com"
+            class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:border-teal-500 focus:outline-none">
+        </div>
+        <button type="submit" id="requestOtpBtn" class="w-full py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm rounded-xl transition">
+          Send OTP Code
+        </button>
+      </form>
+
+      <!-- Step 2: Reset with OTP (Hidden initially) -->
+      <form id="resetPasswordForm" class="hidden space-y-4 mt-4 pt-4 border-t border-slate-800">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase mb-1.5">Enter 6-Digit OTP</label>
+          <input type="text" id="otpCode" required placeholder="123456" maxlength="6"
+            class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-center tracking-widest text-white font-mono focus:border-teal-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase mb-1.5">New Password</label>
+          <input type="password" id="newPassword" required placeholder="New strong password"
+            class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:border-teal-500 focus:outline-none">
+        </div>
+        <button type="submit" id="resetPasswordBtn" class="w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm rounded-xl transition">
+          Confirm New Password
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CREATE QUESTION / POLL MODAL -->
+  <div id="createModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
+      <button id="closeCreateModal" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+      
+      <div class="mb-5">
+        <h3 class="text-2xl font-extrabold text-white">Ask the World: Yes or No?</h3>
+        <p class="text-xs text-slate-400 mt-1">Post your scenario, outfit, gadget, or big life question with a photo</p>
+      </div>
+
+      <form id="createPollForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase mb-1.5">Question Title *</label>
+          <input type="text" id="pollTitleInput" required placeholder="e.g. Should I buy this vintage jacket?" maxlength="120"
+            class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:border-teal-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase mb-1.5">Details & Context (Optional)</label>
+          <textarea id="pollDescInput" rows="2" placeholder="Explain the stakes, price, or why you are torn..."
+            class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white focus:border-teal-500 focus:outline-none resize-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase mb-1.5">Category</label>
+          <select id="pollCategoryInput" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:border-teal-500 focus:outline-none">
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Tech">Tech & Gadgets</option>
+            <option value="Fashion">Fashion & Looks</option>
+            <option value="Dilemmas">Hard Dilemmas</option>
+            <option value="Entertainment">Entertainment</option>
+          </select>
+        </div>
+
+        <!-- Image Upload Area -->
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase mb-1.5">Visual Photo (Optional - auto compressed &lt; 200KB)</label>
+          <div id="dropZone" class="border-2 border-dashed border-slate-700 hover:border-teal-500 rounded-2xl p-4 text-center cursor-pointer transition bg-slate-800/40 relative">
+            <input type="file" id="imageFileInput" accept="image/*" class="hidden">
+            <div id="dropZonePrompt">
+              <svg class="w-8 h-8 mx-auto text-slate-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+              <p class="text-xs font-semibold text-slate-300">Click to upload photo or drag & drop</p>
+              <p class="text-[10px] text-slate-500 mt-1">PNG, JPG, WebP supported</p>
+            </div>
+            <!-- Live Preview -->
+            <div id="dropZonePreview" class="hidden flex items-center gap-3">
+              <img id="previewImg" class="w-16 h-16 rounded-xl object-cover border border-slate-700" src="" alt="Preview">
+              <div class="text-left flex-1 min-w-0">
+                <p id="previewName" class="text-xs font-bold text-white truncate"></p>
+                <p id="previewSize" class="text-[10px] text-teal-400"></p>
+              </div>
+              <button type="button" id="removeImgBtn" class="text-rose-400 hover:text-rose-300 text-sm font-bold p-2">&times; Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="submitPollBtn" class="w-full py-3 bg-gradient-to-r from-emerald-500 via-teal-500 to-rose-500 hover:opacity-90 text-slate-950 font-extrabold text-sm rounded-xl shadow-lg transition cursor-pointer">
+          Publish Question
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
