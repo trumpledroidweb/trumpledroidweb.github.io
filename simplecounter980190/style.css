@@ -1,0 +1,9 @@
+/*
+ * Custom CSS for simplecounter.
+ * Tailwind CSS is used for most styling, this file is for specific overrides
+ * or custom animations not easily achieved with utility classes.
+ */
+
+/* No specific custom CSS needed beyond what Tailwind provides for this simple app. */
+/* The @layer base in index.html handles font import for 'Inter'. */
+/* All visual styling is handled directly by Tailwind CSS classes in index.html. */
