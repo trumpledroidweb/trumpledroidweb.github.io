@@ -2,92 +2,92 @@
   "steps": [
     {
       "step": 1,
-      "title": "Initialize Project Structure",
-      "description": "Create the basic HTML5, CSS, and JavaScript files for the web application.",
-      "files": ["index.html", "style.css", "script.js"],
+      "title": "Project Architecture & Meta Setup",
+      "description": "Define configuration, meta specifications, and responsive viewport parameters.",
+      "files": ["app-meta.json", "index.html"],
       "status": "pending"
     },
     {
       "step": 2,
-      "title": "Configure Tailwind CSS",
-      "description": "Add the Tailwind CSS CDN to index.html for utility-first styling.",
-      "files": ["index.html"],
+      "title": "Configure Tailwind CSS & Custom Theme Tokens",
+      "description": "Integrate Tailwind v4 browser runtime and establish custom typography, color gradients, and glassmorphic utilities.",
+      "files": ["index.html", "style.css"],
       "status": "pending"
     },
     {
       "step": 3,
-      "title": "Implement Responsive Header",
-      "description": "Design a responsive navigation bar with a logo and menu items using Tailwind CSS.",
-      "files": ["index.html", "style.css"],
+      "title": "Responsive Glassmorphism Navigation Bar",
+      "description": "Construct accessible navigation bar with mobile sliding drawer, live status badge, and smooth anchor routing.",
+      "files": ["index.html", "script.js"],
       "status": "pending"
     },
     {
       "step": 4,
-      "title": "Create Hero Section",
-      "description": "Develop a prominent hero section with a catchy headline, subtext, and a primary call-to-action button.",
-      "files": ["index.html"],
-      "status": "pending"
-    },
-    {
-      "step": 5,
-      "title": "Add Feature Showcase",
-      "description": "Design a section to highlight key features or benefits of the product/service using a grid layout with icons and descriptions.",
-      "files": ["index.html"],
-      "status": "pending"
-    },
-    {
-      "step": 6,
-      "title": "Include Testimonials Section",
-      "description": "Integrate a section to display customer testimonials or social proof to build trust.",
-      "files": ["index.html"],
-      "status": "pending"
-    },
-    {
-      "step": 7,
-      "title": "Implement Secondary Call-to-Action",
-      "description": "Add another call-to-action section before the footer to encourage user engagement.",
-      "files": ["index.html"],
-      "status": "pending"
-    },
-    {
-      "step": 8,
-      "title": "Design Responsive Footer",
-      "description": "Create a clean and informative footer with copyright information and potential navigation links.",
-      "files": ["index.html"],
-      "status": "pending"
-    },
-    {
-      "step": 9,
-      "title": "Enhance Mobile Responsiveness",
-      "description": "Review and refine all sections to ensure optimal display and user experience on various screen sizes.",
+      "title": "Dynamic Hero Section & Live Metric Badges",
+      "description": "Build high-impact hero header with interactive product badge, CTA buttons, and responsive stats cards.",
       "files": ["index.html", "style.css"],
       "status": "pending"
     },
     {
+      "step": 5,
+      "title": "Interactive Product Architecture & Feature Switcher",
+      "description": "Develop multi-tab interactive showcase allowing users to toggle through AI Automation, Cloud Engine, and Team Analytics.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Multi-Image Workflow Gallery",
+      "description": "Implement adaptive multi-image masonry grid illustrating engineering workflows, team collaboration, and interface previews.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Interactive ROI & Pricing Estimation Calculator",
+      "description": "Implement real-time browser-based calculator computing monthly/annual billing, volume discounts, and engineering hours saved.",
+      "files": ["index.html", "script.js", "api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Filterable Customer Testimonials & Social Proof",
+      "description": "Add customer quote cards with dynamic category filtering and interactive review cards.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Interactive Accordion FAQ Section",
+      "description": "Build accessible collapsible FAQ accordion with smooth CSS transitions.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
       "step": 10,
-      "title": "Add Dynamic Elements (Optional)",
-      "description": "Implement simple JavaScript for interactive elements like a mobile menu toggle or scroll animations.",
-      "files": ["script.js", "index.html"],
+      "title": "Lead Capture & Interactive Demo Modal",
+      "description": "Create modal dialogue with live validation, client-side submission feedback, and toast notification system.",
+      "files": ["index.html", "script.js"],
       "status": "pending"
     },
     {
       "step": 11,
-      "title": "Integrate Placeholder Images",
-      "description": "Use dynamic image URLs for visual elements to make the landing page more engaging.",
-      "files": ["index.html"],
+      "title": "Comprehensive Footer with Newsletter Subscription",
+      "description": "Construct multi-column footer with status indicator, navigation clusters, and interactive subscription handler.",
+      "files": ["index.html", "script.js"],
       "status": "pending"
     },
     {
       "step": 12,
-      "title": "Final Review and Polish",
-      "description": "Perform a comprehensive review of the design, functionality, and code quality across all files.",
-      "files": ["index.html", "style.css", "script.js"],
+      "title": "Polishing Animations & Cross-Browser Styling",
+      "description": "Fine-tune hover states, subtle gradient animations, layout accessibility, and performance.",
+      "files": ["style.css", "script.js"],
       "status": "pending"
     },
     {
       "step": 13,
       "title": "Building landingpage",
-      "description": "The landing page web application is now complete and ready for deployment.",
+      "description": "Final build verification for high performance and responsive presentation across devices.",
       "files": [],
       "status": "pending"
     }
