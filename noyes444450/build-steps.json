@@ -1,0 +1,88 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Project Initialization",
+      "description": "Establish core files, dynamic metadata, and Tailwind CSS framework integration",
+      "files": ["app-meta.json", "index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "API & Storage Schema Configuration",
+      "description": "Configure generic backend schema and deterministic vote calculation definitions",
+      "files": ["api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Authentication Interface Design",
+      "description": "Build user sign-up, login, and Gmail OTP password reset modal views",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Backend API Client Implementation",
+      "description": "Create reliable API communication layer adhering to exact request/response envelopes",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Private Image Worker Client & Compression",
+      "description": "Implement client-side canvas image compressor under 200KB and Image Worker upload handler",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Poll Creation Interface & Image Upload",
+      "description": "Build interactive prompt creation modal with drag-and-drop image attachment",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Offline Deterministic Calculation Engine",
+      "description": "Implement local calculation functions for voting ratios, tally statistics, and percentages",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Interactive Yes/No Voting Mechanics",
+      "description": "Implement instant vote casting, user vote tracking, and real-time state re-calculation",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Filtering, Searching and Categorization",
+      "description": "Add dynamic category pills and keyword search with responsive grid reflow",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "User Dashboard & Dilemma Management",
+      "description": "Add user dilemmas management tab with delete, update, and image inspection",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "UI Polish and Toast Notification Engine",
+      "description": "Implement clean animations, toast notifications, and dark-accent styling",
+      "files": ["style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Building noyes",
+      "description": "Verify complete system compliance, deterministic calculations, and deploy web app",
+      "files": ["index.html", "style.css", "script.js", "api_schema.json", "app-meta.json"],
+      "status": "pending"
+    }
+  ]
+}
