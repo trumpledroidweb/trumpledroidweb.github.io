@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>landingpage</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600">MyBrand</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#features" class="text-gray-600 hover:text-indigo-600 transition duration-300">Features</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-indigo-600 transition duration-300">Testimonials</a>
+                <a href="#cta" class="text-gray-600 hover:text-indigo-600 transition duration-300">Contact</a>
+                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">Get Started</button>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-indigo-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md absolute w-full left-0 py-2">
+            <a href="#features" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Features</a>
+            <a href="#testimonials" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Testimonials</a>
+            <a href="#cta" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Contact</a>
+            <button class="w-full text-left px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300">Get Started</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20 md:py-32 relative overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f94dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHw0OXx8d2ViJTIwZGV2ZWxvcG1lbnR8ZW58MHx8fHwxNzA1MjM0NjM2fDA&ixlib=rb-4.0.3&q=80&w=1080');"></div>
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                    Build Your Dreams. <br> Faster, Smarter, Simpler.
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto opacity-90 animate-fade-in">
+                    Revolutionary tools for modern web developers. Empowering your next big idea.
+                </p>
+                <div class="space-x-4">
+                    <button class="bg-white text-indigo-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition duration-300 shadow-lg animate-scale-in">
+                        Explore Features
+                    </button>
+                    <button class="border border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-indigo-600 transition duration-300 shadow-lg animate-scale-in delay-100">
+                        Watch Demo
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-gray-900">Designed for Productivity</h2>
+                <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                    Our platform provides everything you need to build stunning web applications with ease.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                        <div class="text-indigo-600 mb-4 mx-auto w-16 h-16 flex items-center justify-center bg-indigo-100 rounded-full">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1l-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Intuitive Interface</h3>
+                        <p class="text-gray-600">
+                            A clean and user-friendly design ensures a smooth development experience from start to finish.
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                        <div class="text-green-600 mb-4 mx-auto w-16 h-16 flex items-center justify-center bg-green-100 rounded-full">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Blazing Fast</h3>
+                        <p class="text-gray-600">
+                            Leverage optimized performance and rapid deployment to get your ideas live in no time.
+                        </p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                        <div class="text-red-600 mb-4 mx-auto w-16 h-16 flex items-center justify-center bg-red-100 rounded-full">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 8a8 8 0 01-8-8c0-5.429 3.243-9.5 8-9.5s8 4.071 8 9.5-3.243 9.5-8 9.5z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Scalable & Secure</h3>
+                        <p class="text-gray-600">
+                            Built on robust architecture, ensuring your applications grow with your needs, securely.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Section with Text -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="relative overflow-hidden rounded-lg shadow-xl aspect-w-16 aspect-h-9">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHw1NXx8Y29kaW5nJTIwd29ya3N0YXRpb258ZW58MHx8fHwxNzA1MjM0NjM2fDA&ixlib=rb-4.0.3&q=80&w=1080"
+                         alt="Coding workspace"
+                         class="object-cover w-full h-full">
+                </div>
+                <div class="text-left">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Code Smarter, Not Harder</h3>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Our integrated development environment provides intelligent code suggestions, real-time error checking,
+                        and powerful debugging tools, helping you write cleaner, more efficient code with less effort.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 text-base space-y-2">
+                        <li>Intuitive code completion</li>
+                        <li>Live preview for instant feedback</li>
+                        <li>Version control integration</li>
+                        <li>Collaboration features for teams</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-16 md:py-24 bg-gray-100">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-gray-900">What Our Users Say</h2>
+                <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                    Hear from developers and businesses who have transformed their workflow with our platform.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734b4a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHw1fHxhZnJpY2FuJTIwbWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzA1MzQ3OTgzfDA&ixlib=rb-4.0.3&q=80&w=1080"
+                             alt="User Avatar"
+                             class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
+                        <p class="text-gray-700 italic mb-4">"This platform has dramatically cut down our development time. The features are exactly what modern teams need!"</p>
+                        <p class="font-semibold text-indigo-600">- Jane Doe, Tech Lead at InnovateX</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwd29tYW4lMjBwb3J0cmFpdHxlbnwwfHwxfHwxNzA1MzQ3OTgzfDA&ixlib=rb-4.0.3&q=80&w=1080"
+                             alt="User Avatar"
+                             class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
+                        <p class="text-gray-700 italic mb-4">"The best tool for rapid prototyping and deployment. It handles everything, letting us focus on creativity."</p>
+                        <p class="font-semibold text-indigo-600">- John Smith, Founder of CreativeApps</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTQ4NzN8MHwxfHNlYXJjaHwyfHxhZnJpY2FuJTIwbWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzA1MzQ3OTgzfDA&ixlib=rb-4.0.3&q=80&w=1080"
+                             alt="User Avatar"
+                             class="w-20 h-20 rounded-full mx-auto mb-4 object-cover">
+                        <p class="text-gray-700 italic mb-4">"Highly recommended! The support is fantastic and the platform is incredibly robust and easy to integrate."</p>
+                        <p class="font-semibold text-indigo-600">- Emily White, Lead Developer at Global Solutions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section id="cta" class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">Ready to Transform Your Workflow?</h2>
+                <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto opacity-90">
+                    Join thousands of developers building amazing things with our powerful platform.
+                </p>
+                <button class="bg-white text-indigo-700 px-10 py-4 rounded-lg text-xl font-semibold hover:bg-gray-100 transition duration-300 shadow-lg">
+                    Get Started Today
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-10">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                <a href="#" class="text-2xl font-bold text-white mb-4 md:mb-0">MyBrand</a>
+                <div class="flex space-x-6">
+                    <a href="#features" class="hover:text-white transition duration-300">Features</a>
+                    <a href="#testimonials" class="hover:text-white transition duration-300">Testimonials</a>
+                    <a href="#cta" class="hover:text-white transition duration-300">Contact</a>
+                    <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
+                </div>
+            </div>
+            <p class="text-gray-500 text-sm">&copy; 2023 MyBrand. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
