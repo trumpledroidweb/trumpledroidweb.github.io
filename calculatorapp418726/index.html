@@ -27,32 +27,44 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="calculator bg-gray-800 p-6 rounded-xl shadow-2xl w-96 max-w-sm">
-        <input type="text" id="display" class="w-full bg-gray-900 text-white text-right text-4xl p-4 rounded-lg mb-6 outline-none focus:ring-2 focus:ring-indigo-500" value="0" readonly>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="flex flex-col md:flex-row gap-8">
+        <div class="calculator bg-gray-800 p-6 rounded-xl shadow-2xl w-96 max-w-sm mx-auto">
+            <input type="text" id="display" class="w-full bg-gray-900 text-white text-right text-4xl p-4 rounded-lg mb-6 outline-none focus:ring-2 focus:ring-indigo-500" value="0" readonly>
 
-        <div class="grid grid-cols-4 gap-4">
-            <button class="calculator-button calculator-clear col-span-2" data-action="clear">C</button>
-            <button class="calculator-button calculator-operator" data-action="divide">/</button>
-            <button class="calculator-button calculator-operator" data-action="multiply">*</button>
+            <div class="grid grid-cols-4 gap-4">
+                <button class="calculator-button calculator-clear col-span-2" data-action="clear">C</button>
+                <button class="calculator-button calculator-operator" data-action="divide">/</button>
+                <button class="calculator-button calculator-operator" data-action="multiply">*</button>
 
-            <button class="calculator-button" data-value="7">7</button>
-            <button class="calculator-button" data-value="8">8</button>
-            <button class="calculator-button" data-value="9">9</button>
-            <button class="calculator-button calculator-operator" data-action="subtract">-</button>
+                <button class="calculator-button" data-value="7">7</button>
+                <button class="calculator-button" data-value="8">8</button>
+                <button class="calculator-button" data-value="9">9</button>
+                <button class="calculator-button calculator-operator" data-action="subtract">-</button>
 
-            <button class="calculator-button" data-value="4">4</button>
-            <button class="calculator-button" data-value="5">5</button>
-            <button class="calculator-button" data-value="6">6</button>
-            <button class="calculator-button calculator-operator" data-action="add">+</button>
+                <button class="calculator-button" data-value="4">4</button>
+                <button class="calculator-button" data-value="5">5</button>
+                <button class="calculator-button" data-value="6">6</button>
+                <button class="calculator-button calculator-operator" data-action="add">+</button>
 
-            <button class="calculator-button" data-value="1">1</button>
-            <button class="calculator-button" data-value="2">2</button>
-            <button class="calculator-button" data-value="3">3</button>
-            <button class="calculator-button calculator-equals row-span-2" data-action="equals">=</button>
+                <button class="calculator-button" data-value="1">1</button>
+                <button class="calculator-button" data-value="2">2</button>
+                <button class="calculator-button" data-value="3">3</button>
+                <button class="calculator-button calculator-equals row-span-2" data-action="equals">=</button>
 
-            <button class="calculator-button col-span-2" data-value="0">0</button>
-            <button class="calculator-button" data-action="decimal">.</button>
+                <button class="calculator-button col-span-2" data-value="0">0</button>
+                <button class="calculator-button" data-action="decimal">.</button>
+            </div>
+        </div>
+
+        <div class="history bg-gray-800 p-6 rounded-xl shadow-2xl w-96 max-w-sm mx-auto mt-8 md:mt-0">
+            <h2 class="text-white text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">History</h2>
+            <ul id="history-list" class="space-y-2 overflow-y-auto max-h-80">
+                <!-- History items will be dynamically added here -->
+            </ul>
+            <div class="mt-4 text-center">
+                <button id="clear-history" class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition duration-150 ease-in-out text-sm">Clear History</button>
+            </div>
         </div>
     </div>
 
