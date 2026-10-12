@@ -100,29 +100,43 @@
     },
     {
       "step": 15,
-      "title": "Refine UI Responsiveness",
-      "description": "Adjust layout and button sizing to ensure the calculator looks good on various screen sizes.",
-      "files": ["index.html", "style.css"],
+      "title": "Add History Display Section",
+      "description": "Integrate a dedicated section in index.html to show past calculations.",
+      "files": ["index.html"],
       "status": "pending"
     },
     {
       "step": 16,
-      "title": "Add Keyboard Support (Optional)",
-      "description": "Implement keyboard event listeners to allow input via keyboard.",
+      "title": "Implement Calculation History Logic",
+      "description": "Develop JavaScript to store and manage calculation expressions and results in memory.",
       "files": ["script.js"],
       "status": "pending"
     },
     {
       "step": 17,
-      "title": "Final Review and Polish",
-      "description": "Perform a comprehensive review of the design, functionality, and code quality across all files.",
-      "files": ["index.html", "style.css", "script.js"],
+      "title": "Render History to UI",
+      "description": "Write JavaScript to dynamically display the stored calculation history in the UI.",
+      "files": ["script.js"],
       "status": "pending"
     },
     {
       "step": 18,
+      "title": "Integrate Button Click Sound",
+      "description": "Add a JavaScript function to play a subtle sound effect on every calculator button click.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 19,
+      "title": "Refine UI Responsiveness",
+      "description": "Adjust layout and button sizing, including the new history section, for various screen sizes.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 20,
       "title": "Building calculatorapp",
-      "description": "The calculator web application is now complete and ready for use.",
+      "description": "The calculator web application with history and sound is now complete and ready for use.",
       "files": [],
       "status": "pending"
     }
