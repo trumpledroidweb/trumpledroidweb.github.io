@@ -1,0 +1,109 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Initialize Project Structure",
+      "description": "Create the fundamental files for the web application: index.html, style.css, script.js, app-meta.json, build-steps.json, and api_schema.json.",
+      "files": ["app-meta.json", "build-steps.json", "index.html", "style.css", "script.js", "api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Define Application Metadata",
+      "description": "Set the application's name and project type in app-meta.json.",
+      "files": ["app-meta.json"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Configure Backend API Schema",
+      "description": "Generate an empty API schema since no backend functionality is required for this simple app.",
+      "files": ["api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Create Main HTML Document",
+      "description": "Set up the basic HTML5 structure in index.html, including meta tags, title, and links for CSS and Tailwind CDN.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Set HTML Title",
+      "description": "Ensure the <title> tag in index.html matches the application name 'hi'.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Link Stylesheet",
+      "description": "Include the link to style.css in the head of index.html, even if it's initially empty.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Include Tailwind CSS CDN",
+      "description": "Add the Tailwind CSS v4 CDN script tag to index.html for utility-first styling.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Create Core Content",
+      "description": "Add an <h1> element inside the <body> of index.html to display the 'hi' message.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Apply Body Layout Styling",
+      "description": "Use Tailwind CSS classes on the <body> tag to center the content both vertically and horizontally and set a minimum height.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Set Background Color",
+      "description": "Apply a light gray background color to the body using Tailwind CSS.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Style 'hi' Text",
+      "description": "Apply Tailwind CSS classes to the <h1> element to make the text large, bold, and blue.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Initialize Custom Stylesheet",
+      "description": "Create style.css, which can remain empty or contain minimal custom styles if needed.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Initialize JavaScript File",
+      "description": "Create script.js and add a simple DOMContentLoaded log, as no complex functionality is required.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "title": "Link JavaScript",
+      "description": "Include the script.js file at the end of the <body> in index.html.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "title": "Building hi",
+      "description": "The application 'hi' is now fully structured and styled.",
+      "files": [],
+      "status": "pending"
+    }
+  ]
+}
