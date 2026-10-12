@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+            .calculator-button {
+                @apply bg-gray-200 text-gray-800 font-semibold py-4 rounded-lg shadow-md hover:bg-gray-300 transition duration-150 ease-in-out text-2xl flex items-center justify-center;
+            }
+            .calculator-operator {
+                @apply bg-orange-500 text-white hover:bg-orange-600;
+            }
+            .calculator-clear {
+                @apply bg-red-500 text-white hover:bg-red-600;
+            }
+            .calculator-equals {
+                @apply bg-green-500 text-white hover:bg-green-600;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="calculator bg-gray-800 p-6 rounded-xl shadow-2xl w-96 max-w-sm">
+        <input type="text" id="display" class="w-full bg-gray-900 text-white text-right text-4xl p-4 rounded-lg mb-6 outline-none focus:ring-2 focus:ring-indigo-500" value="0" readonly>
+
+        <div class="grid grid-cols-4 gap-4">
+            <button class="calculator-button calculator-clear col-span-2" data-action="clear">C</button>
+            <button class="calculator-button calculator-operator" data-action="divide">/</button>
+            <button class="calculator-button calculator-operator" data-action="multiply">*</button>
+
+            <button class="calculator-button" data-value="7">7</button>
+            <button class="calculator-button" data-value="8">8</button>
+            <button class="calculator-button" data-value="9">9</button>
+            <button class="calculator-button calculator-operator" data-action="subtract">-</button>
+
+            <button class="calculator-button" data-value="4">4</button>
+            <button class="calculator-button" data-value="5">5</button>
+            <button class="calculator-button" data-value="6">6</button>
+            <button class="calculator-button calculator-operator" data-action="add">+</button>
+
+            <button class="calculator-button" data-value="1">1</button>
+            <button class="calculator-button" data-value="2">2</button>
+            <button class="calculator-button" data-value="3">3</button>
+            <button class="calculator-button calculator-equals row-span-2" data-action="equals">=</button>
+
+            <button class="calculator-button col-span-2" data-value="0">0</button>
+            <button class="calculator-button" data-action="decimal">.</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
