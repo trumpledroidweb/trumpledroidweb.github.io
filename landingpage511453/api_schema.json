@@ -2,5 +2,16 @@
   "backend": false,
   "roles": {},
   "collections": {},
-  "logic": {}
+  "logic": {
+    "plan_pricing": {
+      "type": "calculation",
+      "inputs": ["team_size", "base_rate", "discount_rate"],
+      "formula": "(team_size * base_rate) * (1 - discount_rate)"
+    },
+    "time_saved": {
+      "type": "calculation",
+      "inputs": ["team_size", "hours_per_member"],
+      "formula": "team_size * hours_per_member"
+    }
+  }
 }
