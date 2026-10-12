@@ -1,0 +1,125 @@
+/* Smart Business Manager Custom UI & Animations */
+:root {
+  --color-primary: #4f46e5;
+  --color-primary-dark: #4338ca;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+/* Nav Item active styling */
+.nav-item {
+  color: #64748b;
+}
+.dark .nav-item {
+  color: #94a3b8;
+}
+.nav-item:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+.dark .nav-item:hover {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+.nav-item.active {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.35);
+}
+
+/* Interactive Charts CSS Bars */
+.chart-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  flex: 1;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.chart-bar-pair {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+}
+.chart-bar-rev {
+  width: 10px;
+  max-width: 16px;
+  background: linear-gradient(180deg, #6366f1 0%, #4f46e5 100%);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.chart-bar-exp {
+  width: 10px;
+  max-width: 16px;
+  background: linear-gradient(180deg, #f43f5e 0%, #e11d48 100%);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animations */
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-enter {
+  animation: slideDownFade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Toast styling */
+.toast-item {
+  transform: translateY(0);
+  transition: all 0.25s ease;
+  pointer-events: auto;
+}
+
+/* Dedicated Print Styles for Receipts and Reports */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #invoice-printable-area, #invoice-printable-area * {
+    visibility: visible;
+  }
+  #invoice-printable-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  #sidebar, header, #toast-container, .modal-close-btn, #invoice-print-btn {
+    display: none !important;
+  }
+}
