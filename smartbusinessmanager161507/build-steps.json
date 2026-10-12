@@ -1,0 +1,109 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Define Architecture and Data Schemas",
+      "description": "Establish localStorage data contracts for products, sales, expenses, customers, and business configuration.",
+      "files": ["app-meta.json", "api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Build Master Layout and Responsive Sidebar",
+      "description": "Draft the responsive dashboard viewport with dual-theme classes, collapsible side navigation, and top header.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Craft Custom Design System and Animations",
+      "description": "Implement theme variables, card elevation, print styles, and modal animations in CSS.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Develop Interactive Executive Dashboard",
+      "description": "Create KPI cards (Revenue, Expenses, Net Profit, Orders), recent activity table, and pure CSS/SVG revenue trends.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Implement Product & Inventory Management",
+      "description": "Build inventory view with live search, category filtering, stock status badges, and product creation/editing modal.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Implement Sales Registry & POS Billing",
+      "description": "Develop multi-item order checkout, automatic tax and discount calculations, and instant stock deduction logic.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Implement Printable Invoice Generator",
+      "description": "Generate dynamic printable modal invoices with line items, tax breakdowns, company headers, and print triggers.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Build Expense Tracking Ledger",
+      "description": "Create expense entry form, categorized log with search/filter, and budget burn summary.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Implement Customer Directory & Histories",
+      "description": "Construct customer profiles with contact records, purchase tallies, and lifetime spend tracking.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Build Financial & Inventory Reports Engine",
+      "description": "Implement daily, weekly, and monthly summaries with breakdown charts and printable business summaries.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Implement Business Settings & Theme Preference",
+      "description": "Add business name, currency symbol, tax percentage preferences, and persistent dark/light mode toggle.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Implement CSV Export & JSON Backup System",
+      "description": "Enable full JSON data export, JSON restore validation, and CSV export for sales, expenses, and inventory.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Integrate Demo Data & LocalStorage Seed Logic",
+      "description": "Provide a rich set of realistic sample products, sales transactions, and expense records with reset ability.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "title": "Implement Feedback Dialogs & Toast Notifications",
+      "description": "Add non-blocking toast notifications and custom confirmation modals for safe record deletions.",
+      "files": ["index.html", "script.js", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "title": "Building smartbusinessmanager",
+      "description": "Validate cross-device responsiveness, offline persistence, and verify all arithmetic calculations.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
