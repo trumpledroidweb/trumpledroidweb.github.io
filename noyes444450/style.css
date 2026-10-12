@@ -1,0 +1,60 @@
+/* noyes custom styling & animations */
+@layer base {
+  body {
+    background-color: #020617;
+    color: #f8fafc;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Category Filter Active Pill */
+.category-btn.active {
+  background-color: #14b8a6 !important;
+  color: #020617 !important;
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
+}
+
+/* Pulse animation for high active voting */
+@keyframes softPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.vote-active {
+  animation: softPulse 2s infinite ease-in-out;
+}
+
+/* Image aspect and transitions */
+.poll-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.poll-image-container img {
+  transition: transform 0.4s ease;
+}
+
+.poll-card:hover .poll-image-container img {
+  transform: scale(1.03);
+}
+
+/* Bar ratio animation */
+.ratio-bar {
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
