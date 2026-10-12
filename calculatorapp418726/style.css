@@ -1,0 +1,9 @@
+/*
+ * Custom CSS for Calculator App.
+ * Tailwind CSS is used for most styling. This file is for specific overrides
+ * or custom styles not easily achievable with utility classes alone.
+ */
+
+/* No specific custom CSS needed beyond Tailwind's utility classes and @apply rules. */
+/* The @layer base styles for buttons are defined directly in index.html's <style> block. */
+/* This file is kept for project structure consistency. */
