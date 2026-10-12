@@ -1,0 +1,4 @@
+/* Custom styles can go here if needed, but Tailwind CSS is handling most of the styling. */
+body {
+    font-family: 'Inter', sans-serif; /* Example: A default font, though Tailwind provides its own defaults */
+}
