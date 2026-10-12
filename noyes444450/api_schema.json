@@ -1,0 +1,46 @@
+{
+  "backend": true,
+  "api_base_url": "https://trumpledroid-api.cloudbeta28624.workers.dev",
+  "roles": {
+    "user": ["own"]
+  },
+  "collections": {
+    "polls": {
+      "fields": {
+        "title": "string",
+        "description": "string",
+        "category": "string",
+        "image_id": "string",
+        "yes_votes": "integer",
+        "no_votes": "integer",
+        "author_email": "string"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    },
+    "votes": {
+      "fields": {
+        "poll_id": "string",
+        "choice": "string",
+        "user_email": "string"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    }
+  },
+  "logic": {
+    "vote_stats": {
+      "type": "calculation",
+      "inputs": ["yes_votes", "no_votes"],
+      "formula": "yes_votes + no_votes"
+    },
+    "yes_percentage": {
+      "type": "calculation",
+      "inputs": ["yes_votes", "total_votes"],
+      "formula": "(yes_votes / total_votes) * 100"
+    },
+    "no_percentage": {
+      "type": "calculation",
+      "inputs": ["no_votes", "total_votes"],
+      "formula": "(no_votes / total_votes) * 100"
+    }
+  }
+}
