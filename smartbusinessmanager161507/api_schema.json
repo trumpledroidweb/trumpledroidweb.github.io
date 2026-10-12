@@ -1,0 +1,37 @@
+{
+  "backend": false,
+  "roles": {},
+  "collections": {},
+  "logic": {
+    "net_profit": {
+      "type": "calculation",
+      "inputs": ["total_revenue", "total_expenses"],
+      "formula": "total_revenue - total_expenses"
+    },
+    "order_item_total": {
+      "type": "calculation",
+      "inputs": ["unit_price", "quantity", "discount_percent"],
+      "formula": "(unit_price * quantity) * (1 - (discount_percent / 100))"
+    },
+    "sales_subtotal": {
+      "type": "calculation",
+      "inputs": ["item_totals"],
+      "formula": "sum(item_totals)"
+    },
+    "tax_amount": {
+      "type": "calculation",
+      "inputs": ["subtotal", "tax_rate"],
+      "formula": "subtotal * (tax_rate / 100)"
+    },
+    "grand_total": {
+      "type": "calculation",
+      "inputs": ["subtotal", "tax_amount"],
+      "formula": "subtotal + tax_amount"
+    },
+    "remaining_stock": {
+      "type": "calculation",
+      "inputs": ["initial_stock", "quantity_sold"],
+      "formula": "initial_stock - quantity_sold"
+    }
+  }
+}
