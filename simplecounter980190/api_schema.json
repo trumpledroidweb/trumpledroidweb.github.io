@@ -1,0 +1,22 @@
+{
+  "backend": false,
+  "roles": {},
+  "collections": {},
+  "logic": {
+    "increment_counter": {
+      "type": "calculation",
+      "inputs": ["current_value"],
+      "formula": "current_value + 1"
+    },
+    "decrement_counter": {
+      "type": "calculation",
+      "inputs": ["current_value"],
+      "formula": "current_value - 1"
+    },
+    "reset_counter": {
+      "type": "calculation",
+      "inputs": ["current_value"],
+      "formula": "0"
+    }
+  }
+}
