@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HumarLands</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
+    <style>
+        /* Custom styles to ensure full height and smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        /* Custom background pattern for hero section */
+        .hero-background {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1600x900/?fantasy-landscape,mystical-forest');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 antialiased">
+
+    <!-- Header -->
+    <header class="bg-gray-950 shadow-lg fixed top-0 w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-3xl font-bold text-emerald-400">HumarLands</a>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-100 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#home" class="text-lg hover:text-emerald-400 transition-colors duration-300">Home</a></li>
+                <li><a href="#about" class="text-lg hover:text-emerald-400 transition-colors duration-300">About</a></li>
+                <li><a href="#features" class="text-lg hover:text-emerald-400 transition-colors duration-300">Features</a></li>
+                <li><a href="#contact" class="text-lg hover:text-emerald-400 transition-colors duration-300">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <ul id="mobile-menu" class="hidden md:hidden flex-col items-center bg-gray-950 py-4 space-y-4">
+            <li><a href="#home" class="block text-xl hover:text-emerald-400 transition-colors duration-300">Home</a></li>
+            <li><a href="#about" class="block text-xl hover:text-emerald-400 transition-colors duration-300">About</a></li>
+            <li><a href="#features" class="block text-xl hover:text-emerald-400 transition-colors duration-300">Features</a></li>
+            <li><a href="#contact" class="block text-xl hover:text-emerald-400 transition-colors duration-300">Contact</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-background min-h-screen flex items-center justify-center text-center pt-20">
+            <div class="container mx-auto px-6 py-16">
+                <h1 class="text-6xl md:text-8xl font-extrabold text-white leading-tight drop-shadow-lg animate-fade-in-up">
+                    Discover HumarLands
+                </h1>
+                <p class="mt-6 text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto drop-shadow-md animate-fade-in delay-200">
+                    Where adventure awaits and legendary tales unfold. Explore vast realms, ancient mysteries, and boundless possibilities.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#features" class="px-8 py-4 bg-emerald-600 text-white text-xl font-semibold rounded-full shadow-lg hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105">
+                        Start Your Journey
+                    </a>
+                    <a href="#about" class="px-8 py-4 border-2 border-emerald-500 text-emerald-300 text-xl font-semibold rounded-full shadow-lg hover:bg-emerald-500 hover:text-white transition-all duration-300 transform hover:scale-105">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-28 bg-gray-900 text-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-bold text-center text-emerald-400 mb-12">About HumarLands</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-lg leading-relaxed space-y-6">
+                        <p>HumarLands is a concept born from the desire to create an immersive digital experience, a sprawling universe where every corner holds a story, every shadow hides a secret, and every journey begins a new legend. It's a place for dreamers, explorers, and those who seek to forge their own destiny.</p>
+                        <p>Our vision is to blend breathtaking visuals with engaging narratives, offering a diverse collection of 'lands' each with its unique ecosystem, lore, and challenges. From the whispering forests of Eldoria to the shimmering deserts of Solara, HumarLands promises an unparalleled adventure.</p>
+                        <p>We believe in the power of community and discovery, inviting you to be a part of a growing world that continuously evolves with your input and exploration.</p>
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="https://source.unsplash.com/random/600x400/?ancient-ruins,fantasy-world" alt="Ancient Ruins in HumarLands" class="rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-500 object-cover w-full h-64 md:h-80">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features/Showcase Section -->
+        <section id="features" class="py-20 md:py-28 bg-gray-950 text-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-bold text-center text-emerald-400 mb-16">Explore Our Realms</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <!-- Feature Card 1 -->
+                    <div class="bg-gray-800 rounded-xl shadow-2xl p-8 transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://source.unsplash.com/random/400x250/?enchanted-forest" alt="Enchanted Forest" class="rounded-lg mb-6 object-cover w-full h-48">
+                        <h3 class="text-3xl font-semibold text-emerald-300 mb-4">Eldoria's Whispering Woods</h3>
+                        <p class="text-lg text-gray-300">Venture into ancient forests where trees hold secrets and mythical creatures roam. Unravel forgotten prophecies and discover hidden groves.</p>
+                    </div>
+                    <!-- Feature Card 2 -->
+                    <div class="bg-gray-800 rounded-xl shadow-2xl p-8 transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://source.unsplash.com/random/400x250/?desert-city" alt="Desert City" class="rounded-lg mb-6 object-cover w-full h-48">
+                        <h3 class="text-3xl font-semibold text-emerald-300 mb-4">Solara's Shimmering Sands</h3>
+                        <p class="text-lg text-gray-300">Brave the golden dunes and discover lost cities buried beneath the sands. Seek out ancient relics and survive the desert's harsh beauty.</p>
+                    </div>
+                    <!-- Feature Card 3 -->
+                    <div class="bg-gray-800 rounded-xl shadow-2xl p-8 transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://source.unsplash.com/random/400x250/?ice-cave,arctic" alt="Ice Cave" class="rounded-lg mb-6 object-cover w-full h-48">
+                        <h3 class="text-3xl font-semibold text-emerald-300 mb-4">Frostgale Peaks</h3>
+                        <p class="text-lg text-gray-300">Conquer the treacherous icy mountains and delve into deep frozen caverns. Face elemental challenges and find rare, powerful artifacts.</p>
+                    </div>
+                    <!-- Feature Card 4 -->
+                    <div class="bg-gray-800 rounded-xl shadow-2xl p-8 transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://source.unsplash.com/random/400x250/?underwater-city" alt="Underwater City" class="rounded-lg mb-6 object-cover w-full h-48">
+                        <h3 class="text-3xl font-semibold text-emerald-300 mb-4">Aqua Prime Depths</h3>
+                        <p class="text-lg text-gray-300">Dive into the mysterious ocean depths to explore vibrant coral reefs and the ruins of an ancient underwater civilization.</p>
+                    </div>
+                    <!-- Feature Card 5 -->
+                    <div class="bg-gray-800 rounded-xl shadow-2xl p-8 transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://source.unsplash.com/random/400x250/?volcano-landscape" alt="Volcano Landscape" class="rounded-lg mb-6 object-cover w-full h-48">
+                        <h3 class="text-3xl font-semibold text-emerald-300 mb-4">Inferno Canyons</h3>
+                        <p class="text-lg text-gray-300">Traverse fiery landscapes forged by active volcanoes. Discover rare minerals and confront formidable molten creatures.</p>
+                    </div>
+                    <!-- Feature Card 6 -->
+                    <div class="bg-gray-800 rounded-xl shadow-2xl p-8 transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://source.unsplash.com/random/400x250/?sky-island" alt="Sky Island" class="rounded-lg mb-6 object-cover w-full h-48">
+                        <h3 class="text-3xl font-semibold text-emerald-300 mb-4">Aethelgard Sky Isles</h3>
+                        <p class="text-lg text-gray-300">Ascend to floating islands above the clouds. Uncover celestial secrets and navigate intricate aerial puzzles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="py-20 md:py-28 bg-emerald-700 text-gray-100 text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-bold mb-8">Ready to Explore HumarLands?</h2>
+                <p class="text-xl max-w-2xl mx-auto mb-10">Join us on an unforgettable adventure. Your legend begins now.</p>
+                <a href="#home" class="px-10 py-5 bg-gray-900 text-emerald-400 text-2xl font-bold rounded-full shadow-xl hover:bg-gray-800 hover:text-emerald-300 transition-all duration-300 transform hover:scale-105">
+                    Embark Today!
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-28 bg-gray-900 text-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-bold text-center text-emerald-400 mb-12">Get in Touch</h2>
+                <p class="text-xl text-center max-w-3xl mx-auto mb-12">
+                    Have questions about HumarLands? We'd love to hear from you. Reach out and connect with our community.
+                </p>
+                <div class="max-w-xl mx-auto bg-gray-800 p-10 rounded-xl shadow-2xl">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-lg font-medium text-gray-200">Name</label>
+                            <input type="text" id="name" name="name" class="mt-2 block w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-lg font-medium text-gray-200">Email</label>
+                            <input type="email" id="email" name="email" class="mt-2 block w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="your.email@example.com">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-lg font-medium text-gray-200">Message</label>
+                            <textarea id="message" name="message" rows="5" class="mt-2 block w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-y" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-emerald-600 text-white text-xl font-semibold rounded-lg shadow-lg hover:bg-emerald-700 transition-colors duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 py-10 text-gray-400 text-center text-lg">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2024 HumarLands. All rights reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="hover:text-emerald-400 transition-colors duration-300">Privacy Policy</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" class="hover:text-emerald-400 transition-colors duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
