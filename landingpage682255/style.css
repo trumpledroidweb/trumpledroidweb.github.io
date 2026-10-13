@@ -1,0 +1,67 @@
+/*
+ * Custom styles for LandingPage
+ * Tailwind CSS is primarily used, but this file can host additional custom CSS.
+ */
+
+/* Example of a custom utility if needed: */
+/*
+.btn-primary {
+    @apply bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300;
+}
+*/
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Base body styles (Tailwind's 'font-sans antialiased text-gray-800 bg-gray-50' handles most) */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure sections take up at least a certain height for better scroll experience */
+section {
+    min-height: calc(100vh - 80px); /* Adjust based on header height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Hero section specific background pattern (optional, can be done with Tailwind directly) */
+/* .hero-pattern {
+    background-image: url('data:image/svg+xml,...');
+    background-size: cover;
+    background-position: center;
+} */
+
+/* You can add custom keyframes or animations here if complex animations are required */
+/*
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+*/
+
+/* General styling for focus states to ensure accessibility (Tailwind often provides this, but custom can be added) */
+*:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4); /* Tailwind's ring-indigo-500 equivalent */
+}
+
+/* Hide scrollbar for aesthetics (optional, can affect UX) */
+/*
+body::-webkit-scrollbar {
+    display: none;
+}
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+*/
