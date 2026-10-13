@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.scale-102 {
+  transform: scale(1.02);
+}
+
+html {
+  scroll-behavior: smooth;
+}
