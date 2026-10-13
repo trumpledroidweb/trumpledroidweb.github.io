@@ -1,0 +1,19 @@
+/*
+ * Custom CSS for digitalclock.
+ * Tailwind CSS is used for most styling, this file is for specific overrides
+ * or custom animations not easily achieved with utility classes.
+ */
+
+/* No specific custom CSS needed beyond what Tailwind provides for this app. */
+/* The @layer base in index.html handles font import for 'Inter'. */
+/* All visual styling is handled directly by Tailwind CSS classes in index.html. */
+
+/* Optional: Custom font for a more 'digital' look if desired, e.g., 'Orbitron' or 'DSEG7 Classic' */
+/* For now, 'Inter' is sufficient and handled by Tailwind's @layer base. */
+
+/* Example of a custom glow effect if not using Tailwind's drop-shadow: */
+/*
+#time {
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.5), 0 0 30px rgba(0, 255, 0, 0.3);
+}
+*/
