@@ -1,0 +1,46 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Initialize Project Metadata",
+      "description": "Configure app-meta.json with name 'landingpagepro'.",
+      "files": ["app-meta.json"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Define API Schema",
+      "description": "Create api_schema.json setting backend to false since it's a standalone landing page.",
+      "files": ["api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Build HTML Structure",
+      "description": "Create index.html featuring a modern navbar, hero section, features grid, testimonials, and contact section.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Add Responsive Styling with Tailwind CSS",
+      "description": "Style components with Tailwind CSS utility classes and custom styling in style.css.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Implement Interactive Client Scripts",
+      "description": "Add script.js for mobile menu toggling, smooth scrolling, and form submission feedback.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Building landingpagepro",
+      "description": "Finalize all components and ensure responsive landing page functionality.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
