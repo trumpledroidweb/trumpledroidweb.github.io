@@ -3,92 +3,141 @@
     {
       "step": 1,
       "title": "Define App Metadata",
-      "description": "Initialize app-meta.json with the application name 'innovatehub' and project type 'web'.",
-      "files": ["app-meta.json"],
+      "description": "Initialize app-meta.json with the application name 'InnovateHub' and package name 'com.innovatehub.app'.",
+      "files": [
+        "app-meta.json"
+      ],
       "status": "pending"
     },
     {
       "step": 2,
       "title": "Configure Backend API Schema and Logic",
-      "description": "Set up api_schema.json with no backend as this is a client-side focused landing page, but include logic for the 'project_quote' calculation.",
-      "files": ["api_schema.json"],
+      "description": "Set up api_schema.json, declaring no online backend but documenting the client-side 'project_quote' calculation logic.",
+      "files": [
+        "api_schema.json"
+      ],
       "status": "pending"
     },
     {
       "step": 3,
-      "title": "Construct HTML5 Document Structure",
-      "description": "Create the foundational index.html with viewport settings, Tailwind CSS CDN, custom styles, and main script links.",
-      "files": ["index.html"],
+      "title": "Set up Gradle Build Environment",
+      "description": "Configure the app's build.gradle file for Java 8 compatibility, SDK versions, and necessary dependencies.",
+      "files": [
+        "app/build.gradle"
+      ],
       "status": "pending"
     },
     {
       "step": 4,
-      "title": "Implement Responsive Navigation Bar",
-      "description": "Design a sticky header with branding, desktop navigation links, and a mobile menu toggle.",
-      "files": ["index.html", "script.js"],
+      "title": "Declare Android Manifest",
+      "description": "Create AndroidManifest.xml, defining the application, main activity, and internet permission for image loading (if applicable).",
+      "files": [
+        "app/src/main/AndroidManifest.xml"
+      ],
       "status": "pending"
     },
     {
       "step": 5,
-      "title": "Create Dynamic Hero Section",
-      "description": "Build a hero banner with a compelling headline, descriptive text, and call-to-action buttons, featuring a dynamic image mosaic.",
-      "files": ["index.html"],
+      "title": "Design Main Activity Layout (activity_main.xml)",
+      "description": "Lay out the primary user interface using a ScrollView and LinearLayout to organize sections like Hero, About, Services, Calculator, Testimonials, and Contact.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
       "status": "pending"
     },
     {
       "step": 6,
-      "title": "Develop Core Features Section",
-      "description": "Add a section highlighting key services or features of InnovateHub, using a responsive grid layout.",
-      "files": ["index.html"],
+      "title": "Implement Hero Section UI",
+      "description": "Add ImageView for a hero background, TextViews for title and description, and Buttons for calls to action within the main layout.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
       "status": "pending"
     },
     {
       "step": 7,
-      "title": "Implement Project Quote Calculator",
-      "description": "Integrate an interactive, client-side project cost estimator with dynamic inputs for service type, hours, complexity, and add-ons.",
-      "files": ["index.html", "script.js"],
+      "title": "Create About/Core Values Section UI",
+      "description": "Design a section with TextViews for core values and descriptions, possibly using nested LinearLayouts for a structured appearance.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
       "status": "pending"
     },
     {
       "step": 8,
-      "title": "Design Client Testimonials Section",
-      "description": "Showcase client feedback with cards featuring quotes and client details to build trust.",
-      "files": ["index.html"],
+      "title": "Build Services Section UI",
+      "description": "Lay out service cards with ImageViews for icons and TextViews for service titles and descriptions.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
       "status": "pending"
     },
     {
       "step": 9,
-      "title": "Build a Contact / Inquiry Form",
-      "description": "Create a simple, client-side contact form with validation and a success message for user inquiries.",
-      "files": ["index.html", "script.js"],
+      "title": "Develop Project Quote Calculator UI",
+      "description": "Integrate UI elements for the calculator: Spinners for service type and complexity, a SeekBar for estimated hours, CheckBoxes for add-ons, and TextViews to display the calculated total and breakdown.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
       "status": "pending"
     },
     {
       "step": 10,
-      "title": "Craft Footer Section",
-      "description": "Add a clean, informative footer with copyright information and navigation links.",
-      "files": ["index.html", "script.js"],
+      "title": "Implement Testimonials Section UI",
+      "description": "Add UI for client testimonials, using TextViews for quotes and client details, and ImageViews for client avatars.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
       "status": "pending"
     },
     {
       "step": 11,
-      "title": "Apply Custom CSS Styling",
-      "description": "Create style.css for custom typography, active states, and minor visual enhancements beyond Tailwind defaults.",
-      "files": ["style.css"],
+      "title": "Construct Contact Form UI",
+      "description": "Design a simple contact form with EditText fields for name, email, and project description, a Spinner for project type, and a Button for submission.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
       "status": "pending"
     },
     {
       "step": 12,
-      "title": "Implement Interactive JavaScript Logic",
-      "description": "Develop script.js to handle mobile menu toggling, gallery filtering (if applicable), the project quote calculation, and contact form submission simulation.",
-      "files": ["script.js"],
+      "title": "Implement MainActivity.java Logic",
+      "description": "Write Java code for MainActivity to initialize UI components, handle user interactions, and implement the client-side project quote calculation logic.",
+      "files": [
+        "app/src/main/java/com/innovatehub/app/MainActivity.java"
+      ],
       "status": "pending"
     },
     {
       "step": 13,
-      "title": "Building innovatehub",
-      "description": "Final review of the complete application for responsiveness, functionality, and adherence to design principles.",
-      "files": ["index.html", "style.css", "script.js", "app-meta.json", "build-steps.json"],
+      "title": "Add Quote Calculator Logic in Java",
+      "description": "Develop the `calculateProjectQuote` method within MainActivity to perform the offline calculation based on user inputs from the UI.",
+      "files": [
+        "app/src/main/java/com/innovatehub/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "title": "Integrate Contact Form Simulation Logic",
+      "description": "Add event listeners and a simple simulation for the contact form submission, displaying a success message locally.",
+      "files": [
+        "app/src/main/java/com/innovatehub/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "title": "Building InnovateHub",
+      "description": "Assemble the Android application, ensuring all components are correctly integrated and the app builds without errors.",
+      "files": [
+        "app-meta.json",
+        "api_schema.json",
+        "app/build.gradle",
+        "app/src/main/AndroidManifest.xml",
+        "app/src/main/java/com/innovatehub/app/MainActivity.java",
+        "app/src/main/res/layout/activity_main.xml"
+      ],
       "status": "pending"
     }
   ]
