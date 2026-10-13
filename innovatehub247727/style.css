@@ -1,0 +1,85 @@
+/* InnovateHub Custom Theme and Micro-Interactions */
+
+:root {
+  --primary-color: #6d28d9; /* Purple-700 */
+  --primary-hover: #5b21b6; /* Purple-800 */
+  --accent-color: #6366f1; /* Indigo-500 */
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: 'Montserrat', Georgia, serif;
+}
+
+/* Range input styling for consistency */
+input[type=range] {
+  height: 6px;
+  background: #4b5563; /* Gray-600 */
+  border-radius: 9999px;
+  -webkit-appearance: none; /* Remove default styling */
+  appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+  margin-top: -6px; /* Adjust to center thumb on track */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type=range]:hover::-webkit-slider-thumb {
+  background: var(--primary-hover);
+}
+
+/* Backdrop blur enhancement */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Custom button styles for active filter (if needed, but not used in this new template) */
+/* .filter-btn.active-filter {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(109, 40, 217, 0.15);
+} */
+
+/* General form element styling */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  @apply focus:ring-2 focus:ring-purple-600 focus:border-purple-600 transition-colors duration-200;
+}
+
+/* Placeholder for potential future micro-animations or unique design elements */
+/* Example: Hero image subtle parallax effect on scroll */
+/* body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top left, rgba(165,180,252,0.1), transparent 50%),
+              radial-gradient(circle at bottom right, rgba(224,204,250,0.1), transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+} */
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
