@@ -1,0 +1,130 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Set up Basic HTML Structure",
+      "description": "Create the fundamental index.html file with a responsive viewport and include Tailwind CSS via CDN.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Integrate Tailwind CSS",
+      "description": "Add the Tailwind CSS v4 CDN to index.html for modern styling.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Define Application Metadata",
+      "description": "Create app-meta.json with the application name and project type.",
+      "files": ["app-meta.json"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Create Age Calculator UI",
+      "description": "Design the main layout for the age calculator, including a title and a container for input and output.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Add Date Input Field",
+      "description": "Include an HTML date input element for the user to select their birth date.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Implement Calculate Button",
+      "description": "Add a button that triggers the age calculation when clicked.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Create Result Display Area",
+      "description": "Set up a designated area to display the calculated age (years, months, days).",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Link JavaScript File",
+      "description": "Connect script.js to index.html to handle dynamic functionality.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Initialize JavaScript Logic",
+      "description": "Set up basic event listeners and get references to UI elements in script.js.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Implement Age Calculation Function",
+      "description": "Write the core logic in JavaScript to calculate age based on birth date and current date.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Handle Date Input and Calculation Trigger",
+      "description": "Add an event listener to the calculate button to fetch the birth date and perform calculation.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Display Calculated Age",
+      "description": "Update the result display area with the calculated years, months, and days.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Add Form Validation (Basic)",
+      "description": "Ensure a birth date is selected before attempting to calculate the age.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "title": "Apply Base Styling with Tailwind",
+      "description": "Use Tailwind CSS classes to style the body, container, input fields, and buttons for a clean look.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "title": "Style Result Display",
+      "description": "Ensure the calculated age is displayed clearly and prominently.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 16,
+      "title": "Ensure Responsive Design",
+      "description": "Utilize Tailwind's responsive utilities to make the app look good on different screen sizes.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 17,
+      "title": "Configure api_schema.json for No Backend",
+      "description": "Declare that the application does not require a backend as all logic is client-side.",
+      "files": ["api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 18,
+      "title": "Building agecalculator",
+      "description": "Final assembly and verification of all components for the Age Calculator web app.",
+      "files": [],
+      "status": "pending"
+    }
+  ]
+}
