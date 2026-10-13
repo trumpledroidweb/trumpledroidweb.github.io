@@ -1,0 +1,36 @@
+/*
+  This file is primarily for custom CSS that cannot be easily achieved
+  with Tailwind CSS classes or for minor overrides.
+  For this simple clock, most styling is handled by Tailwind in index.html.
+*/
+
+body {
+    font-family: 'Inter', sans-serif; /* Example font, will use system default if not imported */
+}
+
+/* Add any specific custom styles here if needed */
+#clock-display {
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Subtle glow effect */
+}
+
+/* Example of a custom utility class if Tailwind doesn't have it */
+.custom-animation {
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Ensure full height and proper centering */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
