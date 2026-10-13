@@ -17,28 +17,28 @@
     {
       "step": 3,
       "title": "Build HTML Structure",
-      "description": "Create index.html featuring a modern navbar, hero section, features grid, testimonials, and contact section.",
+      "description": "Create index.html featuring an enhanced modern navbar, hero section with dynamic visual elements, interactive feature cards, pricing tiers, interactive FAQ accordion, testimonials, and contact section.",
       "files": ["index.html"],
       "status": "pending"
     },
     {
       "step": 4,
       "title": "Add Responsive Styling with Tailwind CSS",
-      "description": "Style components with Tailwind CSS utility classes and custom styling in style.css.",
+      "description": "Style components with Tailwind CSS utility classes, glowing gradient backdrops, smooth transitions, and custom styling in style.css.",
       "files": ["style.css"],
       "status": "pending"
     },
     {
       "step": 5,
       "title": "Implement Interactive Client Scripts",
-      "description": "Add script.js for mobile menu toggling, smooth scrolling, and form submission feedback.",
+      "description": "Add script.js for mobile menu toggling, smooth scrolling, FAQ toggles, interactive pricing toggle, and form submission feedback.",
       "files": ["script.js"],
       "status": "pending"
     },
     {
       "step": 6,
       "title": "Building landingpagepro",
-      "description": "Finalize all components and ensure responsive landing page functionality.",
+      "description": "Finalize all components, polish animations, and ensure ultra-responsive landing page functionality.",
       "files": ["index.html", "style.css", "script.js"],
       "status": "pending"
     }
