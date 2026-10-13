@@ -1,0 +1,56 @@
+/* 
+This file is intentionally minimal as Tailwind CSS is used for styling.
+Any custom styles not covered by Tailwind can be added here.
+*/
+
+/* Example of a custom keyframe animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+/* Ensure images cover their container without distortion */
+img.object-cover {
+    object-fit: cover;
+}
+
+/* Custom font import if desired, e.g., Google Fonts */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap'); */
+
+/* Global body font is set inline in index.html for simplicity with Tailwind */
+
+/*
+For better organization in larger projects, you might use @layer directives with Tailwind:
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}
+*/
