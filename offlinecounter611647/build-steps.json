@@ -1,0 +1,155 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Define App Metadata",
+      "description": "Sets the application name and package identifier.",
+      "files": [
+        "app-meta.json"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Configure Project-Level Gradle",
+      "description": "Sets up global build configurations, repositories, and dependencies for the entire Android project.",
+      "files": [
+        "build.gradle"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Configure Module-Level Gradle",
+      "description": "Applies the Android plugin, defines SDK versions (min, target, compile), and specifies Java compatibility for the app module.",
+      "files": [
+        "app/build.gradle"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Set Up AndroidManifest.xml",
+      "description": "Declares the application's package, components (activities), permissions, and features to the Android system. No internet permission is needed for an offline app.",
+      "files": [
+        "app/src/main/AndroidManifest.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Design Main Layout (activity_main.xml)",
+      "description": "Creates the user interface layout for the main activity, including a TextView to display the counter value.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Add Increment Button",
+      "description": "Adds a Button to the main layout that will increase the counter value when pressed.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Add Decrement Button",
+      "description": "Adds a Button to the main layout that will decrease the counter value when pressed.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Add Reset Button",
+      "description": "Adds a Button to the main layout that will reset the counter value to zero.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Initialize UI Components in MainActivity",
+      "description": "Binds the TextView and Button objects defined in the layout XML to Java variables in MainActivity.",
+      "files": [
+        "app/src/main/java/com/offlinecounter/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Implement Increment Logic",
+      "description": "Adds an onClick listener to the Increment button to increase the counter and update the display.",
+      "files": [
+        "app/src/main/java/com/offlinecounter/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Implement Decrement Logic",
+      "description": "Adds an onClick listener to the Decrement button to decrease the counter and update the display.",
+      "files": [
+        "app/src/main/java/com/offlinecounter/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Implement Reset Logic",
+      "description": "Adds an onClick listener to the Reset button to set the counter to zero and update the display.",
+      "files": [
+        "app/src/main/java/com/offlinecounter/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Set up SharedPreferences for Persistence",
+      "description": "Initializes SharedPreferences to save and retrieve the counter value so it persists across app sessions.",
+      "files": [
+        "app/src/main/java/com/offlinecounter/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "title": "Load Counter on App Start",
+      "description": "Retrieves the saved counter value from SharedPreferences when MainActivity is created.",
+      "files": [
+        "app/src/main/java/com/offlinecounter/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "title": "Save Counter on Value Change",
+      "description": "Stores the updated counter value into SharedPreferences after each increment, decrement, or reset operation.",
+      "files": [
+        "app/src/main/java/com/offlinecounter/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 16,
+      "title": "Update Display",
+      "description": "Ensures the TextView always reflects the current state of the counter after any modification.",
+      "files": [
+        "app/src/main/java/com/offlinecounter/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 17,
+      "title": "Building OfflineCounter",
+      "description": "Compiling and packaging the application.",
+      "files": [],
+      "status": "pending"
+    }
+  ]
+}
