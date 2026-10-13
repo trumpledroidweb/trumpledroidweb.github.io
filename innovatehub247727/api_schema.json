@@ -1,0 +1,12 @@
+{
+  "backend": false,
+  "roles": {},
+  "collections": {},
+  "logic": {
+    "project_quote": {
+      "type": "calculation",
+      "inputs": ["base_rate", "estimated_hours", "complexity_modifier", "addon_fees"],
+      "formula": "(base_rate * estimated_hours * complexity_modifier) + addon_fees"
+    }
+  }
+}
