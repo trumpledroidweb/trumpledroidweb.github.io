@@ -1,0 +1,54 @@
+/* hunarDer Custom Theme and Micro-Interactions */
+
+:root {
+  --primary-color: #92400e;
+  --primary-hover: #78350f;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Filter Button Active State */
+.filter-btn.active-filter {
+  background-color: #1c1917;
+  color: #fafaf9;
+  border-color: #1c1917;
+  box-shadow: 0 4px 10px rgba(28, 25, 23, 0.15);
+}
+
+/* Range input styling */
+input[type=range] {
+  height: 6px;
+  background: #44403c;
+  border-radius: 9999px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #f59e0b;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+/* Smooth transition utility */
+.gallery-item {
+  transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-item.hidden-item {
+  display: none !important;
+}
+
+/* Backdrop blur enhancement */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
