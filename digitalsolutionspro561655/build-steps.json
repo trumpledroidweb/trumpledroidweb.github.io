@@ -1,0 +1,160 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Define App Metadata",
+      "description": "Initialize app-meta.json with the application name 'DigitalSolutionsPro' and package name 'com.digitalsolutionspro.app', including a unique app_id.",
+      "files": [
+        "app-meta.json"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Configure Backend API Schema and Logic",
+      "description": "Set up api_schema.json, declaring no online backend but documenting the client-side 'project_quote' calculation logic.",
+      "files": [
+        "api_schema.json"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Set up Gradle Build Environment",
+      "description": "Configure the app's build.gradle file for Java 8 compatibility, SDK versions, and necessary Android Support Library dependencies.",
+      "files": [
+        "app/build.gradle"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Declare Android Manifest",
+      "description": "Create AndroidManifest.xml, defining the application, main activity, and internet permission (if required for potential image loading, though local drawables are used).",
+      "files": [
+        "app/src/main/AndroidManifest.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Define App Resources (strings.xml, styles.xml)",
+      "description": "Create string resources for the app name, spinner arrays, and define a custom theme with Material Light styling.",
+      "files": [
+        "app/src/main/res/values/strings.xml",
+        "app/src/main/res/values/styles.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Create Drawable Resources",
+      "description": "Define XML drawables for card backgrounds and placeholder image references for UI elements like the hero image and testimonial avatars.",
+      "files": [
+        "app/src/main/res/drawable/rounded_card_background.xml",
+        "app/src/main/res/drawable/dark_rounded_card_background.xml",
+        "app/src/main/res/drawable/icon.png",
+        "app/src/main/res/drawable/hero_image.png",
+        "app/src/main/res/drawable/avatar_sarah.png",
+        "app/src/main/res/drawable/avatar_david.png",
+        "app/src/main/res/drawable/avatar_michael.png"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Design Main Activity Layout Structure",
+      "description": "Lay out the primary user interface using a ScrollView and a vertical LinearLayout to organize all sections of the app.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Design Hero, About, and Services Sections",
+      "description": "Implement the UI for the Header, Hero section, About Us (Core Values), and Services sections within activity_main.xml, using ImageView, TextView, and Button components.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Design Project Quote Calculator UI",
+      "description": "Integrate UI elements for the calculator: Spinners for service type and complexity, a SeekBar for estimated hours, CheckBoxes for add-ons, and TextViews to display the calculated total and breakdown.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Design Testimonials, Contact Form, and Footer UI",
+      "description": "Implement UI for the Testimonials, Contact Form (EditTexts, Spinner, Button, feedback TextView), and the Footer sections.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Implement MainActivity.java: UI Initialization",
+      "description": "Write Java code in MainActivity to initialize all UI components by finding their IDs from the layout and setting up adapter for spinners.",
+      "files": [
+        "app/src/main/java/com/digitalsolutionspro/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Implement MainActivity.java: Setup Quote Calculator Listeners",
+      "description": "Add event listeners for spinners, seek bar, and checkboxes in the calculator section to trigger quote updates.",
+      "files": [
+        "app/src/main/java/com/digitalsolutionspro/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Implement MainActivity.java: Project Quote Calculation Logic",
+      "description": "Develop the `updateProjectQuote` method to perform the offline calculation based on user inputs, parse string values from spinners, and format the output.",
+      "files": [
+        "app/src/main/java/com/digitalsolutionspro/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "title": "Implement MainActivity.java: Setup Contact Form Listeners and Simulation",
+      "description": "Add an onClick listener for the contact form's submit button and implement the `simulateContactFormSubmission` method, including basic validation and local feedback.",
+      "files": [
+        "app/src/main/java/com/digitalsolutionspro/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "title": "Building DigitalSolutionsPro",
+      "description": "Assemble the Android application, ensuring all components are correctly integrated and the app builds without errors.",
+      "files": [
+        "app-meta.json",
+        "api_schema.json",
+        "app/build.gradle",
+        "app/src/main/AndroidManifest.xml",
+        "app/src/main/java/com/digitalsolutionspro/app/MainActivity.java",
+        "app/src/main/res/layout/activity_main.xml",
+        "app/src/main/res/values/strings.xml",
+        "app/src/main/res/values/styles.xml",
+        "app/src/main/res/drawable/rounded_card_background.xml",
+        "app/src/main/res/drawable/dark_rounded_card_background.xml",
+        "app/src/main/res/drawable/icon.png",
+        "app/src/main/res/drawable/hero_image.png",
+        "app/src/main/res/drawable/avatar_sarah.png",
+        "app/src/main/res/drawable/avatar_david.png",
+        "app/src/main/res/drawable/avatar_michael.png"
+      ],
+      "status": "pending"
+    }
+  ]
+}
