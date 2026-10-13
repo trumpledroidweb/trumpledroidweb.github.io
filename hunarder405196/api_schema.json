@@ -1,0 +1,12 @@
+{
+  "backend": false,
+  "roles": {},
+  "collections": {},
+  "logic": {
+    "workshop_estimate": {
+      "type": "calculation",
+      "inputs": ["base_hours", "hourly_rate", "materials_fee", "expedited_fee"],
+      "formula": "(base_hours * hourly_rate) + materials_fee + expedited_fee"
+    }
+  }
+}
