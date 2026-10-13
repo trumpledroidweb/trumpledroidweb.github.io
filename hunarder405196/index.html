@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hunarDer — Empowering Artisans & Handcrafted Excellence</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-stone-50 text-stone-900 antialiased font-sans flex flex-col min-h-screen">
+
+  <!-- Top Announcement Bar -->
+  <aside class="bg-amber-900 text-amber-100 text-xs py-2 px-4 text-center font-medium tracking-wide">
+    ✨ Celebrating authentic talent — Connect directly with vetted master artisans and creators worldwide.
+  </aside>
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-stone-50/90 backdrop-blur-md border-b border-stone-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-700 to-amber-500 flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+          H
+        </div>
+        <span class="text-2xl font-black tracking-tight font-serif text-stone-900">hunar<span class="text-amber-700">Der</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-stone-600">
+        <a href="#about" class="hover:text-amber-800 transition-colors">Philosophy</a>
+        <a href="#crafts" class="hover:text-amber-800 transition-colors">Our Crafts</a>
+        <a href="#showcase" class="hover:text-amber-800 transition-colors">Artisan Works</a>
+        <a href="#calculator" class="hover:text-amber-800 transition-colors">Project Estimator</a>
+        <a href="#testimonials" class="hover:text-amber-800 transition-colors">Stories</a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-4">
+        <a href="#calculator" class="text-sm font-semibold text-stone-700 hover:text-stone-950 px-3 py-2">Estimate Work</a>
+        <a href="#contact" class="text-sm font-semibold text-white bg-stone-900 hover:bg-amber-800 px-5 py-2.5 rounded-full shadow hover:shadow-lg transition-all transform active:scale-95">Hire a Master</a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-toggle" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-stone-700 hover:bg-stone-200 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-6 border-b border-stone-200 bg-stone-50 space-y-3">
+      <a href="#about" class="block py-2 text-stone-700 font-medium hover:text-amber-800">Philosophy</a>
+      <a href="#crafts" class="block py-2 text-stone-700 font-medium hover:text-amber-800">Our Crafts</a>
+      <a href="#showcase" class="block py-2 text-stone-700 font-medium hover:text-amber-800">Artisan Works</a>
+      <a href="#calculator" class="block py-2 text-stone-700 font-medium hover:text-amber-800">Project Estimator</a>
+      <a href="#testimonials" class="block py-2 text-stone-700 font-medium hover:text-amber-800">Stories</a>
+      <div class="pt-2 flex flex-col gap-2">
+        <a href="#contact" class="w-full text-center py-2.5 rounded-lg bg-stone-900 text-white font-semibold hover:bg-amber-800 transition-colors">Hire a Master</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden pt-12 pb-20 lg:pt-24 lg:pb-32 bg-radial from-amber-100/40 via-stone-50 to-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-bold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
+            Where Raw Skill Meets Timeless Elegance
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-stone-900 leading-[1.1] font-serif">
+            Hunar speaks when words aren't enough.
+          </h1>
+
+          <p class="text-lg sm:text-xl text-stone-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            <strong class="font-semibold text-stone-900">hunarDer</strong> curates the finest creators, sculptors, textile visionaries, and digital craftspeople. We bridge timeless artisan heritage with modern commission demands.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#showcase" class="w-full sm:w-auto px-8 py-4 rounded-full bg-amber-800 hover:bg-amber-900 text-white font-bold text-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
+              Explore Portfolio
+            </a>
+            <a href="#calculator" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white border border-stone-300 hover:border-stone-400 text-stone-800 font-bold text-center shadow-sm hover:shadow transition-all">
+              Calculate Custom Budget
+            </a>
+          </div>
+
+          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-stone-200/80 text-center lg:text-left">
+            <div>
+              <p class="text-2xl sm:text-3xl font-extrabold text-stone-900">1,250+</p>
+              <p class="text-xs sm:text-sm text-stone-500 font-medium">Verified Artisans</p>
+            </div>
+            <div>
+              <p class="text-2xl sm:text-3xl font-extrabold text-stone-900">99.4%</p>
+              <p class="text-xs sm:text-sm text-stone-500 font-medium">Bespoke Accuracy</p>
+            </div>
+            <div>
+              <p class="text-2xl sm:text-3xl font-extrabold text-stone-900">42</p>
+              <p class="text-xs sm:text-sm text-stone-500 font-medium">Handcraft Guilds</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Dynamic Multi-Image Gallery Card -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-4">
+                <div class="overflow-hidden rounded-2xl shadow-lg group relative h-64">
+                  <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt="Ceramic handmade pottery" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                  <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent flex items-end p-4">
+                    <span class="text-white text-xs font-semibold tracking-wide">Studio Ceramics</span>
+                  </div>
+                </div>
+                <div class="overflow-hidden rounded-2xl shadow-md group relative h-40">
+                  <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80" alt="Leather craftsmanship and stitching" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                  <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent flex items-end p-4">
+                    <span class="text-white text-xs font-semibold tracking-wide">Custom Leatherware</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4 pt-6">
+                <div class="overflow-hidden rounded-2xl shadow-md group relative h-40">
+                  <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" alt="Bespoke furniture joinery" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                  <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent flex items-end p-4">
+                    <span class="text-white text-xs font-semibold tracking-wide">Fine Joinery</span>
+                  </div>
+                </div>
+                <div class="overflow-hidden rounded-2xl shadow-lg group relative h-64">
+                  <img src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80" alt="Hand-woven textiles" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                  <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent flex items-end p-4">
+                    <span class="text-white text-xs font-semibold tracking-wide">Loom & Weave</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Stamp -->
+            <div class="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-stone-200 shadow-xl hidden sm:flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-800 font-bold">
+                ✓
+              </div>
+              <div>
+                <p class="text-xs uppercase font-extrabold text-stone-400 tracking-wider">Certified Standard</p>
+                <p class="text-sm font-bold text-stone-800">100% Origin Vetted</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy / Pillars -->
+  <section id="about" class="py-20 bg-stone-100 border-y border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <h2 class="text-xs uppercase font-bold tracking-widest text-amber-800">Why hunarDer Stands Apart</h2>
+        <h3 class="text-3xl sm:text-4xl font-serif font-extrabold text-stone-900">Preserving human hands in a copy-paste era.</h3>
+        <p class="text-stone-600 text-base leading-relaxed">
+          Mass manufacturing made items disposable. hunarDer was established to restore reverence to devotion, patience, and bespoke craftsmanship.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-3xl bg-white border border-stone-200/70 shadow-sm hover:shadow-md transition-shadow space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl font-bold">
+            01
+          </div>
+          <h4 class="text-xl font-bold text-stone-900">Direct Master Guilds</h4>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            No middle trading houses. You commission directly with creators, ensuring 85%+ value goes straight to the workshop floors.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white border border-stone-200/70 shadow-sm hover:shadow-md transition-shadow space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl font-bold">
+            02
+          </div>
+          <h4 class="text-xl font-bold text-stone-900">Material Traceability</h4>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            Every piece arrives with an authenticated seal of provenance detailing the origin, natural dyes, sustainably harvested wood, and metal grades.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white border border-stone-200/70 shadow-sm hover:shadow-md transition-shadow space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl font-bold">
+            03
+          </div>
+          <h4 class="text-xl font-bold text-stone-900">Transparent Milestones</h4>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            Track your bespoke item through real work-in-progress snapshots, raw block selection, carving checkpoints, and final curation checks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Portfolio & Crafts Showcase -->
+  <section id="showcase" class="py-20 lg:py-28 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <h2 class="text-xs uppercase font-bold tracking-widest text-amber-800 mb-2">Curated Gallery</h2>
+          <h3 class="text-3xl sm:text-4xl font-serif font-extrabold text-stone-900">Masterpieces in Production</h3>
+        </div>
+        
+        <!-- Filter Tabs -->
+        <div id="filter-buttons" class="flex flex-wrap gap-2">
+          <button data-filter="all" class="filter-btn active-filter px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition-all">All Crafts</button>
+          <button data-filter="wood" class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-stone-300 text-stone-600 hover:border-stone-800 transition-all">Wood & Joinery</button>
+          <button data-filter="ceramic" class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-stone-300 text-stone-600 hover:border-stone-800 transition-all">Ceramics</button>
+          <button data-filter="textile" class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-stone-300 text-stone-600 hover:border-stone-800 transition-all">Textiles</button>
+          <button data-filter="leather" class="filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-stone-300 text-stone-600 hover:border-stone-800 transition-all">Leather</button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Item 1 -->
+        <div class="gallery-item group bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all" data-category="wood">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80" alt="Walnut Dining Surface" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">Walnut Wood</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-start">
+              <h4 class="font-serif font-bold text-lg text-stone-900">Solitary Live-Edge Surface</h4>
+              <span class="text-amber-800 font-extrabold text-sm">$840</span>
+            </div>
+            <p class="text-stone-500 text-xs leading-relaxed">Continuous kiln-dried European walnut with hand-rubbed Danish oil and butterfly key joints.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-semibold text-stone-600 border-t border-stone-100">
+              <span>Artisan: Tariq M.</span>
+              <span class="text-amber-700">18 Days Crafting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="gallery-item group bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all" data-category="ceramic">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80" alt="Earthen Stoneware Vase" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">Stoneware</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-start">
+              <h4 class="font-serif font-bold text-lg text-stone-900">Smoked Terracotta Urn</h4>
+              <span class="text-amber-800 font-extrabold text-sm">$320</span>
+            </div>
+            <p class="text-stone-500 text-xs leading-relaxed">Wood-fired anagama kiln vessel featuring naturally settled ash glazes and textured ribbing.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-semibold text-stone-600 border-t border-stone-100">
+              <span>Artisan: Nina Lin</span>
+              <span class="text-amber-700">6 Days Crafting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="gallery-item group bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all" data-category="leather">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80" alt="Hand-stitched leather satchel" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">Full Grain</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-start">
+              <h4 class="font-serif font-bold text-lg text-stone-900">Heritage Saddle Bag</h4>
+              <span class="text-amber-800 font-extrabold text-sm">$490</span>
+            </div>
+            <p class="text-stone-500 text-xs leading-relaxed">Vegetable-tanned harness hide assembled with twin-needle linen thread saddle stitching.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-semibold text-stone-600 border-t border-stone-100">
+              <span>Artisan: Diego S.</span>
+              <span class="text-amber-700">12 Days Crafting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="gallery-item group bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all" data-category="textile">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80" alt="Handloom Tapestry Rug" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">Organic Wool</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-start">
+              <h4 class="font-serif font-bold text-lg text-stone-900">Indigo Geometric Kilims</h4>
+              <span class="text-amber-800 font-extrabold text-sm">$610</span>
+            </div>
+            <p class="text-stone-500 text-xs leading-relaxed">Spun highland wool colored using organic fermented indigo plants and walnut husk baths.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-semibold text-stone-600 border-t border-stone-100">
+              <span>Artisan: Fatima Z.</span>
+              <span class="text-amber-700">22 Days Crafting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="gallery-item group bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all" data-category="wood">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=800&q=80" alt="Sculpted Ash Bench" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">Sculpted Ash</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-start">
+              <h4 class="font-serif font-bold text-lg text-stone-900">Curvilinear Entryway Bench</h4>
+              <span class="text-amber-800 font-extrabold text-sm">$720</span>
+            </div>
+            <p class="text-stone-500 text-xs leading-relaxed">Seamless steam-bent curves combined with exposed mortise and tenon architectural balance.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-semibold text-stone-600 border-t border-stone-100">
+              <span>Artisan: Liam O.</span>
+              <span class="text-amber-700">14 Days Crafting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="gallery-item group bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all" data-category="ceramic">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80" alt="Porcelain Teaware" class="w-full h-full object-crop group-hover:scale-105 transition duration-500">
+            <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">Fine Porcelain</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-start">
+              <h4 class="font-serif font-bold text-lg text-stone-900">Celadon Ceremonial Tea Set</h4>
+              <span class="text-amber-800 font-extrabold text-sm">$360</span>
+            </div>
+            <p class="text-stone-500 text-xs leading-relaxed">Ultra-thin translucent kaolin porcelain with delicate jade-tinted micro-crack glaze finish.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-semibold text-stone-600 border-t border-stone-100">
+              <span>Artisan: Mei Chen</span>
+              <span class="text-amber-700">9 Days Crafting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFLINE CALCULATOR: Workshop Commission Estimator -->
+  <section id="calculator" class="py-20 bg-stone-900 text-stone-100 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950 text-amber-400 border border-amber-800/80 text-xs font-bold uppercase tracking-wider">
+            Deterministic Engine
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-white leading-tight">
+            Transparent Workshop Budget Estimator
+          </h2>
+          <p class="text-stone-400 text-sm leading-relaxed">
+            Every master artisan sets honest baseline rates. Tailor your requirements below to determine realistic production budgets without surprises or markups.
+          </p>
+          <div class="space-y-3 text-xs text-stone-400 border-t border-stone-800 pt-6">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <span>Calculated locally inside your browser with zero latency.</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <span>Direct guild standard material allotments and studio rates.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 bg-stone-800/80 p-8 sm:p-10 rounded-3xl border border-stone-700 backdrop-blur-md shadow-2xl">
+          <form id="estimator-form" class="space-y-6" onsubmit="event.preventDefault();">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Artisan Guild Tier -->
+              <div class="space-y-2">
+                <label for="artisan-tier" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Artisan Tier</label>
+                <select id="artisan-tier" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-sm text-stone-100 focus:outline-none focus:border-amber-500 transition-colors">
+                  <option value="35">Journeyman Artisan ($35 / hr)</option>
+                  <option value="55" selected>Master Craftsman ($55 / hr)</option>
+                  <option value="90">Guild Elder Master ($90 / hr)</option>
+                </select>
+              </div>
+
+              <!-- Estimated Crafting Hours -->
+              <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                  <label for="craft-hours" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Dedicated Hours</label>
+                  <span id="hours-display" class="text-xs font-bold text-amber-400">12 Hours</span>
+                </div>
+                <input type="range" id="craft-hours" min="2" max="60" value="12" class="w-full accent-amber-500 cursor-pointer">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Material Selection -->
+              <div class="space-y-2">
+                <label for="material-type" class="block text-xs font-bold uppercase tracking-wider text-stone-300">Raw Material Grade</label>
+                <select id="material-type" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-sm text-stone-100 focus:outline-none focus:border-amber-500 transition-colors">
+                  <option value="75">Standard Local Clay / Pine (+$75)</option>
+                  <option value="160" selected>A-Grade Hardwood / Full-Grain Leather (+$160)</option>
+                  <option value="320">Imported Rare Burl / Kaolin / Wild Silk (+$320)</option>
+                </select>
+              </div>
+
+              <!-- Priority Turnaround -->
+              <div class="space-y-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-stone-300">Turnaround Schedule</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <label class="flex items-center gap-2 p-3 bg-stone-900 rounded-xl border border-stone-700 text-xs cursor-pointer hover:border-stone-500">
+                    <input type="radio" name="turnaround" value="0" checked class="accent-amber-500">
+                    <span>Standard (3 wks)</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-3 bg-stone-900 rounded-xl border border-stone-700 text-xs cursor-pointer hover:border-stone-500">
+                    <input type="radio" name="turnaround" value="120" class="accent-amber-500">
+                    <span>Expedited (+$120)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Calculation Summary Box -->
+            <div class="mt-8 pt-6 border-t border-stone-700 flex flex-col sm:flex-row justify-between items-center gap-6 bg-stone-900/60 p-6 rounded-2xl">
+              <div>
+                <p class="text-xs uppercase font-semibold text-stone-400">Total Estimated Workshop Fee</p>
+                <div class="flex items-baseline gap-2 mt-1">
+                  <span id="calculated-total" class="text-4xl font-extrabold text-amber-400 font-serif">$940.00</span>
+                  <span class="text-xs text-stone-500">USD net</span>
+                </div>
+                <p id="calculation-breakdown" class="text-[11px] text-stone-400 mt-1">12h × $55/hr + $160 materials + $0 expedited</p>
+              </div>
+
+              <a href="#contact" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-center text-sm shadow transition-all">
+                Commission with this Estimate
+              </a>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Artisan Stories & Testimonials -->
+  <section id="testimonials" class="py-20 lg:py-28 bg-stone-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <h2 class="text-xs uppercase font-bold tracking-widest text-amber-800">Words From Patrons</h2>
+        <h3 class="text-3xl sm:text-4xl font-serif font-extrabold text-stone-900">Items meant to outlive generations.</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-3xl bg-white border border-stone-200/80 shadow-sm flex flex-col justify-between space-y-6">
+          <p class="text-stone-700 text-sm leading-relaxed italic">
+            "We wanted a dining table for our countryside home that carried character. Through hunarDer, we met Master Tariq. Watching our lumber turn into an heirloom was unforgettable."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-stone-100">
+            <div class="w-10 h-10 rounded-full bg-amber-200 flex items-center justify-center font-bold text-amber-900 text-sm">EL</div>
+            <div>
+              <h5 class="text-sm font-bold text-stone-900">Eleanor Lewis</h5>
+              <p class="text-xs text-stone-500">Architect, Milan</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white border border-stone-200/80 shadow-sm flex flex-col justify-between space-y-6">
+          <p class="text-stone-700 text-sm leading-relaxed italic">
+            "The transparent estimator gave us the exact pricing down to material sourcing. No vague contractor markup. The ceramic tea sets arrived packaged with the maker's signature wax seal."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-stone-100">
+            <div class="w-10 h-10 rounded-full bg-amber-200 flex items-center justify-center font-bold text-amber-900 text-sm">RK</div>
+            <div>
+              <h5 class="text-sm font-bold text-stone-900">Rohit Kapoor</h5>
+              <p class="text-xs text-stone-500">Hospitality Director, Kyoto</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white border border-stone-200/80 shadow-sm flex flex-col justify-between space-y-6">
+          <p class="text-stone-700 text-sm leading-relaxed italic">
+            "Being an artisan with hunarDer gave me global patrons without yielding my independence to retail brokers. I get to honor pure technique and earn properly for my hours."
+          </p>
+          <div class="flex items-center gap-4 pt-4 border-t border-stone-100">
+            <div class="w-10 h-10 rounded-full bg-amber-200 flex items-center justify-center font-bold text-amber-900 text-sm">DF</div>
+            <div>
+              <h5 class="text-sm font-bold text-stone-900">Diego Fernandez</h5>
+              <p class="text-xs text-stone-500">Leatherworker, Seville</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Custom Commission Form -->
+  <section id="contact" class="py-20 bg-stone-50 border-t border-stone-200/80">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-4 mb-12">
+        <h2 class="text-xs uppercase font-bold tracking-widest text-amber-800">Direct Inquiries</h2>
+        <h3 class="text-3xl sm:text-4xl font-serif font-extrabold text-stone-900">Start Your Bespoke Commission</h3>
+        <p class="text-stone-600 text-sm max-w-lg mx-auto">
+          Share your concept sketches, dimensions, or questions. Our guild coordinator pairs you with the ideal artisan within 24 hours.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 sm:p-10 rounded-3xl border border-stone-200 shadow-lg">
+        <form id="contact-form" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="contact-name" class="block text-xs font-bold uppercase tracking-wider text-stone-700">Your Full Name</label>
+              <input type="text" id="contact-name" required placeholder="e.g. Maya Thorne" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-700 text-sm">
+            </div>
+            <div class="space-y-2">
+              <label for="contact-email" class="block text-xs font-bold uppercase tracking-wider text-stone-700">Email Address</label>
+              <input type="email" id="contact-email" required placeholder="maya@example.com" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-700 text-sm">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="craft-interest" class="block text-xs font-bold uppercase tracking-wider text-stone-700">Primary Craft</label>
+              <select id="craft-interest" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-700 text-sm bg-white">
+                <option value="wood">Custom Woodwork & Joinery</option>
+                <option value="ceramic">Studio Ceramics & Pottery</option>
+                <option value="textile">Organic Textile & Weaving</option>
+                <option value="leather">Full-Grain Leather Goods</option>
+                <option value="other">Collaborative / Mixed Media</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="target-budget" class="block text-xs font-bold uppercase tracking-wider text-stone-700">Target Budget (USD)</label>
+              <input type="number" id="target-budget" placeholder="e.g. 1000" min="100" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-700 text-sm">
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="project-details" class="block text-xs font-bold uppercase tracking-wider text-stone-700">Project Description & Dimensions</label>
+            <textarea id="project-details" rows="4" required placeholder="Tell us about the desired dimensions, material preferences, and intended usage..." class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-700 text-sm"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-4 rounded-xl bg-amber-800 hover:bg-amber-900 text-white font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-all active:scale-[0.99]">
+            Submit Commission Request
+          </button>
+        </form>
+
+        <div id="form-feedback" class="hidden mt-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm text-center font-medium">
+          ✓ Your commission inquiry was received! A guild curator will contact you shortly.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-auto bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-amber-700 flex items-center justify-center text-white font-bold text-sm">
+          H
+        </div>
+        <span class="text-xl font-serif font-bold text-white tracking-tight">hunar<span class="text-amber-500">Der</span></span>
+      </div>
+
+      <p class="text-xs text-stone-500 text-center md:text-left">
+        © <span id="current-year"></span> hunarDer Craft Guild. All rights reserved. Built for creators and lovers of genuine art.
+      </p>
+
+      <div class="flex items-center gap-6 text-xs font-medium">
+        <a href="#about" class="hover:text-stone-200 transition-colors">Philosophy</a>
+        <a href="#showcase" class="hover:text-stone-200 transition-colors">Works</a>
+        <a href="#calculator" class="hover:text-stone-200 transition-colors">Estimator</a>
+        <a href="#contact" class="hover:text-stone-200 transition-colors">Inquiries</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
