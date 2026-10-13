@@ -3,7 +3,7 @@
     {
       "step": 1,
       "title": "Define App Metadata",
-      "description": "Initialize app-meta.json with the application name 'InnovateHub' and package name 'com.innovatehub.app'.",
+      "description": "Initialize app-meta.json with the application name 'InnovateHub' and package name 'com.innovatehubsolutions.app'.",
       "files": [
         "app-meta.json"
       ],
@@ -30,7 +30,7 @@
     {
       "step": 4,
       "title": "Declare Android Manifest",
-      "description": "Create AndroidManifest.xml, defining the application, main activity, and internet permission for image loading (if applicable).",
+      "description": "Create AndroidManifest.xml, defining the application, main activity, and internet permission (if required for potential image loading, though local drawables are used).",
       "files": [
         "app/src/main/AndroidManifest.xml"
       ],
@@ -38,26 +38,33 @@
     },
     {
       "step": 5,
-      "title": "Design Main Activity Layout (activity_main.xml)",
-      "description": "Lay out the primary user interface using a ScrollView and LinearLayout to organize sections like Hero, About, Services, Calculator, Testimonials, and Contact.",
+      "title": "Define App Resources (strings.xml, styles.xml)",
+      "description": "Create string resources for app name, spinner arrays, and define a custom theme for consistent styling.",
       "files": [
-        "app/src/main/res/layout/activity_main.xml"
+        "app/src/main/res/values/strings.xml",
+        "app/src/main/res/values/styles.xml"
       ],
       "status": "pending"
     },
     {
       "step": 6,
-      "title": "Implement Hero Section UI",
-      "description": "Add ImageView for a hero background, TextViews for title and description, and Buttons for calls to action within the main layout.",
+      "title": "Create Drawable Resources",
+      "description": "Define XML drawables for card backgrounds and placeholder image references for the UI elements.",
       "files": [
-        "app/src/main/res/layout/activity_main.xml"
+        "app/src/main/res/drawable/rounded_card_background.xml",
+        "app/src/main/res/drawable/dark_rounded_card_background.xml",
+        "app/src/main/res/drawable/icon.png",
+        "app/src/main/res/drawable/hero_image.png",
+        "app/src/main/res/drawable/avatar_sarah.png",
+        "app/src/main/res/drawable/avatar_david.png",
+        "app/src/main/res/drawable/avatar_michael.png"
       ],
       "status": "pending"
     },
     {
       "step": 7,
-      "title": "Create About/Core Values Section UI",
-      "description": "Design a section with TextViews for core values and descriptions, possibly using nested LinearLayouts for a structured appearance.",
+      "title": "Design Main Activity Layout (activity_main.xml)",
+      "description": "Lay out the primary user interface using a ScrollView and LinearLayout to organize sections like Header, Hero, About, Services, Calculator, Testimonials, Contact, and Footer.",
       "files": [
         "app/src/main/res/layout/activity_main.xml"
       ],
@@ -65,16 +72,7 @@
     },
     {
       "step": 8,
-      "title": "Build Services Section UI",
-      "description": "Lay out service cards with ImageViews for icons and TextViews for service titles and descriptions.",
-      "files": [
-        "app/src/main/res/layout/activity_main.xml"
-      ],
-      "status": "pending"
-    },
-    {
-      "step": 9,
-      "title": "Develop Project Quote Calculator UI",
+      "title": "Implement Project Quote Calculator UI",
       "description": "Integrate UI elements for the calculator: Spinners for service type and complexity, a SeekBar for estimated hours, CheckBoxes for add-ons, and TextViews to display the calculated total and breakdown.",
       "files": [
         "app/src/main/res/layout/activity_main.xml"
@@ -82,17 +80,8 @@
       "status": "pending"
     },
     {
-      "step": 10,
-      "title": "Implement Testimonials Section UI",
-      "description": "Add UI for client testimonials, using TextViews for quotes and client details, and ImageViews for client avatars.",
-      "files": [
-        "app/src/main/res/layout/activity_main.xml"
-      ],
-      "status": "pending"
-    },
-    {
-      "step": 11,
-      "title": "Construct Contact Form UI",
+      "step": 9,
+      "title": "Implement Contact Form UI",
       "description": "Design a simple contact form with EditText fields for name, email, and project description, a Spinner for project type, and a Button for submission.",
       "files": [
         "app/src/main/res/layout/activity_main.xml"
@@ -100,34 +89,34 @@
       "status": "pending"
     },
     {
-      "step": 12,
+      "step": 10,
       "title": "Implement MainActivity.java Logic",
-      "description": "Write Java code for MainActivity to initialize UI components, handle user interactions, and implement the client-side project quote calculation logic.",
+      "description": "Write Java code for MainActivity to initialize UI components, handle user interactions for the calculator and contact form.",
       "files": [
-        "app/src/main/java/com/innovatehub/app/MainActivity.java"
+        "app/src/main/java/com/innovatehubsolutions/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Add Quote Calculator Logic in Java",
+      "description": "Develop the `updateProjectQuote` method within MainActivity to perform the offline calculation based on user inputs from the UI, including parsing spinner values.",
+      "files": [
+        "app/src/main/java/com/innovatehubsolutions/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Integrate Contact Form Simulation Logic",
+      "description": "Add event listeners and a simple simulation for the contact form submission within MainActivity, displaying a success message locally.",
+      "files": [
+        "app/src/main/java/com/innovatehubsolutions/app/MainActivity.java"
       ],
       "status": "pending"
     },
     {
       "step": 13,
-      "title": "Add Quote Calculator Logic in Java",
-      "description": "Develop the `calculateProjectQuote` method within MainActivity to perform the offline calculation based on user inputs from the UI.",
-      "files": [
-        "app/src/main/java/com/innovatehub/app/MainActivity.java"
-      ],
-      "status": "pending"
-    },
-    {
-      "step": 14,
-      "title": "Integrate Contact Form Simulation Logic",
-      "description": "Add event listeners and a simple simulation for the contact form submission, displaying a success message locally.",
-      "files": [
-        "app/src/main/java/com/innovatehub/app/MainActivity.java"
-      ],
-      "status": "pending"
-    },
-    {
-      "step": 15,
       "title": "Building InnovateHub",
       "description": "Assemble the Android application, ensuring all components are correctly integrated and the app builds without errors.",
       "files": [
@@ -135,8 +124,17 @@
         "api_schema.json",
         "app/build.gradle",
         "app/src/main/AndroidManifest.xml",
-        "app/src/main/java/com/innovatehub/app/MainActivity.java",
-        "app/src/main/res/layout/activity_main.xml"
+        "app/src/main/java/com/innovatehubsolutions/app/MainActivity.java",
+        "app/src/main/res/layout/activity_main.xml",
+        "app/src/main/res/values/strings.xml",
+        "app/src/main/res/values/styles.xml",
+        "app/src/main/res/drawable/rounded_card_background.xml",
+        "app/src/main/res/drawable/dark_rounded_card_background.xml",
+        "app/src/main/res/drawable/icon.png",
+        "app/src/main/res/drawable/hero_image.png",
+        "app/src/main/res/drawable/avatar_sarah.png",
+        "app/src/main/res/drawable/avatar_david.png",
+        "app/src/main/res/drawable/avatar_michael.png"
       ],
       "status": "pending"
     }
