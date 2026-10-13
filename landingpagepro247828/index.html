@@ -8,32 +8,37 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+
+  <!-- Ambient Glow Background Effects -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-gradient-to-b from-indigo-900/20 via-purple-900/10 to-transparent blur-3xl pointer-events-none -z-10"></div>
 
   <!-- Header / Navbar -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/80 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center font-bold text-xl shadow-lg shadow-indigo-500/30">
+      <div class="flex items-center space-x-3 group cursor-pointer">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center font-black text-xl shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform">
           L
         </div>
-        <span class="text-xl font-black tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">LandingPagePro</span>
+        <span class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">LandingPagePro</span>
       </div>
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
         <a href="#features" class="hover:text-indigo-400 transition-colors">Features</a>
         <a href="#benefits" class="hover:text-indigo-400 transition-colors">Benefits</a>
+        <a href="#pricing" class="hover:text-indigo-400 transition-colors">Pricing</a>
         <a href="#testimonials" class="hover:text-indigo-400 transition-colors">Testimonials</a>
+        <a href="#faq" class="hover:text-indigo-400 transition-colors">FAQ</a>
         <a href="#contact" class="hover:text-indigo-400 transition-colors">Contact</a>
       </nav>
 
       <div class="hidden md:flex items-center space-x-4">
-        <a href="#contact" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-lg shadow-indigo-600/20">Get Started</a>
+        <a href="#contact" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-sm transition-all shadow-lg shadow-indigo-600/25 hover:shadow-indigo-600/40 hover:-translate-y-0.5">Get Started Free</a>
       </div>
 
       <!-- Mobile Menu Button -->
-      <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
+      <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 focus:outline-none border border-slate-800">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
@@ -41,133 +46,253 @@
     </div>
 
     <!-- Mobile Nav Dropdown -->
-    <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-6 space-y-3 bg-slate-900 border-b border-slate-800">
-      <a href="#features" class="block py-2 text-slate-300 hover:text-indigo-400">Features</a>
-      <a href="#benefits" class="block py-2 text-slate-300 hover:text-indigo-400">Benefits</a>
-      <a href="#testimonials" class="block py-2 text-slate-300 hover:text-indigo-400">Testimonials</a>
-      <a href="#contact" class="block py-2 text-slate-300 hover:text-indigo-400">Contact</a>
+    <div id="mobile-menu" class="hidden md:hidden px-6 pt-4 pb-8 space-y-4 bg-slate-950/95 border-b border-slate-800 backdrop-blur-2xl">
+      <a href="#features" class="block py-2 text-slate-300 hover:text-indigo-400 font-medium border-b border-slate-900/50">Features</a>
+      <a href="#benefits" class="block py-2 text-slate-300 hover:text-indigo-400 font-medium border-b border-slate-900/50">Benefits</a>
+      <a href="#pricing" class="block py-2 text-slate-300 hover:text-indigo-400 font-medium border-b border-slate-900/50">Pricing</a>
+      <a href="#testimonials" class="block py-2 text-slate-300 hover:text-indigo-400 font-medium border-b border-slate-900/50">Testimonials</a>
+      <a href="#faq" class="block py-2 text-slate-300 hover:text-indigo-400 font-medium border-b border-slate-900/50">FAQ</a>
+      <a href="#contact" class="block py-2 text-slate-300 hover:text-indigo-400 font-medium">Contact</a>
       <div class="pt-2">
-        <a href="#contact" class="block w-full text-center px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm">Get Started</a>
+        <a href="#contact" class="block w-full text-center px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30">Get Started Free</a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/30 via-slate-900/0 to-slate-900/0 pointer-events-none"></div>
+  <section class="relative pt-36 pb-24 md:pt-48 md:pb-36 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center max-w-3xl mx-auto space-y-6">
-        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold tracking-wide uppercase">
-          <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-          <span>Next-Gen Web Experience</span>
+      <div class="text-center max-w-4xl mx-auto space-y-8">
+        <div class="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs sm:text-sm font-semibold tracking-wide uppercase backdrop-blur-md shadow-inner">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-ping"></span>
+          <span>Introducing LandingPagePro 3.0 • Explore What's New</span>
         </div>
-        <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.1]">
           Accelerate Your Growth with <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">High-Performance</span> Web Apps
         </h1>
-        <p class="text-lg sm:text-xl text-slate-400 leading-relaxed">
-          Transform your digital presence with lightning-fast landing pages crafted for maximum conversion, exceptional UX, and bulletproof reliability.
+        <p class="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
+          Transform your digital presence with lightning-fast landing pages crafted for maximum conversion, exceptional user experience, and bulletproof reliability.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-xl shadow-indigo-600/30 transition-all text-center">Start Free Trial</a>
-          <a href="#features" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold border border-slate-700 transition-all text-center">Explore Features</a>
+          <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold shadow-xl shadow-indigo-600/30 transition-all text-center hover:scale-105">Start Free 14-Day Trial</a>
+          <a href="#features" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold border border-slate-800 hover:border-slate-700 transition-all text-center">Explore Features</a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="pt-8 flex flex-wrap items-center justify-center gap-8 text-slate-500 text-xs font-semibold tracking-wider uppercase">
+          <span class="flex items-center gap-2">✓ No Credit Card Required</span>
+          <span class="flex items-center gap-2">✓ Setup in 60 Seconds</span>
+          <span class="flex items-center gap-2">✓ 99.99% Uptime SLA</span>
         </div>
       </div>
 
-      <!-- Hero Visual Preview -->
-      <div class="mt-16 relative max-w-5xl mx-auto rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl bg-slate-800/50">
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10 pointer-events-none"></div>
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Dashboard Preview" class="w-full h-auto object-cover transform hover:scale-102 transition-transform duration-700">
+      <!-- Hero Visual Preview with Dynamic Gallery Grid -->
+      <div class="mt-20 relative max-w-6xl mx-auto rounded-3xl p-3 sm:p-4 bg-gradient-to-b from-slate-800/80 to-slate-900/80 border border-slate-700/60 shadow-2xl backdrop-blur-2xl">
+        <div class="absolute -top-3 left-10 flex space-x-2">
+          <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+        </div>
+        <div class="rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-3 gap-3 bg-slate-950 p-3">
+          <div class="relative h-64 md:h-80 rounded-xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Analytics Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-xs font-bold text-white bg-slate-900/80 px-3 py-1.5 rounded-lg backdrop-blur-md border border-slate-700">Real-Time Analytics</span>
+            </div>
+          </div>
+          <div class="relative h-64 md:h-80 rounded-xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Conversion Engine" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-xs font-bold text-white bg-slate-900/80 px-3 py-1.5 rounded-lg backdrop-blur-md border border-slate-700">Conversion Engine</span>
+            </div>
+          </div>
+          <div class="relative h-64 md:h-80 rounded-xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Enterprise Security" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+              <span class="text-xs font-bold text-white bg-slate-900/80 px-3 py-1.5 rounded-lg backdrop-blur-md border border-slate-700">Enterprise Security</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Features Section -->
-  <section id="features" class="py-20 bg-slate-950/50 border-t border-b border-slate-800/60">
+  <section id="features" class="py-24 bg-slate-900/40 border-t border-b border-slate-800/60 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
-        <h2 class="text-xs font-bold tracking-widest text-indigo-400 uppercase">Powerful Capabilities</h2>
-        <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Everything you need to scale</h3>
-        <p class="text-slate-400">Designed from the ground up to give your business the ultimate competitive edge in the digital landscape.</p>
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+        <h2 class="text-xs font-extrabold tracking-widest text-indigo-400 uppercase">Powerful Capabilities</h2>
+        <h3 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Everything you need to scale effortlessly</h3>
+        <p class="text-slate-400 text-base sm:text-lg">Designed from the ground up to give your business the ultimate competitive edge in the modern digital landscape.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Feature 1 -->
-        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group">
-          <div class="w-12 h-12 rounded-xl bg-indigo-600/10 text-indigo-400 flex items-center justify-center font-bold mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+        <div class="p-8 rounded-3xl bg-slate-900/80 border border-slate-800/80 hover:border-indigo-500/50 transition-all group hover:-translate-y-1 shadow-xl">
+          <div class="w-14 h-14 rounded-2xl bg-indigo-600/10 text-indigo-400 flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-inner">
             ⚡
           </div>
-          <h4 class="text-xl font-bold mb-3">Lightning Fast</h4>
-          <p class="text-slate-400 leading-relaxed">Optimized performance engines guarantee blazing load speeds and seamless interaction across all devices.</p>
+          <h4 class="text-xl font-bold mb-3 text-white">Lightning Fast</h4>
+          <p class="text-slate-400 leading-relaxed">Optimized performance engines guarantee blazing load speeds and seamless interaction across all mobile and desktop devices.</p>
         </div>
 
         <!-- Feature 2 -->
-        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group">
-          <div class="w-12 h-12 rounded-xl bg-purple-600/10 text-purple-400 flex items-center justify-center font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">
+        <div class="p-8 rounded-3xl bg-slate-900/80 border border-slate-800/80 hover:border-purple-500/50 transition-all group hover:-translate-y-1 shadow-xl">
+          <div class="w-14 h-14 rounded-2xl bg-purple-600/10 text-purple-400 flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all shadow-inner">
             🔒
           </div>
-          <h4 class="text-xl font-bold mb-3">Enterprise Security</h4>
-          <p class="text-slate-400 leading-relaxed">Bank-grade encryption and compliance standards protect your data and user privacy at every layer.</p>
+          <h4 class="text-xl font-bold mb-3 text-white">Enterprise Security</h4>
+          <p class="text-slate-400 leading-relaxed">Bank-grade encryption and strict compliance standards protect your valuable data and user privacy at every system layer.</p>
         </div>
 
         <!-- Feature 3 -->
-        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all group">
-          <div class="w-12 h-12 rounded-xl bg-pink-600/10 text-pink-400 flex items-center justify-center font-bold mb-6 group-hover:bg-pink-600 group-hover:text-white transition-all">
+        <div class="p-8 rounded-3xl bg-slate-900/80 border border-slate-800/80 hover:border-pink-500/50 transition-all group hover:-translate-y-1 shadow-xl">
+          <div class="w-14 h-14 rounded-2xl bg-pink-600/10 text-pink-400 flex items-center justify-center font-bold text-2xl mb-6 group-hover:bg-pink-600 group-hover:text-white transition-all shadow-inner">
             📈
           </div>
-          <h4 class="text-xl font-bold mb-3">Advanced Analytics</h4>
-          <p class="text-slate-400 leading-relaxed">Real-time insights and comprehensive reporting empower data-driven decisions to maximize growth.</p>
+          <h4 class="text-xl font-bold mb-3 text-white">Advanced Analytics</h4>
+          <p class="text-slate-400 leading-relaxed">Real-time metrics, funnel tracking, and comprehensive reporting empower data-driven decisions to maximize overall growth.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Benefits Section -->
-  <section id="benefits" class="py-20">
+  <section id="benefits" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div class="space-y-6">
-          <div class="inline-block px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-semibold tracking-wide uppercase">Why Choose Us</div>
-          <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">Built for modern creators & enterprises</h3>
-          <p class="text-slate-400 leading-relaxed">
+          <div class="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-semibold tracking-wide uppercase border border-indigo-500/20">Why Choose Us</div>
+          <h3 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">Built for modern creators & scaling enterprises</h3>
+          <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
             We combine sophisticated aesthetics with powerful backend scalability so you never have to compromise on speed, security, or style.
           </p>
-          <ul class="space-y-4">
-            <li class="flex items-center space-x-3 text-slate-300">
-              <svg class="w-5 h-5 text-indigo-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Zero configuration deployment with instant setup</span>
+          <ul class="space-y-4 pt-2">
+            <li class="flex items-center space-x-3 text-slate-300 font-medium">
+              <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">✓</div>
+              <span>Zero configuration deployment with instant cloud setup</span>
             </li>
-            <li class="flex items-center space-x-3 text-slate-300">
-              <svg class="w-5 h-5 text-indigo-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>24/7 dedicated engineering support team</span>
+            <li class="flex items-center space-x-3 text-slate-300 font-medium">
+              <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">✓</div>
+              <span>24/7 dedicated engineering and customer success support</span>
             </li>
-            <li class="flex items-center space-x-3 text-slate-300">
-              <svg class="w-5 h-5 text-indigo-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span>Seamless integration with popular tools & APIs</span>
+            <li class="flex items-center space-x-3 text-slate-300 font-medium">
+              <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">✓</div>
+              <span>Seamless integration with popular marketing & development APIs</span>
             </li>
           </ul>
         </div>
         <div class="grid grid-cols-2 gap-4">
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Team collaborating" class="rounded-2xl object-cover h-64 w-full shadow-lg">
-          <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80" alt="Workspace" class="rounded-2xl object-cover h-64 w-full shadow-lg mt-8">
+          <div class="space-y-4">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Team collaborating" class="rounded-3xl object-cover h-64 w-full shadow-2xl border border-slate-800">
+            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80" alt="Workspace" class="rounded-3xl object-cover h-48 w-full shadow-2xl border border-slate-800">
+          </div>
+          <div class="space-y-4 pt-8">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80" alt="Strategy meeting" class="rounded-3xl object-cover h-48 w-full shadow-2xl border border-slate-800">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="Coding session" class="rounded-3xl object-cover h-64 w-full shadow-2xl border border-slate-800">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-24 bg-slate-900/40 border-t border-b border-slate-800/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <h2 class="text-xs font-extrabold tracking-widest text-indigo-400 uppercase">Flexible Pricing</h2>
+        <h3 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Simple, transparent plans</h3>
+        <p class="text-slate-400 text-base sm:text-lg">Choose the perfect plan for your business. No hidden fees. Cancel anytime.</p>
+        
+        <!-- Billing Toggle -->
+        <div class="pt-6 flex items-center justify-center space-x-4">
+          <span id="monthly-label" class="text-sm font-bold text-white">Monthly</span>
+          <button id="billing-toggle" aria-label="Toggle billing frequency" class="w-14 h-8 rounded-full bg-indigo-600 p-1 transition-colors relative focus:outline-none">
+            <div id="toggle-ball" class="w-6 h-6 rounded-full bg-white shadow-md transform translate-x-6 transition-transform"></div>
+          </button>
+          <span id="annual-label" class="text-sm font-medium text-slate-400">Annual <span class="text-xs text-emerald-400 font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 ml-1">Save 20%</span></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+        <!-- Starter Plan -->
+        <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Starter</div>
+            <h4 class="text-2xl font-black text-white mb-4">For Individuals</h4>
+            <div class="flex items-baseline mb-6">
+              <span class="price-val text-4xl sm:text-5xl font-black tracking-tight" data-monthly="$19" data-annual="$15">$19</span>
+              <span class="text-slate-400 ml-2 font-medium">/ month</span>
+            </div>
+            <p class="text-slate-400 text-sm mb-8">Essential tools to launch your first professional landing page quickly.</p>
+            <ul class="space-y-3.5 text-sm text-slate-300 mb-8">
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> 1 Active Project</li>
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> 10,000 Monthly Visitors</li>
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> Standard Analytics</li>
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> Community Support</li>
+            </ul>
+          </div>
+          <a href="#contact" class="w-full py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center transition-all">Choose Starter</a>
+        </div>
+
+        <!-- Pro Plan (Featured) -->
+        <div class="p-8 rounded-3xl bg-gradient-to-b from-indigo-950/80 to-slate-900 border-2 border-indigo-500 flex flex-col justify-between shadow-2xl relative transform md:-translate-y-2">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg">Most Popular</div>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-2">Professional</div>
+            <h4 class="text-2xl font-black text-white mb-4">For Growing Teams</h4>
+            <div class="flex items-baseline mb-6">
+              <span class="price-val text-4xl sm:text-5xl font-black tracking-tight" data-monthly="$49" data-annual="$39">$49</span>
+              <span class="text-slate-400 ml-2 font-medium">/ month</span>
+            </div>
+            <p class="text-slate-400 text-sm mb-8">Advanced conversion features and high-speed bandwidth for expanding businesses.</p>
+            <ul class="space-y-3.5 text-sm text-slate-200 mb-8">
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> Unlimited Projects</li>
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> 100,000 Monthly Visitors</li>
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> Advanced Real-time Analytics</li>
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> Priority 24/7 Support</li>
+            </ul>
+          </div>
+          <a href="#contact" class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-center transition-all shadow-lg shadow-indigo-600/30">Get Pro Plan</a>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Enterprise</div>
+            <h4 class="text-2xl font-black text-white mb-4">For Large Scale</h4>
+            <div class="flex items-baseline mb-6">
+              <span class="price-val text-4xl sm:text-5xl font-black tracking-tight" data-monthly="$129" data-annual="$99">$129</span>
+              <span class="text-slate-400 ml-2 font-medium">/ month</span>
+            </div>
+            <p class="text-slate-400 text-sm mb-8">Maximum security, custom integrations, and dedicated account management.</p>
+            <ul class="space-y-3.5 text-sm text-slate-300 mb-8">
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> Unlimited Everything</li>
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> Unlimited Traffic</li>
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> Custom API & Webhooks</li>
+              <li class="flex items-center gap-3"><span class="text-indigo-400">✓</span> Dedicated Account Manager</li>
+            </ul>
+          </div>
+          <a href="#contact" class="w-full py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center transition-all">Contact Sales</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Testimonials Section -->
-  <section id="testimonials" class="py-20 bg-slate-950/50 border-t border-slate-800/60">
+  <section id="testimonials" class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
-        <h2 class="text-xs font-bold tracking-widest text-indigo-400 uppercase">Testimonials</h2>
-        <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Loved by industry leaders</h3>
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+        <h2 class="text-xs font-extrabold tracking-widest text-indigo-400 uppercase">Testimonials</h2>
+        <h3 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Loved by industry leaders worldwide</h3>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Testimonial 1 -->
-        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
-          <p class="text-slate-300 mb-6 italic">"LandingPagePro completely transformed our customer acquisition funnel. Conversion rates jumped by 40% in just two weeks."</p>
+        <div class="p-8 rounded-3xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between shadow-xl hover:border-slate-700 transition-all">
+          <p class="text-slate-300 mb-8 leading-relaxed italic">"LandingPagePro completely transformed our customer acquisition funnel. Conversion rates jumped by 40% in just two weeks of deployment."</p>
           <div class="flex items-center space-x-4">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Sarah Jenkins" class="w-12 h-12 rounded-full object-cover">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Sarah Jenkins" class="w-12 h-12 rounded-full object-cover border-2 border-indigo-500">
             <div>
               <h5 class="font-bold text-white text-sm">Sarah Jenkins</h5>
               <p class="text-xs text-slate-400">CMO at Apex Digital</p>
@@ -176,10 +301,10 @@
         </div>
 
         <!-- Testimonial 2 -->
-        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
-          <p class="text-slate-300 mb-6 italic">"The speed and reliability are unmatched. Our engineering team loves how clean and adaptable the framework is."</p>
+        <div class="p-8 rounded-3xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between shadow-xl hover:border-slate-700 transition-all">
+          <p class="text-slate-300 mb-8 leading-relaxed italic">"The speed and reliability are unmatched. Our engineering team loves how clean and adaptable the underlying framework is."</p>
           <div class="flex items-center space-x-4">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Marcus Vance" class="w-12 h-12 rounded-full object-cover">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Marcus Vance" class="w-12 h-12 rounded-full object-cover border-2 border-purple-500">
             <div>
               <h5 class="font-bold text-white text-sm">Marcus Vance</h5>
               <p class="text-xs text-slate-400">Founder & CEO, TechFlow</p>
@@ -188,10 +313,10 @@
         </div>
 
         <!-- Testimonial 3 -->
-        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
-          <p class="text-slate-300 mb-6 italic">"Outstanding customer support and robust features. It's easily the best investment we've made this year for our brand."</p>
+        <div class="p-8 rounded-3xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between shadow-xl hover:border-slate-700 transition-all">
+          <p class="text-slate-300 mb-8 leading-relaxed italic">"Outstanding customer support and robust features. It's easily the best investment we've made this year for our brand expansion."</p>
           <div class="flex items-center space-x-4">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="Elena Rostova" class="w-12 h-12 rounded-full object-cover">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="Elena Rostova" class="w-12 h-12 rounded-full object-cover border-2 border-pink-500">
             <div>
               <h5 class="font-bold text-white text-sm">Elena Rostova</h5>
               <p class="text-xs text-slate-400">Head of Design, Studio V</p>
@@ -202,30 +327,86 @@
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section id="faq" class="py-24 bg-slate-900/40 border-t border-slate-800/60">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+        <h2 class="text-xs font-extrabold tracking-widest text-indigo-400 uppercase">Got Questions?</h2>
+        <h3 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Frequently Asked Questions</h3>
+      </div>
+
+      <div class="space-y-4">
+        <!-- FAQ Item 1 -->
+        <div class="rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden transition-all">
+          <button class="faq-toggle w-full px-6 py-5 text-left font-bold text-lg flex items-center justify-between text-white hover:text-indigo-400 focus:outline-none">
+            <span>How long does it take to set up LandingPagePro?</span>
+            <span class="faq-icon text-xl font-bold transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm leading-relaxed">
+            Setup takes less than 60 seconds. Simply choose a template or build from scratch using our intuitive builder, configure your custom domain, and launch instantly with one click.
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden transition-all">
+          <button class="faq-toggle w-full px-6 py-5 text-left font-bold text-lg flex items-center justify-between text-white hover:text-indigo-400 focus:outline-none">
+            <span>Can I change or cancel my subscription anytime?</span>
+            <span class="faq-icon text-xl font-bold transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm leading-relaxed">
+            Yes, absolutely. You can upgrade, downgrade, or cancel your subscription at any time directly from your account dashboard with zero cancellation fees.
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden transition-all">
+          <button class="faq-toggle w-full px-6 py-5 text-left font-bold text-lg flex items-center justify-between text-white hover:text-indigo-400 focus:outline-none">
+            <span>Do you offer custom domain integration?</span>
+            <span class="faq-icon text-xl font-bold transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm leading-relaxed">
+            Yes! All Pro and Enterprise plans include free custom domain connection with automated SSL certificates generated instantly upon setup.
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden transition-all">
+          <button class="faq-toggle w-full px-6 py-5 text-left font-bold text-lg flex items-center justify-between text-white hover:text-indigo-400 focus:outline-none">
+            <span>What kind of support is available?</span>
+            <span class="faq-icon text-xl font-bold transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm leading-relaxed">
+            We provide community support for Starter plans, 24/7 priority live chat and email support for Pro users, and a dedicated account manager for Enterprise clients.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact / CTA Section -->
-  <section id="contact" class="py-20 relative overflow-hidden">
+  <section id="contact" class="py-24 relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="p-8 sm:p-12 rounded-3xl bg-gradient-to-tr from-indigo-900/60 to-purple-900/60 border border-indigo-500/30 shadow-2xl backdrop-blur-xl">
-        <div class="text-center max-w-xl mx-auto space-y-4 mb-8">
-          <h3 class="text-3xl font-extrabold tracking-tight">Ready to transform your workflow?</h3>
+      <div class="p-8 sm:p-14 rounded-3xl bg-gradient-to-tr from-indigo-950 via-slate-900 to-purple-950 border border-indigo-500/30 shadow-2xl backdrop-blur-2xl">
+        <div class="text-center max-w-xl mx-auto space-y-4 mb-10">
+          <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Ready to transform your workflow?</h3>
           <p class="text-slate-300 text-sm sm:text-base">Get in touch with our team today and start your journey toward unprecedented web performance.</p>
         </div>
 
-        <form id="contact-form" class="space-y-4 max-w-md mx-auto">
+        <form id="contact-form" class="space-y-5 max-w-md mx-auto">
           <div>
-            <label for="name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Your Name</label>
-            <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="John Doe">
+            <label for="name" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Your Name</label>
+            <input type="text" id="name" required class="w-full px-4 py-3.5 rounded-xl bg-slate-950/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="John Doe">
           </div>
           <div>
-            <label for="email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Email Address</label>
-            <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="john@example.com">
+            <label for="email" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Email Address</label>
+            <input type="email" id="email" required class="w-full px-4 py-3.5 rounded-xl bg-slate-950/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="john@example.com">
           </div>
           <div>
-            <label for="message" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Message</label>
-            <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Tell us about your project..."></textarea>
+            <label for="message" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Message</label>
+            <textarea id="message" rows="4" required class="w-full px-4 py-3.5 rounded-xl bg-slate-950/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Tell us about your project..."></textarea>
           </div>
-          <button type="submit" class="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-all shadow-lg shadow-indigo-600/30">Send Message</button>
-          <div id="form-success" class="hidden text-center text-emerald-400 text-sm font-medium pt-2">Thank you! We'll get back to you shortly.</div>
+          <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold transition-all shadow-xl shadow-indigo-600/30 hover:scale-102">Send Message</button>
+          <div id="form-success" class="hidden text-center text-emerald-400 text-sm font-semibold pt-2">Thank you! We'll get back to you shortly.</div>
         </form>
       </div>
     </div>
@@ -234,8 +415,8 @@
   <!-- Footer -->
   <footer class="py-12 border-t border-slate-800 bg-slate-950 text-slate-400 text-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white text-sm">L</div>
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center font-bold text-white text-sm shadow-md">L</div>
         <span class="font-bold text-white tracking-tight">LandingPagePro</span>
       </div>
       <p>&copy; 2025 LandingPagePro. All rights reserved.</p>
