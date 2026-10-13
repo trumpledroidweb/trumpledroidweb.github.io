@@ -1,0 +1,10 @@
+/* No custom CSS needed as Tailwind CSS is used via CDN */
+/* This file is kept for project structure consistency */
+/* All styling is handled directly in index.html using Tailwind classes */
+/* If you need to add custom CSS that cannot be done with Tailwind, add it here */
+/* For example: */
+/*
+body {
+    font-family: 'Arial', sans-serif;
+}
+*/
