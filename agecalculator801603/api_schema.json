@@ -1,0 +1,12 @@
+{
+  "backend": false,
+  "roles": {},
+  "collections": {},
+  "logic": {
+    "age_calculation": {
+      "type": "calculation",
+      "inputs": ["birth_date", "current_date"],
+      "formula": "difference_between_dates_in_years_months_days"
+    }
+  }
+}
