@@ -1,0 +1,88 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Define App Metadata and Configuration",
+      "description": "Initialize app-meta.json with app_name hunarder and project_type web.",
+      "files": ["app-meta.json"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Configure Backend API Schema",
+      "description": "Define api_schema.json setting backend to false since this is a high-impact, clean showcase landing page with client-side interactive inquiry handling.",
+      "files": ["api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Construct HTML5 Foundation and Semantic Wireframe",
+      "description": "Build index.html with responsive viewport, Tailwind CDN script, modern typography, navigation bar, hero banner, feature sections, interactive showcase, and contact form.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Design Hero Showcase Section",
+      "description": "Construct dynamic hero section highlighting hunarDer's craft, creative skills, and master craftsmanship with prominent call-to-action buttons.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Build Skills & Services Grid",
+      "description": "Implement service and skill tier cards highlighting creative craft, digital artisans, tailoring, woodworking, and tech craftsmanship.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Implement Interactive Portfolio & Workshop Gallery",
+      "description": "Create responsive filterable portfolio grid featuring modern image cards with contextual tags and hover overlay details.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Create Interactive Workshop Cost Estimator",
+      "description": "Build dynamic offline calculator for workshop commissions, estimated hours, materials, and artisan tier rates with instant live totals.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Develop Testimonials & Community Showcase",
+      "description": "Incorporate artisan reviews, rating badges, and statistics counters illustrating verified creators.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Design Responsive Mobile Drawer & Navigation",
+      "description": "Build clean responsive navigation with mobile toggle drawer, smooth anchor transitions, and sticky header.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Craft Custom Styles & Micro-Animations",
+      "description": "Develop style.css with sleek gradients, glassmorphism accents, focus states, and keyframe animations.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Implement Interactive Client Logic in JavaScript",
+      "description": "Build script.js managing gallery filtering, instant budget calculation, contact inquiry simulation with toast feedback, and smooth scrolling.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Building hunarder",
+      "description": "Conduct end-to-end audit for responsiveness, accessible contrast, flawless offline calculations, and finalized UI structure.",
+      "files": ["index.html", "style.css", "script.js", "app-meta.json", "build-steps.json"],
+      "status": "pending"
+    }
+  ]
+}
