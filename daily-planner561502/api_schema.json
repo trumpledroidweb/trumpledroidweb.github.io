@@ -1,0 +1,12 @@
+{
+  "backend": false,
+  "roles": {},
+  "collections": {},
+  "logic": {
+    "task_completion_percentage": {
+      "type": "calculation",
+      "inputs": ["total_tasks", "completed_tasks"],
+      "formula": "(completed_tasks / total_tasks) * 100"
+    }
+  }
+}
