@@ -1,0 +1,34 @@
+{
+  "backend": true,
+  "api_base_url": "https://trumpledroid-api.cloudbeta28624.workers.dev",
+  "roles": {
+    "user": ["own"]
+  },
+  "collections": {
+    "orders": {
+      "fields": {
+        "items": "string",
+        "total": "number",
+        "shipping_address": "string",
+        "status": "string"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    },
+    "wishlist": {
+      "fields": {
+        "shoe_id": "number",
+        "shoe_name": "string",
+        "price": "number",
+        "image": "string"
+      },
+      "operations": ["create", "read", "delete"]
+    }
+  },
+  "logic": {
+    "cart_total": {
+      "type": "calculation",
+      "inputs": ["price", "quantity", "tax_rate"],
+      "formula": "sum(price * quantity) + (sum(price * quantity) * tax_rate)"
+    }
+  }
+}
