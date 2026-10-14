@@ -10,7 +10,7 @@
     {
       "step": 2,
       "title": "Define API Schema",
-      "description": "Create api_schema.json with backend configuration and shoe/cart collections.",
+      "description": "Create api_schema.json with backend configuration and collections.",
       "files": ["api_schema.json"],
       "status": "pending"
     },
@@ -23,8 +23,8 @@
     },
     {
       "step": 4,
-      "title": "Design CSS & Tailwind Styling",
-      "description": "Configure Tailwind CSS via CDN and add custom styles, animations, and responsive utilities in style.css, fixing CSS loading issues.",
+      "title": "Design CSS & Tailwind Styling (Fixed CDN & Directives)",
+      "description": "Configure Tailwind CSS v4 Browser CDN correctly without @import conflicts and add custom CSS utilities.",
       "files": ["style.css"],
       "status": "pending"
     },
