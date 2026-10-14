@@ -1,0 +1,67 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Initialize Project Metadata",
+      "description": "Set up app-meta.json with app_name 'solestride'.",
+      "files": ["app-meta.json"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Define API Schema",
+      "description": "Create api_schema.json with backend configuration and shoe/cart collections.",
+      "files": ["api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Create Base HTML Structure",
+      "description": "Build index.html with header, hero section, product catalog, cart drawer, auth modals, and footer.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Design CSS & Tailwind Styling",
+      "description": "Configure Tailwind CSS via CDN and add custom styles, animations, and responsive utilities in style.css.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Implement API Client & Auth Logic",
+      "description": "Write script.js handling login, registration, password reset, and token management.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Implement Product Catalog & Filtering",
+      "description": "Add dynamic shoe catalog rendering, category filtering, search, and sorting features in script.js.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Implement Shopping Cart & Local Calculations",
+      "description": "Add cart management, quantity adjustments, and real-time subtotal, tax, and total calculations.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Implement Checkout & Order History",
+      "description": "Build checkout workflow and order persistence using the backend /data endpoint.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Building solestride",
+      "description": "Finalize and integrate all components for the ultimate shoe landing page and store.",
+      "files": ["index.html", "style.css", "script.js", "app-meta.json", "api_schema.json", "build-steps.json"],
+      "status": "pending"
+    }
+  ]
+}
