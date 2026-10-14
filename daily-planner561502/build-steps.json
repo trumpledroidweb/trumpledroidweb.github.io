@@ -1,0 +1,113 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Establish Project Metadata and Schema",
+      "description": "Configure app metadata, package name, and define the local calculation logic schema.",
+      "files": [
+        "app-meta.json",
+        "api_schema.json"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Configure Build System",
+      "description": "Set up Gradle with correct Android SDK versions and Java 8 compatibility, ensuring no external dependencies.",
+      "files": [
+        "app/build.gradle"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Define Application Manifest",
+      "description": "Configure AndroidManifest.xml for the new app, including activity setup and theme.",
+      "files": [
+        "app/src/main/AndroidManifest.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Define Color Palette",
+      "description": "Establish a consistent color scheme for the application UI elements.",
+      "files": [
+        "app/src/main/res/values/colors.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Define String Resources",
+      "description": "Add all user-facing text strings for the Daily Planner app.",
+      "files": [
+        "app/src/main/res/values/strings.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Create Reusable Drawable Backgrounds",
+      "description": "Design custom XML drawables for elevated cards, primary buttons, and input fields to ensure a consistent UI.",
+      "files": [
+        "app/src/main/res/drawable/bg_card_elevated.xml",
+        "app/src/main/res/drawable/bg_btn_primary.xml",
+        "app/src/main/res/drawable/bg_input_field.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Design Main Activity Layout",
+      "description": "Construct the user interface for adding tasks, displaying tasks, and showing completion progress.",
+      "files": [
+        "app/src/main/res/layout/activity_main.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Implement Task Item Layout",
+      "description": "Create a layout for individual task items within the task list.",
+      "files": [
+        "app/src/main/res/layout/list_item_task.xml"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Develop Main Activity Logic",
+      "description": "Implement Java code for task management (add, delete, mark complete), local storage, and progress calculation.",
+      "files": [
+        "app/src/main/java/com/dailyplanner/app/MainActivity.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Create Custom Task Adapter",
+      "description": "Develop a custom ArrayAdapter to efficiently display and manage task items in the ListView.",
+      "files": [
+        "app/src/main/java/com/dailyplanner/app/TaskAdapter.java"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Synchronize Asset Metadata",
+      "description": "Ensure runtime assets match application identification.",
+      "files": [
+        "app/src/main/assets/app-meta.json"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Building Daily Planner",
+      "description": "Execute Gradle assembleDebug to produce production-ready APK.",
+      "files": [],
+      "status": "pending"
+    }
+  ]
+}
