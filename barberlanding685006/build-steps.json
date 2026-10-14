@@ -1,0 +1,102 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Initialize Project & Layout Structure",
+      "description": "Set up HTML5 skeleton, Tailwind CSS v4 via CDN, Google Fonts, and FontAwesome icons.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Configure Navigation & Hero Section",
+      "description": "Create responsive sticky navbar with mobile menu toggle and an immersive hero section with quick booking CTA.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Build About Us & Story Section",
+      "description": "Add brand story, craftsmanship highlights, and high-quality imagery grid.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Implement Services & Pricing Menu",
+      "description": "Design sleek service categories (Haircut, Beard Trim, Hot Towel Shave, VIP Packages) with dynamic pricing.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Build Master Barbers Showcase",
+      "description": "Create professional barber cards featuring bios, specialties, and direct booking triggers.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Implement Gallery with Filter Tabs",
+      "description": "Showcase haircut styles and salon interior with responsive grid and category filtering.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Build Customer Testimonials & Reviews Carousel",
+      "description": "Create interactive testimonial cards highlighting client satisfaction and reviews.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Develop Interactive Online Booking System",
+      "description": "Implement multi-step appointment scheduler (Service -> Barber -> Date/Time -> Customer Details).",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Build Backend API Client & Auth Integration",
+      "description": "Connect booking system to TrumpleDroid backend for authenticated client appointments storage.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Implement Client Portal & Appointment History",
+      "description": "Allow logged-in users to view, manage, and cancel their upcoming appointments.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Design Footer & Location Map Widget",
+      "description": "Add operating hours, contact info, interactive Leaflet map integration, and newsletter subscription.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Add Authentication Modals (Login/Signup/Forgot Password)",
+      "description": "Create sleek modal overlays for user registration, login, and OTP password recovery.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Refine UI Polish, Animations & Responsiveness",
+      "description": "Add smooth scrolling, hover effects, modal handlers, and ensure mobile responsiveness.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "title": "Building barberlanding",
+      "description": "Finalize all components, verify API contracts, and perform final build check.",
+      "files": ["app-meta.json", "build-steps.json", "api_schema.json", "index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
