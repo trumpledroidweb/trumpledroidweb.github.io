@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regal Edge | Master Barber & Gentleman's Grooming Lounge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Tailwind CSS v4 Browser CDN - Loaded before custom style.css for proper layering -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0f1115] text-gray-100 antialiased selection:bg-[#d4af37] selection:text-black">
+
+  <!-- TOP NOTIFICATION BAR -->
+  <div class="bg-[#d4af37] text-black font-semibold text-xs sm:text-sm py-2 px-4 text-center tracking-wide">
+    <i class="fa-solid fa-crown mr-2"></i> Experience Premium Grooming. <a href="#booking" class="underline hover:text-white transition ml-1 font-bold">Book Your Chair Today</a>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header id="navbar" class="sticky top-0 z-50 bg-[#0f1115]/90 backdrop-blur-md border-b border-gray-800 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- LOGO -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-full gold-bg flex items-center justify-center text-black font-bold text-xl shadow-lg">
+          <i class="fa-solid fa-scissors"></i>
+        </div>
+        <div>
+          <span class="text-xl sm:text-2xl font-heading font-bold tracking-wider gold-gradient">REGAL EDGE</span>
+          <span class="block text-[10px] tracking-widest text-gray-400 uppercase">Master Barbershop</span>
+        </div>
+      </a>
+
+      <!-- DESKTOP NAV LINKS -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+        <a href="#about" class="text-gray-300 hover:text-[#d4af37] transition">The Experience</a>
+        <a href="#services" class="text-gray-300 hover:text-[#d4af37] transition">Services & Pricing</a>
+        <a href="#barbers" class="text-gray-300 hover:text-[#d4af37] transition">Our Masters</a>
+        <a href="#gallery" class="text-gray-300 hover:text-[#d4af37] transition">Gallery</a>
+        <a href="#testimonials" class="text-gray-300 hover:text-[#d4af37] transition">Testimonials</a>
+        <a href="#location" class="text-gray-300 hover:text-[#d4af37] transition">Location</a>
+      </nav>
+
+      <!-- RIGHT ACTIONS -->
+      <div class="hidden md:flex items-center gap-4">
+        <div id="auth-nav-container" class="flex items-center gap-3">
+          <!-- Dynamically populated login/user state -->
+        </div>
+        <a href="#booking" class="gold-bg text-black font-semibold px-5 py-2.5 rounded-md hover:opacity-90 transition shadow-lg shadow-[#d4af37]/20 flex items-center gap-2 text-sm">
+          <i class="fa-regular fa-calendar-check"></i> Book Now
+        </a>
+      </div>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-[#d4af37] text-2xl focus:outline-none">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- MOBILE MENU DROPDOWN -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[#161920] border-b border-gray-800 px-6 py-6 space-y-4">
+      <a href="#about" class="block text-gray-300 hover:text-[#d4af37] font-medium py-1">The Experience</a>
+      <a href="#services" class="block text-gray-300 hover:text-[#d4af37] font-medium py-1">Services & Pricing</a>
+      <a href="#barbers" class="block text-gray-300 hover:text-[#d4af37] font-medium py-1">Our Masters</a>
+      <a href="#gallery" class="block text-gray-300 hover:text-[#d4af37] font-medium py-1">Gallery</a>
+      <a href="#testimonials" class="block text-gray-300 hover:text-[#d4af37] font-medium py-1">Testimonials</a>
+      <a href="#location" class="block text-gray-300 hover:text-[#d4af37] font-medium py-1">Location</a>
+      <div id="mobile-auth-container" class="pt-4 border-t border-gray-800 flex flex-col gap-3">
+        <!-- Mobile auth items -->
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-[90vh] flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1920');">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0f1115] via-[#0f1115]/80 to-transparent"></div>
+    <div class="absolute inset-0 bg-black/40"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/30 text-[#d4af37] text-xs font-semibold tracking-wider uppercase">
+          <i class="fa-solid fa-star"></i> Voted #1 Luxury Barbershop 2024
+        </div>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-heading font-extrabold leading-tight tracking-tight">
+          Crafting <span class="gold-gradient">Masterpieces</span> <br>One Cut at a Time.
+        </h1>
+        <p class="text-gray-300 text-lg sm:text-xl max-w-xl font-normal leading-relaxed">
+          Step into an oasis of traditional gentleman's grooming paired with modern luxury styling. Precision fades, hot towel shaves, and top-shelf hospitality.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a href="#booking" class="gold-bg text-black font-bold px-8 py-4 rounded-lg hover:opacity-95 transition shadow-xl shadow-[#d4af37]/30 flex items-center gap-3 text-base">
+            <i class="fa-regular fa-calendar-days"></i> Book Appointment
+          </a>
+          <a href="#services" class="bg-gray-800/80 hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-lg border border-gray-700 hover:border-[#d4af37] transition flex items-center gap-3 text-base">
+            View Price Menu <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+        
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-gray-800/80 max-w-lg">
+          <div>
+            <h4 class="text-2xl sm:text-3xl font-heading font-bold gold-gradient">15+</h4>
+            <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Expert Barbers</p>
+          </div>
+          <div>
+            <h4 class="text-2xl sm:text-3xl font-heading font-bold gold-gradient">10k+</h4>
+            <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Happy Gents</p>
+          </div>
+          <div>
+            <h4 class="text-2xl sm:text-3xl font-heading font-bold gold-gradient">4.9★</h4>
+            <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Client Rating</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICK APPOINTMENT WIDGET CARD -->
+      <div class="lg:col-span-5 hidden lg:block">
+        <div class="bg-[#161920]/95 backdrop-blur-xl p-8 rounded-2xl border border-gray-800 shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-2xl"></div>
+          <h3 class="text-2xl font-heading font-bold text-white mb-2">Reserve Your Chair</h3>
+          <p class="text-sm text-gray-400 mb-6">Select your service and secure your spot instantly.</p>
+          
+          <form id="hero-quick-book" class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Select Service</label>
+              <select id="quick-service" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none">
+                <option value="Executive Haircut">Executive Haircut ($45)</option>
+                <option value="Beard Sculpting & Trim">Beard Sculpting & Trim ($35)</option>
+                <option value="Signature Royal Shave">Signature Royal Shave ($50)</option>
+                <option value="The Regal Full Package">The Regal Full Package ($115)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Preferred Barber</label>
+              <select id="quick-barber" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none">
+                <option value="Any Available Master">Any Available Master</option>
+                <option value="Marcus Vance (Master Stylist)">Marcus Vance (Master Stylist)</option>
+                <option value="Julian Cruz (Fade Specialist)">Julian Cruz (Fade Specialist)</option>
+                <option value="Dante Rossi (Beard Artisan)">Dante Rossi (Beard Artisan)</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Date</label>
+                <input type="date" id="quick-date" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-2.5 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Time</label>
+                <select id="quick-time" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none">
+                  <option value="10:00 AM">10:00 AM</option>
+                  <option value="11:30 AM">11:30 AM</option>
+                  <option value="01:00 PM">01:00 PM</option>
+                  <option value="03:00 PM">03:00 PM</option>
+                  <option value="05:00 PM">05:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="w-full mt-2 gold-bg text-black font-bold py-3.5 rounded-lg hover:opacity-95 transition shadow-lg flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bolt"></i> Proceed to Quick Book
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES / THE EXPERIENCE -->
+  <section id="about" class="py-24 bg-[#12151c] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-[#d4af37] text-xs font-bold uppercase tracking-widest block mb-3">The Regal Tradition</span>
+        <h2 class="text-3xl sm:text-5xl font-heading font-bold">Where Classic Craftsmanship Meets Modern Luxury</h2>
+        <p class="text-gray-400 mt-4 text-base sm:text-lg">We don't just cut hair; we curate your signature presence. Relax with complimentary craft bourbon while our master barbers perfect your look.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-[#161920] p-8 rounded-2xl border border-gray-800 card-hover group">
+          <div class="w-14 h-14 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/30 flex items-center justify-center text-[#d4af37] text-2xl mb-6 group-hover:bg-[#d4af37] group-hover:text-black transition-all">
+            <i class="fa-solid fa-scissors"></i>
+          </div>
+          <h3 class="text-xl font-heading font-bold mb-3 text-white">Master Artisans</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Our barbers have decades of combined experience in precision scissor work, hot towel razor fades, and bespoke styling.</p>
+        </div>
+
+        <div class="bg-[#161920] p-8 rounded-2xl border border-gray-800 card-hover group">
+          <div class="w-14 h-14 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/30 flex items-center justify-center text-[#d4af37] text-2xl mb-6 group-hover:bg-[#d4af37] group-hover:text-black transition-all">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <h3 class="text-xl font-heading font-bold mb-3 text-white">Complimentary Lounge</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Enjoy top-shelf whiskey, artisanal espresso, and high-end atmosphere in our private gentleman's club lounge.</p>
+        </div>
+
+        <div class="bg-[#161920] p-8 rounded-2xl border border-gray-800 card-hover group">
+          <div class="w-14 h-14 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/30 flex items-center justify-center text-[#d4af37] text-2xl mb-6 group-hover:bg-[#d4af37] group-hover:text-black transition-all">
+            <i class="fa-solid fa-gem"></i>
+          </div>
+          <h3 class="text-xl font-heading font-bold mb-3 text-white">Premium Products</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">We exclusively use organic pomades, nourishing beard oils, and soothing balms formulated for the modern gentleman.</p>
+        </div>
+      </div>
+
+      <!-- ABOUT PHOTO GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+        <div class="rounded-xl overflow-hidden h-72 shadow-lg relative group">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=800" alt="Barber cutting hair" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+            <span class="text-sm font-semibold tracking-wider text-white">Precision Styling</span>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden h-72 shadow-lg relative group">
+          <img src="https://images.unsplash.com/photo-1512864082105-0213d3023774?auto=format&fit=crop&q=80&w=800" alt="Hot towel shave" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+            <span class="text-sm font-semibold tracking-wider text-white">Hot Towel Ritual</span>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden h-72 shadow-lg relative group">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" alt="Beard grooming" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+            <span class="text-sm font-semibold tracking-wider text-white">Beard Sculpting</span>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden h-72 shadow-lg relative group">
+          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=800" alt="Lounge atmosphere" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+            <span class="text-sm font-semibold tracking-wider text-white">Luxury Atmosphere</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES & PRICING MENU -->
+  <section id="services" class="py-24 bg-[#0f1115] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-[#d4af37] text-xs font-bold uppercase tracking-widest block mb-3">Investment in Style</span>
+        <h2 class="text-3xl sm:text-5xl font-heading font-bold">Services & Pricing Menu</h2>
+        <p class="text-gray-400 mt-4 text-base sm:text-lg">Tailored grooming sessions designed to elevate your personal presentation.</p>
+      </div>
+
+      <!-- SERVICE TABS -->
+      <div class="flex justify-center mb-12">
+        <div class="inline-flex bg-[#161920] p-1.5 rounded-xl border border-gray-800">
+          <button onclick="filterServices('all')" id="tab-all" class="service-tab px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#d4af37] text-black transition">All Services</button>
+          <button onclick="filterServices('hair')" id="tab-hair" class="service-tab px-6 py-2.5 rounded-lg text-sm font-semibold text-gray-300 hover:text-white transition">Haircuts</button>
+          <button onclick="filterServices('beard')" id="tab-beard" class="service-tab px-6 py-2.5 rounded-lg text-sm font-semibold text-gray-300 hover:text-white transition">Beard & Shave</button>
+          <button onclick="filterServices('combo')" id="tab-combo" class="service-tab px-6 py-2.5 rounded-lg text-sm font-semibold text-gray-300 hover:text-white transition">Packages</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto" id="services-grid">
+        <!-- Service Item 1 -->
+        <div class="service-item bg-[#161920] p-6 rounded-2xl border border-gray-800 flex items-center justify-between gap-6 card-hover" data-category="hair">
+          <div>
+            <div class="flex items-center gap-3 mb-1">
+              <h3 class="text-lg font-heading font-bold text-white">Executive Haircut</h3>
+              <span class="text-xs px-2.5 py-0.5 rounded bg-[#d4af37]/10 text-[#d4af37] font-medium">45 mins</span>
+            </div>
+            <p class="text-gray-400 text-sm">Consultation, precision haircut, hot lather neck shave, style finish & tonic.</p>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-2xl font-heading font-bold gold-gradient">$45</span>
+            <button onclick="selectServicePrompt('Executive Haircut', 45)" class="block mt-2 text-xs font-bold text-[#d4af37] hover:underline">Book This →</button>
+          </div>
+        </div>
+
+        <!-- Service Item 2 -->
+        <div class="service-item bg-[#161920] p-6 rounded-2xl border border-gray-800 flex items-center justify-between gap-6 card-hover" data-category="beard">
+          <div>
+            <div class="flex items-center gap-3 mb-1">
+              <h3 class="text-lg font-heading font-bold text-white">Beard Sculpting & Trim</h3>
+              <span class="text-xs px-2.5 py-0.5 rounded bg-[#d4af37]/10 text-[#d4af37] font-medium">30 mins</span>
+            </div>
+            <p class="text-gray-400 text-sm">Custom beard shaping, razor line-up, organic conditioning oil, and hot towel.</p>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-2xl font-heading font-bold gold-gradient">$35</span>
+            <button onclick="selectServicePrompt('Beard Sculpting & Trim', 35)" class="block mt-2 text-xs font-bold text-[#d4af37] hover:underline">Book This →</button>
+          </div>
+        </div>
+
+        <!-- Service Item 3 -->
+        <div class="service-item bg-[#161920] p-6 rounded-2xl border border-gray-800 flex items-center justify-between gap-6 card-hover" data-category="beard">
+          <div>
+            <div class="flex items-center gap-3 mb-1">
+              <h3 class="text-lg font-heading font-bold text-white">Signature Royal Shave</h3>
+              <span class="text-xs px-2.5 py-0.5 rounded bg-[#d4af37]/10 text-[#d4af37] font-medium">45 mins</span>
+            </div>
+            <p class="text-gray-400 text-sm">Straight razor shave with pre-shave oils, triple hot eucalyptus towels, and aftershave balm.</p>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-2xl font-heading font-bold gold-gradient">$50</span>
+            <button onclick="selectServicePrompt('Signature Royal Shave', 50)" class="block mt-2 text-xs font-bold text-[#d4af37] hover:underline">Book This →</button>
+          </div>
+        </div>
+
+        <!-- Service Item 4 -->
+        <div class="service-item bg-[#161920] p-6 rounded-2xl border border-gray-800 flex items-center justify-between gap-6 card-hover" data-category="combo">
+          <div>
+            <div class="flex items-center gap-3 mb-1">
+              <h3 class="text-lg font-heading font-bold text-white">The Regal Full Package</h3>
+              <span class="text-xs px-2.5 py-0.5 rounded bg-[#d4af37]/10 text-[#d4af37] font-medium">90 mins</span>
+            </div>
+            <p class="text-gray-400 text-sm">Executive Haircut, Royal Hot Towel Shave, Beard Trim, Facial Treatment & Styling.</p>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-2xl font-heading font-bold gold-gradient">$115</span>
+            <button onclick="selectServicePrompt('The Regal Full Package', 115)" class="block mt-2 text-xs font-bold text-[#d4af37] hover:underline">Book This →</button>
+          </div>
+        </div>
+
+        <!-- Service Item 5 -->
+        <div class="service-item bg-[#161920] p-6 rounded-2xl border border-gray-800 flex items-center justify-between gap-6 card-hover" data-category="hair">
+          <div>
+            <div class="flex items-center gap-3 mb-1">
+              <h3 class="text-lg font-heading font-bold text-white">Father & Son Combo</h3>
+              <span class="text-xs px-2.5 py-0.5 rounded bg-[#d4af37]/10 text-[#d4af37] font-medium">60 mins</span>
+            </div>
+            <p class="text-gray-400 text-sm">Two matching executive haircuts for father and son (under 12 years old).</p>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-2xl font-heading font-bold gold-gradient">$75</span>
+            <button onclick="selectServicePrompt('Father & Son Combo', 75)" class="block mt-2 text-xs font-bold text-[#d4af37] hover:underline">Book This →</button>
+          </div>
+        </div>
+
+        <!-- Service Item 6 -->
+        <div class="service-item bg-[#161920] p-6 rounded-2xl border border-gray-800 flex items-center justify-between gap-6 card-hover" data-category="combo">
+          <div>
+            <div class="flex items-center gap-3 mb-1">
+              <h3 class="text-lg font-heading font-bold text-white">The Groom's Party Package</h3>
+              <span class="text-xs px-2.5 py-0.5 rounded bg-[#d4af37]/10 text-[#d4af37] font-medium">120 mins</span>
+            </div>
+            <p class="text-gray-400 text-sm">Private lounge access for up to 5 groomsmen with cuts, shaves & complimentary bourbon.</p>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-2xl font-heading font-bold gold-gradient">$350</span>
+            <button onclick="selectServicePrompt('The Groom\'s Party Package', 350)" class="block mt-2 text-xs font-bold text-[#d4af37] hover:underline">Book This →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MASTER BARBERS SHOWCASE -->
+  <section id="barbers" class="py-24 bg-[#12151c]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-[#d4af37] text-xs font-bold uppercase tracking-widest block mb-3">Elite Talent</span>
+        <h2 class="text-3xl sm:text-5xl font-heading font-bold">Meet Our Master Barbers</h2>
+        <p class="text-gray-400 mt-4 text-base sm:text-lg">Craftspeople dedicated to perfection, precision, and personalized gentleman care.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Barber 1 -->
+        <div class="bg-[#161920] rounded-2xl overflow-hidden border border-gray-800 card-hover group">
+          <div class="h-80 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Marcus Vance" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161920] via-transparent to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-[#d4af37] text-xs font-bold px-3 py-1 rounded-full border border-[#d4af37]/30">12 Yrs Exp</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-heading font-bold text-white mb-1">Marcus Vance</h3>
+            <p class="text-[#d4af37] text-xs font-semibold uppercase tracking-wider mb-4">Master Stylist & Founder</p>
+            <p class="text-gray-400 text-sm mb-6">Specializing in classic gentleman cuts, scissor precision, and timeless styling.</p>
+            <button onclick="selectBarberPrompt('Marcus Vance (Master Stylist)')" class="w-full bg-[#0f1115] hover:bg-[#d4af37] hover:text-black text-gray-200 font-semibold py-3 rounded-xl border border-gray-700 hover:border-[#d4af37] transition text-sm flex items-center justify-center gap-2">
+              <i class="fa-regular fa-calendar-check"></i> Book with Marcus
+            </button>
+          </div>
+        </div>
+
+        <!-- Barber 2 -->
+        <div class="bg-[#161920] rounded-2xl overflow-hidden border border-gray-800 card-hover group">
+          <div class="h-80 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800" alt="Julian Cruz" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161920] via-transparent to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-[#d4af37] text-xs font-bold px-3 py-1 rounded-full border border-[#d4af37]/30">8 Yrs Exp</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-heading font-bold text-white mb-1">Julian Cruz</h3>
+            <p class="text-[#d4af37] text-xs font-semibold uppercase tracking-wider mb-4">Fade & Texture Specialist</p>
+            <p class="text-gray-400 text-sm mb-6">Expert in skin fades, textured crops, modern razor work, and crisp line-ups.</p>
+            <button onclick="selectBarberPrompt('Julian Cruz (Fade Specialist)')" class="w-full bg-[#0f1115] hover:bg-[#d4af37] hover:text-black text-gray-200 font-semibold py-3 rounded-xl border border-gray-700 hover:border-[#d4af37] transition text-sm flex items-center justify-center gap-2">
+              <i class="fa-regular fa-calendar-check"></i> Book with Julian
+            </button>
+          </div>
+        </div>
+
+        <!-- Barber 3 -->
+        <div class="bg-[#161920] rounded-2xl overflow-hidden border border-gray-800 card-hover group">
+          <div class="h-80 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=800" alt="Dante Rossi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161920] via-transparent to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-[#d4af37] text-xs font-bold px-3 py-1 rounded-full border border-[#d4af37]/30">10 Yrs Exp</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-heading font-bold text-white mb-1">Dante Rossi</h3>
+            <p class="text-[#d4af37] text-xs font-semibold uppercase tracking-wider mb-4">Beard Artisan & Shave Master</p>
+            <p class="text-gray-400 text-sm mb-6">Master of hot towel straight razor shaves, beard sculpting, and facial treatments.</p>
+            <button onclick="selectBarberPrompt('Dante Rossi (Beard Artisan)')" class="w-full bg-[#0f1115] hover:bg-[#d4af37] hover:text-black text-gray-200 font-semibold py-3 rounded-xl border border-gray-700 hover:border-[#d4af37] transition text-sm flex items-center justify-center gap-2">
+              <i class="fa-regular fa-calendar-check"></i> Book with Dante
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY WITH FILTER TABS -->
+  <section id="gallery" class="py-24 bg-[#0f1115]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-[#d4af37] text-xs font-bold uppercase tracking-widest block mb-3">Portfolio Showcase</span>
+        <h2 class="text-3xl sm:text-5xl font-heading font-bold">The Gallery of Excellence</h2>
+        <p class="text-gray-400 mt-4 text-base sm:text-lg">Explore our portfolio of sharp fades, immaculate beard trims, and bespoke gentleman styling.</p>
+      </div>
+
+      <!-- GALLERY FILTER TABS -->
+      <div class="flex justify-center mb-12">
+        <div class="inline-flex bg-[#161920] p-1.5 rounded-xl border border-gray-800">
+          <button onclick="filterGallery('all')" id="gallery-tab-all" class="gallery-tab px-5 py-2 rounded-lg text-sm font-semibold bg-[#d4af37] text-black transition">All Photos</button>
+          <button onclick="filterGallery('cuts')" id="gallery-tab-cuts" class="gallery-tab px-5 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-white transition">Haircuts</button>
+          <button onclick="filterGallery('beards')" id="gallery-tab-beards" class="gallery-tab px-5 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-white transition">Beards</button>
+          <button onclick="filterGallery('shop')" id="gallery-tab-shop" class="gallery-tab px-5 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-white transition">Lounge</button>
+        </div>
+      </div>
+
+      <!-- GALLERY GRID -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+        <div class="gallery-card rounded-2xl overflow-hidden h-80 relative group cursor-pointer" data-category="cuts">
+          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&q=80&w=800" alt="Skin Fade Haircut" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[#d4af37] text-xs font-bold uppercase tracking-wider">Haircut</span>
+            <h4 class="text-lg font-heading font-bold text-white">Classic Low Skin Fade</h4>
+          </div>
+        </div>
+
+        <div class="gallery-card rounded-2xl overflow-hidden h-80 relative group cursor-pointer" data-category="beards">
+          <img src="https://images.unsplash.com/photo-1517832606293-7ae2b70c0f15?auto=format&fit=crop&q=80&w=800" alt="Beard Trim" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[#d4af37] text-xs font-bold uppercase tracking-wider">Beard</span>
+            <h4 class="text-lg font-heading font-bold text-white">Sculpted Beard & Mustache</h4>
+          </div>
+        </div>
+
+        <div class="gallery-card rounded-2xl overflow-hidden h-80 relative group cursor-pointer" data-category="shop">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" alt="Shop Interior" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[#d4af37] text-xs font-bold uppercase tracking-wider">Lounge</span>
+            <h4 class="text-lg font-heading font-bold text-white">Regal Edge Main Station</h4>
+          </div>
+        </div>
+
+        <div class="gallery-card rounded-2xl overflow-hidden h-80 relative group cursor-pointer" data-category="cuts">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=800" alt="Textured Crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[#d4af37] text-xs font-bold uppercase tracking-wider">Haircut</span>
+            <h4 class="text-lg font-heading font-bold text-white">Modern Textured Crop</h4>
+          </div>
+        </div>
+
+        <div class="gallery-card rounded-2xl overflow-hidden h-80 relative group cursor-pointer" data-category="beards">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" alt="Hot Towel Shave" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[#d4af37] text-xs font-bold uppercase tracking-wider">Shave</span>
+            <h4 class="text-lg font-heading font-bold text-white">Hot Towel Straight Razor Shave</h4>
+          </div>
+        </div>
+
+        <div class="gallery-card rounded-2xl overflow-hidden h-80 relative group cursor-pointer" data-category="shop">
+          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=800" alt="Waiting Lounge" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[#d4af37] text-xs font-bold uppercase tracking-wider">Lounge</span>
+            <h4 class="text-lg font-heading font-bold text-white">Gentleman's Bar & Lounge</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section id="testimonials" class="py-24 bg-[#12151c] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-[#d4af37] text-xs font-bold uppercase tracking-widest block mb-3">Client Feedback</span>
+        <h2 class="text-3xl sm:text-5xl font-heading font-bold">Trusted by Gentlemen Worldwide</h2>
+        <p class="text-gray-400 mt-4 text-base sm:text-lg">Read what our esteemed clients have to say about their experience at Regal Edge.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-[#161920] p-8 rounded-2xl border border-gray-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-[#d4af37] mb-6">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed italic mb-6">"Absolute top-tier service. Marcus gave me the best fade of my life and the bourbon while waiting is a luxurious touch. Never going anywhere else."</p>
+          </div>
+          <div class="flex items-center gap-4 pt-6 border-t border-gray-800">
+            <div class="w-12 h-12 rounded-full gold-bg flex items-center justify-center font-bold text-black text-lg">
+              AR
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-white">Alexander Reed</h4>
+              <p class="text-xs text-gray-400">Corporate Executive</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-[#161920] p-8 rounded-2xl border border-gray-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-[#d4af37] mb-6">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed italic mb-6">"Julian is a wizard with hair and beard styling. The atmosphere is upscale, clean, and extremely professional. Highly recommended!"</p>
+          </div>
+          <div class="flex items-center gap-4 pt-6 border-t border-gray-800">
+            <div class="w-12 h-12 rounded-full gold-bg flex items-center justify-center font-bold text-black text-lg">
+              DM
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-white">David Miller</h4>
+              <p class="text-xs text-gray-400">Tech Entrepreneur</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-[#161920] p-8 rounded-2xl border border-gray-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-[#d4af37] mb-6">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed italic mb-6">"Got the Groom's Party Package for my wedding day. The entire wedding party looked sharp and had an incredible time. 10/10 experience."</p>
+          </div>
+          <div class="flex items-center gap-4 pt-6 border-t border-gray-800">
+            <div class="w-12 h-12 rounded-full gold-bg flex items-center justify-center font-bold text-black text-lg">
+              JS
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-white">Jonathan Sterling</h4>
+              <p class="text-xs text-gray-400">Architect</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE BOOKING SECTION -->
+  <section id="booking" class="py-24 bg-[#0f1115] relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-[#d4af37] text-xs font-bold uppercase tracking-widest block mb-3">Secure Your Chair</span>
+        <h2 class="text-3xl sm:text-5xl font-heading font-bold">Online Appointment Booking</h2>
+        <p class="text-gray-400 mt-4 text-base sm:text-lg">Book your preferred service, barber, date, and time in seconds.</p>
+      </div>
+
+      <div class="bg-[#161920] p-8 sm:p-12 rounded-3xl border border-gray-800 shadow-2xl relative">
+        <div id="booking-auth-guard" class="hidden mb-6 p-4 rounded-xl bg-amber-950/40 border border-amber-600/50 text-amber-300 text-sm flex items-center justify-between">
+          <span><i class="fa-solid fa-triangle-exclamation mr-2"></i> Please log in or sign up to save your appointment to your client portal.</span>
+          <button onclick="openModal('login-modal')" class="underline font-bold hover:text-white">Log In Now</button>
+        </div>
+
+        <form id="main-booking-form" class="space-y-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">1. Select Service *</label>
+              <select id="booking-service" class="w-full bg-[#0f1115] border border-gray-700 rounded-xl px-4 py-3.5 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required onchange="calculateBookingTotal()">
+                <option value="Executive Haircut" data-price="45">Executive Haircut - $45</option>
+                <option value="Beard Sculpting & Trim" data-price="35">Beard Sculpting & Trim - $35</option>
+                <option value="Signature Royal Shave" data-price="50">Signature Royal Shave - $50</option>
+                <option value="The Regal Full Package" data-price="115">The Regal Full Package - $115</option>
+                <option value="Father & Son Combo" data-price="75">Father & Son Combo - $75</option>
+                <option value="The Groom's Party Package" data-price="350">The Groom's Party Package - $350</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">2. Select Master Barber *</label>
+              <select id="booking-barber" class="w-full bg-[#0f1115] border border-gray-700 rounded-xl px-4 py-3.5 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+                <option value="Any Available Master">Any Available Master</option>
+                <option value="Marcus Vance (Master Stylist)">Marcus Vance (Master Stylist)</option>
+                <option value="Julian Cruz (Fade Specialist)">Julian Cruz (Fade Specialist)</option>
+                <option value="Dante Rossi (Beard Artisan)">Dante Rossi (Beard Artisan)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">3. Date *</label>
+              <input type="date" id="booking-date" class="w-full bg-[#0f1115] border border-gray-700 rounded-xl px-4 py-3.5 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">4. Time Slot *</label>
+              <select id="booking-time" class="w-full bg-[#0f1115] border border-gray-700 rounded-xl px-4 py-3.5 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="12:30 PM">12:30 PM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="03:30 PM">03:30 PM</option>
+                <option value="05:00 PM">05:00 PM</option>
+                <option value="06:30 PM">06:30 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Your Full Name *</label>
+              <input type="text" id="booking-name" placeholder="e.g. Thomas Shelby" class="w-full bg-[#0f1115] border border-gray-700 rounded-xl px-4 py-3.5 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Phone Number *</label>
+              <input type="tel" id="booking-phone" placeholder="e.g. (555) 123-4567" class="w-full bg-[#0f1115] border border-gray-700 rounded-xl px-4 py-3.5 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Special Requests / Notes (Optional)</label>
+            <textarea id="booking-notes" rows="3" placeholder="e.g. Low skin fade with textured top, beverage preference..." class="w-full bg-[#0f1115] border border-gray-700 rounded-xl px-4 py-3.5 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none"></textarea>
+          </div>
+
+          <!-- LOCAL CALCULATION SUMMARY BOX -->
+          <div class="p-6 rounded-2xl bg-[#0f1115] border border-gray-800 flex items-center justify-between">
+            <div>
+              <span class="text-xs text-gray-400 uppercase tracking-wider block">Estimated Total</span>
+              <span class="text-xl font-heading font-bold text-white" id="summary-service-name">Executive Haircut</span>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl font-heading font-bold gold-gradient" id="summary-total-price">$45.00</span>
+              <span class="block text-[10px] text-gray-500">Pay at the salon</span>
+            </div>
+          </div>
+
+          <button type="submit" id="submit-booking-btn" class="w-full gold-bg text-black font-extrabold py-4 rounded-xl hover:opacity-95 transition shadow-xl shadow-[#d4af37]/20 text-base flex items-center justify-center gap-2">
+            <i class="fa-solid fa-check-to-slot"></i> Confirm & Book Appointment
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT PORTAL / APPOINTMENT HISTORY -->
+  <section id="portal-section" class="py-24 bg-[#12151c] hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
+        <div>
+          <span class="text-[#d4af37] text-xs font-bold uppercase tracking-widest block mb-2">Client Dashboard</span>
+          <h2 class="text-3xl font-heading font-bold text-white">Your Appointments</h2>
+        </div>
+        <button onclick="loadUserAppointments()" class="bg-[#161920] border border-gray-700 hover:border-[#d4af37] text-gray-200 px-5 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 w-fit">
+          <i class="fa-solid fa-rotate"></i> Refresh Appointments
+        </button>
+      </div>
+
+      <div id="appointments-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamic appointments rendered here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION & MAP SECTION -->
+  <section id="location" class="py-24 bg-[#0f1115] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-5 space-y-8">
+        <div>
+          <span class="text-[#d4af37] text-xs font-bold uppercase tracking-widest block mb-3">Visit Our Lounge</span>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold">Find Us in the Heart of the City</h2>
+          <p class="text-gray-400 mt-4 text-base">Drop by for a cut, a fresh shave, or an exquisite glass of bourbon.</p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/30 flex items-center justify-center text-[#d4af37] text-xl shrink-0">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <h4 class="text-white font-heading font-bold">Address</h4>
+              <p class="text-gray-400 text-sm mt-1">742 Evergreen Terrace, Suite 100, Metropolis</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/30 flex items-center justify-center text-[#d4af37] text-xl shrink-0">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-white font-heading font-bold">Operating Hours</h4>
+              <p class="text-gray-400 text-sm mt-1">Mon - Fri: 9:00 AM - 8:00 PM<br>Saturday: 9:00 AM - 6:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/30 flex items-center justify-center text-[#d4af37] text-xl shrink-0">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <h4 class="text-white font-heading font-bold">Direct Line</h4>
+              <p class="text-gray-400 text-sm mt-1">+1 (555) 890-2341<br>concierge@regaledgebarbers.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEAFLET MAP CONTAINER -->
+      <div class="lg:col-span-7">
+        <div id="map" class="w-full h-[450px] rounded-2xl border border-gray-800 shadow-2xl z-10"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0b0d10] border-t border-gray-800 pt-16 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-gray-800/80">
+      <div class="space-y-4 md:col-span-1">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full gold-bg flex items-center justify-center text-black font-bold text-lg">
+            <i class="fa-solid fa-scissors"></i>
+          </div>
+          <span class="text-xl font-heading font-bold tracking-wider gold-gradient">REGAL EDGE</span>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">The premier destination for gentlemen seeking elite grooming, traditional shaves, and timeless style.</p>
+        <div class="flex items-center gap-3 pt-2">
+          <a href="#" class="w-10 h-10 rounded-lg bg-[#161920] border border-gray-800 flex items-center justify-center text-gray-300 hover:text-[#d4af37] hover:border-[#d4af37] transition"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="w-10 h-10 rounded-lg bg-[#161920] border border-gray-800 flex items-center justify-center text-gray-300 hover:text-[#d4af37] hover:border-[#d4af37] transition"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="w-10 h-10 rounded-lg bg-[#161920] border border-gray-800 flex items-center justify-center text-gray-300 hover:text-[#d4af37] hover:border-[#d4af37] transition"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="w-10 h-10 rounded-lg bg-[#161920] border border-gray-800 flex items-center justify-center text-gray-300 hover:text-[#d4af37] hover:border-[#d4af37] transition"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-heading font-bold mb-4">Quick Links</h4>
+        <ul class="space-y-2.5 text-sm text-gray-400">
+          <li><a href="#about" class="hover:text-[#d4af37] transition">The Experience</a></li>
+          <li><a href="#services" class="hover:text-[#d4af37] transition">Services & Pricing</a></li>
+          <li><a href="#barbers" class="hover:text-[#d4af37] transition">Master Barbers</a></li>
+          <li><a href="#gallery" class="hover:text-[#d4af37] transition">Portfolio Gallery</a></li>
+          <li><a href="#booking" class="hover:text-[#d4af37] transition">Book Appointment</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-heading font-bold mb-4">Services</h4>
+        <ul class="space-y-2.5 text-sm text-gray-400">
+          <li><a href="#services" class="hover:text-[#d4af37] transition">Executive Haircut</a></li>
+          <li><a href="#services" class="hover:text-[#d4af37] transition">Beard Sculpting</a></li>
+          <li><a href="#services" class="hover:text-[#d4af37] transition">Signature Royal Shave</a></li>
+          <li><a href="#services" class="hover:text-[#d4af37] transition">Father & Son Combo</a></li>
+          <li><a href="#services" class="hover:text-[#d4af37] transition">Groom's Party Package</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-heading font-bold mb-4">Newsletter</h4>
+        <p class="text-gray-400 text-sm mb-4">Subscribe for exclusive grooming tips, VIP events, and seasonal discounts.</p>
+        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to Regal Edge!');" class="space-y-3">
+          <input type="email" placeholder="Your email address" class="w-full bg-[#161920] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+          <button type="submit" class="w-full gold-bg text-black font-semibold py-2.5 rounded-lg hover:opacity-90 transition text-sm">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+      <p>&copy; 2024 Regal Edge Barbershop. All rights reserved.</p>
+      <div class="flex items-center gap-6 mt-4 sm:mt-0">
+        <a href="#" class="hover:text-gray-400 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-gray-400 transition">Terms of Service</a>
+        <a href="#" class="hover:text-gray-400 transition">Cookie Preferences</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODALS -->
+  <!-- LOGIN MODAL -->
+  <div id="login-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-[#161920] border border-gray-800 rounded-2xl w-full max-w-md p-8 relative shadow-2xl">
+      <button onclick="closeModal('login-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+      <div class="text-center mb-8">
+        <div class="w-12 h-12 rounded-full gold-bg flex items-center justify-center text-black font-bold text-xl mx-auto mb-3">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <h3 class="text-2xl font-heading font-bold text-white">Welcome Back</h3>
+        <p class="text-xs text-gray-400 mt-1">Log in to manage your appointments</p>
+      </div>
+
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Email Address</label>
+          <input type="email" id="login-email" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Password</label>
+            <button type="button" onclick="switchModal('login-modal', 'forgot-modal')" class="text-xs text-[#d4af37] hover:underline">Forgot Password?</button>
+          </div>
+          <input type="password" id="login-password" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+        </div>
+        <button type="submit" class="w-full gold-bg text-black font-bold py-3.5 rounded-lg hover:opacity-95 transition shadow-lg mt-2">Log In</button>
+      </form>
+
+      <p class="text-center text-xs text-gray-400 mt-6">
+        Don't have an account? <button onclick="switchModal('login-modal', 'signup-modal')" class="text-[#d4af37] font-bold hover:underline">Sign Up</button>
+      </p>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div id="signup-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-[#161920] border border-gray-800 rounded-2xl w-full max-w-md p-8 relative shadow-2xl">
+      <button onclick="closeModal('signup-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+      <div class="text-center mb-8">
+        <div class="w-12 h-12 rounded-full gold-bg flex items-center justify-center text-black font-bold text-xl mx-auto mb-3">
+          <i class="fa-solid fa-user-plus"></i>
+        </div>
+        <h3 class="text-2xl font-heading font-bold text-white">Create Account</h3>
+        <p class="text-xs text-gray-400 mt-1">Join Regal Edge for VIP booking & benefits</p>
+      </div>
+
+      <form id="signup-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Email Address</label>
+          <input type="email" id="signup-email" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Password</label>
+          <input type="password" id="signup-password" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+        </div>
+        <button type="submit" class="w-full gold-bg text-black font-bold py-3.5 rounded-lg hover:opacity-95 transition shadow-lg mt-2">Sign Up</button>
+      </form>
+
+      <p class="text-center text-xs text-gray-400 mt-6">
+        Already have an account? <button onclick="switchModal('signup-modal', 'login-modal')" class="text-[#d4af37] font-bold hover:underline">Log In</button>
+      </p>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div id="forgot-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-[#161920] border border-gray-800 rounded-2xl w-full max-w-md p-8 relative shadow-2xl">
+      <button onclick="closeModal('forgot-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+      <div class="text-center mb-8">
+        <div class="w-12 h-12 rounded-full gold-bg flex items-center justify-center text-black font-bold text-xl mx-auto mb-3">
+          <i class="fa-solid fa-key"></i>
+        </div>
+        <h3 class="text-2xl font-heading font-bold text-white">Reset Password</h3>
+        <p class="text-xs text-gray-400 mt-1">Request an OTP to reset your password</p>
+      </div>
+
+      <form id="forgot-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Email Address</label>
+          <input type="email" id="forgot-email" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">OTP Code</label>
+          <input type="text" id="forgot-otp" placeholder="123456" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">New Password</label>
+          <input type="password" id="forgot-new-password" class="w-full bg-[#0f1115] border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-200 focus:border-[#d4af37] focus:outline-none" required>
+        </div>
+        <button type="submit" class="w-full gold-bg text-black font-bold py-3.5 rounded-lg hover:opacity-95 transition shadow-lg mt-2">Reset Password</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
