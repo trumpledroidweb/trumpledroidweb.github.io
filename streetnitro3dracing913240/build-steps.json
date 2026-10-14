@@ -1,0 +1,88 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Initialize Project Setup",
+      "description": "Configure app-meta.json, Tailwind CSS v4, and base HTML5 layout structures.",
+      "files": ["app-meta.json", "index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Design Racing Arena UI & HUD",
+      "description": "Create responsive dashboard, garage, and heads-up display (HUD) overlay for the 3D race experience.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Implement Three.js Scene & Lighting",
+      "description": "Set up Three.js perspective camera, dynamic lighting, shadows, and fog effects.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Build Procedural Track & Environment",
+      "description": "Generate multi-lane highway, curbs, roadside obstacles, lamp posts, and neon skyline backdrops.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Develop Player Car Model & Physics",
+      "description": "Construct low-poly modular sports car geometry, wheel steering angles, acceleration, and drift mechanics.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Implement AI Opponents & Traffic Cars",
+      "description": "Program smart AI opponents with varying speeds and lane-changing behavior to challenge the player.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Add Nitro Boost & Particle Systems",
+      "description": "Create high-speed motion blur, nitro flame exhaust particle effects, and screen shake.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Implement Collision Detection & Damage",
+      "description": "Setup bounding box collision detection between player, traffic, and roadside barriers.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Audio Sound Effects with Web Audio API",
+      "description": "Synthesize dynamic engine revving, tire screeching, nitro roar, and crash sound effects procedurally.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Build Garage Car Customization & Upgrade Shop",
+      "description": "Allow players to upgrade top speed, acceleration, nitro boost, and car paint colors using earned race cash.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Implement Backend Auth & Cloud Leaderboard",
+      "description": "Connect TrumpleDroid backend API for user authentication, cloud score syncing, and global high scores.",
+      "files": ["api_schema.json", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Building streetnitro3dracing",
+      "description": "Finalize game loop, responsive resize handlers, performance optimizations, and polish UI transitions.",
+      "files": ["index.html", "style.css", "script.js", "api_schema.json"],
+      "status": "pending"
+    }
+  ]
+}
