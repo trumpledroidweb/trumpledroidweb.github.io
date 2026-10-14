@@ -1,0 +1,38 @@
+{
+  "backend": true,
+  "api_base_url": "https://trumpledroid-api.cloudbeta28624.workers.dev",
+  "roles": {
+    "user": ["own"]
+  },
+  "collections": {
+    "appointments": {
+      "fields": {
+        "service": "string",
+        "barber": "string",
+        "date": "string",
+        "time": "string",
+        "name": "string",
+        "phone": "string",
+        "notes": "string",
+        "status": "string"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    },
+    "reviews": {
+      "fields": {
+        "client_name": "string",
+        "rating": "number",
+        "comment": "string",
+        "service": "string"
+      },
+      "operations": ["create", "read", "delete"]
+    }
+  },
+  "logic": {
+    "appointment_summary": {
+      "type": "calculation",
+      "inputs": ["service_price", "tip"],
+      "formula": "service_price + tip"
+    }
+  }
+}
