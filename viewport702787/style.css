@@ -1,0 +1,54 @@
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    scroll-behavior: smooth;
+    background-color: #0f1115;
+    color: #f3f4f6;
+  }
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-bg {
+  background: linear-gradient(135deg, #d4af37 0%, #aa771c 100%);
+}
+
+.gold-border {
+  border-color: #d4af37;
+}
+
+.hero-overlay {
+  background: linear-gradient(to right, rgba(15, 17, 21, 0.95), rgba(15, 17, 21, 0.7));
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  border-color: #d4af37;
+  box-shadow: 0 15px 30px -10px rgba(212, 175, 55, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1115;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2f3a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
