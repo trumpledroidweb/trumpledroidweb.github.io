@@ -24,7 +24,7 @@
     {
       "step": 4,
       "title": "Design CSS & Tailwind Styling",
-      "description": "Configure Tailwind CSS via CDN and add custom styles, animations, and responsive utilities in style.css.",
+      "description": "Configure Tailwind CSS via CDN and add custom styles, animations, and responsive utilities in style.css, fixing CSS loading issues.",
       "files": ["style.css"],
       "status": "pending"
     },
