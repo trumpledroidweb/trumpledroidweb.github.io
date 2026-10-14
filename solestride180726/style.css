@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4";
 
 @layer base {
   html {
