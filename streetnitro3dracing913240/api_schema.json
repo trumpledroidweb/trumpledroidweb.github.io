@@ -1,0 +1,35 @@
+{
+  "backend": true,
+  "api_base_url": "https://trumpledroid-api.cloudbeta28624.workers.dev",
+  "roles": {
+    "user": ["own"]
+  },
+  "collections": {
+    "profiles": {
+      "fields": {
+        "cash": "number",
+        "score": "number",
+        "car_color": "string",
+        "speed_upgrade": "number",
+        "nitro_upgrade": "number",
+        "handling_upgrade": "number"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    },
+    "leaderboard": {
+      "fields": {
+        "username": "string",
+        "high_score": "number",
+        "distance": "number"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    }
+  },
+  "logic": {
+    "upgrade_cost": {
+      "type": "calculation",
+      "inputs": ["current_level", "base_cost"],
+      "formula": "base_cost * Math.pow(1.5, current_level)"
+    }
+  }
+}
