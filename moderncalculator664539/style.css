@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component layer for calculator */
+@layer components {
+  .calc-btn {
+    @apply text-lg font-medium rounded-md py-2;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+  .calc-btn:active {
+    @apply transform scale-95;
+  }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-gray-800;
+  }
+  #calculator {
+    @apply bg-gray-900 text-white;
+  }
+  #display {
+    @apply bg-gray-800 text-white;
+  }
+}
