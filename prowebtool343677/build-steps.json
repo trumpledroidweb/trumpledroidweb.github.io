@@ -1,0 +1,88 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Project Initialization",
+      "description": "Create project skeleton and add required files (index.html, style.css, script.js, app-meta.json, build-steps.json).",
+      "files": ["index.html", "style.css", "script.js", "app-meta.json", "build-steps.json"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Add Tailwind CSS via CDN",
+      "description": "Insert Tailwind CSS v4 browser CDN script into index.html and ensure it loads before custom CSS.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Design Layout & UI",
+      "description": "Create a mobile‑first responsive layout with header, navigation, tool workspace, result area, and footer using Tailwind utility classes.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Implement Dark Mode Support",
+      "description": "Add Tailwind dark mode configuration and CSS to toggle between light and dark themes based on user system preference.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Build Text Input Component",
+      "description": "Add a textarea for user text input with proper ARIA labels, placeholder, and character counter.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Create Action Buttons",
+      "description": "Add buttons for Analyze, Uppercase, Lowercase, Reverse, Copy, Download, Reset with loading states and disabled handling.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Develop Result Display Area",
+      "description": "Add a section that shows word count, character count, reading time, and transformed text. Include empty‑state messaging.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Write Core JavaScript Logic",
+      "description": "Implement input validation, text analysis functions, transformation functions, copy to clipboard, file download, and reset logic using async/await where appropriate.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Add Accessibility Enhancements",
+      "description": "Ensure all interactive elements are keyboard‑focusable, have ARIA attributes, and provide meaningful focus styles.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Responsive Testing & Bug Fixes",
+      "description": "Test layout on mobile, tablet, and desktop; fix any overflow, broken layout, or duplicate IDs.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Error Handling & Edge Cases",
+      "description": "Add graceful handling for empty input, extremely long text, and clipboard permission errors. Show user‑friendly messages.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Final Build – Building ProWebTool",
+      "description": "All files are ready for static hosting. Verify that the tool works end‑to‑end.",
+      "files": ["index.html", "style.css", "script.js", "app-meta.json", "build-steps.json"],
+      "status": "pending"
+    }
+  ]
+}
