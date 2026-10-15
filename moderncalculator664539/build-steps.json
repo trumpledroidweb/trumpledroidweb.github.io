@@ -1,0 +1,95 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Initialize project structure",
+      "description": "Create the basic folder layout and placeholder files for the calculator app.",
+      "files": [],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Add Tailwind CSS via CDN",
+      "description": "Include the Tailwind CSS browser build CDN in the HTML head so we can use utility classes.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Create HTML skeleton",
+      "description": "Write the HTML5 boilerplate, link the custom stylesheet and script, and add a root container for the calculator.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Design calculator layout",
+      "description": "Use Tailwind utility classes to build a responsive, modern calculator UI with a display and button grid.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Add display screen",
+      "description": "Create an input‑like element that shows the current expression and result.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Add calculator buttons",
+      "description": "Create buttons for digits, operations, clear, backspace, and equals, grouped in a grid.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Write custom CSS",
+      "description": "Add subtle shadows, hover effects, and a dark‑mode friendly color palette using Tailwind’s @layer directive.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Implement basic arithmetic logic",
+      "description": "Write functions to handle addition, subtraction, multiplication, division and to evaluate the expression safely.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Wire up button event listeners",
+      "description": "Attach click handlers to each button that update the display and trigger calculations.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Add clear and backspace functionality",
+      "description": "Implement the 'C' (clear) and '←' (backspace) buttons to manage user input.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Support keyboard input",
+      "description": "Listen for keypress events so users can type numbers and operators directly from the keyboard.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Responsive testing & polish",
+      "description": "Test the UI on various screen sizes, fix any layout issues, and ensure smooth interactions.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Building ModernCalculator",
+      "description": "Final step – the calculator UI is ready for use.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
