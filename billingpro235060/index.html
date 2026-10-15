@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BillingPro - Simple Billing Software</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-4 shadow">
+    <h1 class="text-2xl font-semibold">BillingPro</h1>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 container mx-auto p-4">
+    <!-- Billing Form -->
+    <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+      <h2 class="text-xl font-medium mb-4">Create New Invoice</h2>
+      <form id="invoice-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium mb-1" for="client-name">Client Name</label>
+          <input type="text" id="client-name" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="invoice-date">Date</label>
+          <input type="date" id="invoice-date" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        <div class="md:col-span-2">
+          <label class="block text-sm font-medium mb-1" for="item-description">Item Description</label>
+          <input type="text" id="item-description" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Web Design Services" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="item-quantity">Quantity</label>
+          <input type="number" id="item-quantity" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" min="1" value="1" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1" for="item-price">Unit Price ($)</label>
+          <input type="number" id="item-price" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" min="0" step="0.01" value="0.00" required>
+        </div>
+        <div class="md:col-span-2 flex justify-end">
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Add Item
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Invoice Table -->
+    <section class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-medium mb-4">Invoice Details</h2>
+      <table class="w-full table-auto border-collapse">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="border p-2 text-left">#</th>
+            <th class="border p-2 text-left">Description</th>
+            <th class="border p-2 text-right">Qty</th>
+            <th class="border p-2 text-right">Unit Price ($)</th>
+            <th class="border p-2 text-right">Total ($)</th>
+            <th class="border p-2 text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody id="invoice-body">
+          <!-- Rows will be injected here -->
+        </tbody>
+        <tfoot class="bg-gray-100">
+          <tr>
+            <td colspan="4" class="border p-2 text-right font-medium">Subtotal</td>
+            <td id="subtotal" class="border p-2 text-right">$0.00</td>
+            <td class="border p-2"></td>
+          </tr>
+          <tr>
+            <td colspan="4" class="border p-2 text-right font-medium">Tax (10%)</td>
+            <td id="tax" class="border p-2 text-right">$0.00</td>
+            <td class="border p-2"></td>
+          </tr>
+          <tr class="font-semibold">
+            <td colspan="4" class="border p-2 text-right">Grand Total</td>
+            <td id="grand-total" class="border p-2 text-right">$0.00</td>
+            <td class="border p-2"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="flex justify-end mt-4">
+        <button id="print-btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+          Print / Save PDF
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 p-4 text-center">
+    © <span id="year"></span> BillingPro. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
