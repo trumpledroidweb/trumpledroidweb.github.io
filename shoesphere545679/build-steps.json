@@ -1,0 +1,88 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Initialize Project Structure",
+      "description": "Create the core project folders and placeholder files (index.html, style.css, script.js).",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Add Tailwind CSS CDN",
+      "description": "Link Tailwind CSS v4 via CDN in the HTML head to enable utility‑first styling.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Create Header & Navigation",
+      "description": "Build a responsive navigation bar with brand logo and links to sections.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Design Hero Section",
+      "description": "Add a full‑width hero image, headline, sub‑headline, and a primary CTA button.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Showcase Featured Shoes",
+      "description": "Create a responsive grid displaying featured shoe products with images, names, and prices.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Add Benefits / Features Section",
+      "description": "Highlight key selling points (comfort, style, durability) with icons and short descriptions.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Insert Testimonials Carousel",
+      "description": "Show three customer testimonials with photos and ratings; simple slide animation via CSS.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Create Footer",
+      "description": "Add a footer containing quick links, social icons, and copyright information.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Write Custom CSS",
+      "description": "Add a few custom Tailwind layers for smooth scroll behavior and minor overrides.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Add Interactive JavaScript",
+      "description": "Implement smooth scrolling for navigation links and a simple mobile menu toggle.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Optimize Assets & Accessibility",
+      "description": "Add alt attributes, aria‑labels, and ensure color contrast meets WCAG AA.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Building ShoeSphere Landing Page",
+      "description": "Compile all files, run a final visual check, and deliver the complete landing page.",
+      "files": ["index.html", "style.css", "script.js", "app-meta.json", "build-steps.json"],
+      "status": "pending"
+    }
+  ]
+}
