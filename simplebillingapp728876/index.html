@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Billing App</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center py-8">
+  <header class="w-full max-w-4xl mb-8">
+    <h1 class="text-3xl font-bold text-center text-indigo-600">Simple Billing App</h1>
+  </header>
+
+  <main class="w-full max-w-4xl bg-white rounded-lg shadow p-6 flex flex-col gap-6">
+    <!-- Item Entry Form -->
+    <section class="border-b pb-4">
+      <h2 class="text-xl font-semibold mb-4">Add Item</h2>
+      <form id="item-form" class="flex flex-col sm:flex-row gap-4">
+        <input type="text" id="item-name" placeholder="Item Name" required
+               class="flex-1 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400">
+        <input type="number" id="item-quantity" placeholder="Qty" min="1" required
+               class="w-24 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400">
+        <input type="number" id="item-price" placeholder="Unit Price" step="0.01" min="0" required
+               class="w-32 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400">
+        <button type="submit"
+                class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">
+          Add
+        </button>
+      </form>
+    </section>
+
+    <!-- Items Table -->
+    <section class="overflow-x-auto">
+      <h2 class="text-xl font-semibold mb-4">Items</h2>
+      <table id="items-table" class="min-w-full border border-gray-200">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="px-4 py-2 text-left">Name</th>
+            <th class="px-4 py-2 text-right">Qty</th>
+            <th class="px-4 py-2 text-right">Unit Price</th>
+            <th class="px-4 py-2 text-right">Total</th>
+            <th class="px-4 py-2 text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="items-body"></tbody>
+      </table>
+    </section>
+
+    <!-- Totals Summary -->
+    <section class="border-t pt-4">
+      <h2 class="text-xl font-semibold mb-2">Summary</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="text-right">
+          <span class="font-medium">Subtotal:</span>
+          <span id="subtotal" class="ml-2">$0.00</span>
+        </div>
+        <div class="text-right">
+          <span class="font-medium">Tax (10%):</span>
+          <span id="tax" class="ml-2">$0.00</span>
+        </div>
+        <div class="text-right">
+          <span class="font-medium text-indigo-600">Total:</span>
+          <span id="total" class="ml-2 text-indigo-600 font-bold">$0.00</span>
+        </div>
+      </div>
+      <div class="flex justify-end mt-4">
+        <button id="export-pdf"
+                class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
+          Export PDF (Coming Soon)
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
