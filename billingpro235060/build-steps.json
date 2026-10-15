@@ -1,0 +1,88 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Project Initialization",
+      "description": "Create project folder structure and add basic files (index.html, style.css, script.js).",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Add Tailwind CSS via CDN",
+      "description": "Insert Tailwind CSS browser CDN link into index.html for styling.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Create Layout Skeleton",
+      "description": "Build the main layout with a header, navigation, main content area, and footer using Tailwind utilities.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Design Billing Form UI",
+      "description": "Add a form for entering client, item description, quantity, and price. Use Tailwind components for responsive design.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Create Invoice Table",
+      "description": "Add an empty table that will display added line items with calculated totals.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Implement Add Item Logic",
+      "description": "Write JavaScript to capture form data, validate inputs, calculate line total, and append a row to the invoice table.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Calculate Subtotal, Tax, and Grand Total",
+      "description": "Add functions that sum line totals, compute tax (10%), and display the grand total dynamically.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Implement Remove Item Feature",
+      "description": "Allow each row to be removed with a delete button, updating totals accordingly.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Add Print / Download Capability",
+      "description": "Provide a button that triggers window.print() for a printable invoice view.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Responsive Enhancements",
+      "description": "Fine‑tune layout for mobile devices using Tailwind's responsive utilities.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Polish UI & Accessibility",
+      "description": "Add focus states, ARIA labels, and improve color contrast for better accessibility.",
+      "files": ["style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Building BillingPro",
+      "description": "Final build and deployment of the BillingPro app.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
