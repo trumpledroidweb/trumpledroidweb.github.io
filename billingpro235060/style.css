@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component for table rows */
+@layer components {
+  .invoice-row:hover {
+    @apply bg-blue-50;
+  }
+}
+
+/* Ensure print view looks clean */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .bg-white, .bg-white * {
+    visibility: visible;
+  }
+  .bg-white {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+/* Minor tweaks */
+input:focus, button:focus {
+  @apply ring-2 ring-offset-2 ring-blue-300;
+}
