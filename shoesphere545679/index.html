@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShoeSphere – Premium Shoes Landing Page</title>
+  <!-- Tailwind CSS v4 via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-10">
+    <div class="container mx-auto flex items-center justify-between p-4">
+      <a href="#" class="text-2xl font-bold text-indigo-600">ShoeSphere</a>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#features" class="hover:text-indigo-600">Features</a>
+        <a href="#products" class="hover:text-indigo-600">Products</a>
+        <a href="#testimonials" class="hover:text-indigo-600">Testimonials</a>
+        <a href="#contact" class="hover:text-indigo-600">Contact</a>
+      </nav>
+      <button id="mobile-menu-btn" class="md:hidden text-gray-600 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <nav id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+      <a href="#features" class="block px-4 py-2 hover:bg-gray-100">Features</a>
+      <a href="#products" class="block px-4 py-2 hover:bg-gray-100">Products</a>
+      <a href="#testimonials" class="block px-4 py-2 hover:bg-gray-100">Testimonials</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-indigo-600 text-white">
+    <div class="container mx-auto flex flex-col-reverse md:flex-row items-center py-20 px-4">
+      <div class="md:w-1/2">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Step Into Comfort & Style</h1>
+        <p class="text-lg mb-6">Discover our premium collection of shoes crafted for every step of your journey.</p>
+        <a href="#products"
+           class="inline-block bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full hover:bg-gray-100 transition">
+          Shop Now
+        </a>
+      </div>
+      <div class="md:w-1/2 mb-8 md:mb-0">
+        <img src="https://images.unsplash.com/photo-1600180758894-5c9f0f5c9a57?auto=format&fit=crop&w=800&q=80"
+             alt="Stylish shoes"
+             class="rounded-lg shadow-lg w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 bg-white">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">Why Choose ShoeSphere?</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 border rounded-lg hover:shadow-lg transition">
+          <svg class="w-12 h-12 mx-auto text-indigo-600 mb-4" fill="none" stroke="currentColor"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12h6m2 0a2 2 0 110 4H7a2 2 0 110-4h12z"/>
+          </svg>
+          <h3 class="text-xl font-semibold mb-2">Premium Materials</h3>
+          <p class="text-gray-600">Only the finest leathers and breathable fabrics.</p>
+        </div>
+        <div class="p-6 border rounded-lg hover:shadow-lg transition">
+          <svg class="w-12 h-12 mx-auto text-indigo-600 mb-4" fill="none" stroke="currentColor"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 7h18M3 12h18M3 17h18"/>
+          </svg>
+          <h3 class="text-xl font-semibold mb-2">Modern Design</h3>
+          <p class="text-gray-600">Timeless looks that match any outfit.</p>
+        </div>
+        <div class="p-6 border rounded-lg hover:shadow-lg transition">
+          <svg class="w-12 h-12 mx-auto text-indigo-600 mb-4" fill="none" stroke="currentColor"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5 13l4 4L19 7"/>
+          </svg>
+          <h3 class="text-xl font-semibold mb-2">All‑Day Comfort</h3>
+          <p class="text-gray-600">Ergonomic soles that keep you moving.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-20 bg-gray-50">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Featured Shoes</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Product Card -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+          <img src="https://images.unsplash.com/photo-1589923188900-2b2f6d9c5c3e?auto=format&fit=crop&w=600&q=80"
+               alt="Running shoe"
+               class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-semibold text-lg mb-1">Air Glide Runner</h3>
+            <p class="text-indigo-600 font-bold mb-2">$129.99</p>
+            <button class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        <!-- Repeat similar cards -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+          <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=600&q=80"
+               alt="Casual sneaker"
+               class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-semibold text-lg mb-1">City Casual Sneaker</h3>
+            <p class="text-indigo-600 font-bold mb-2">$99.99</p>
+            <button class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg
