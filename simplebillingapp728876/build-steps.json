@@ -1,0 +1,81 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Project Initialization",
+      "description": "Create project structure and base files.",
+      "files": ["app-meta.json", "build-steps.json"],
+      "status": "completed"
+    },
+    {
+      "step": 2,
+      "title": "Setup HTML Boilerplate",
+      "description": "Create index.html with Tailwind CSS CDN.",
+      "files": ["index.html"],
+      "status": "completed"
+    },
+    {
+      "step": 3,
+      "title": "Add Basic Layout",
+      "description": "Add container, header, and main content area.",
+      "files": ["index.html"],
+      "status": "completed"
+    },
+    {
+      "step": 4,
+      "title": "Create Item Form",
+      "description": "Add form to input item name, quantity, and price.",
+      "files": ["index.html"],
+      "status": "completed"
+    },
+    {
+      "step": 5,
+      "title": "Add Items Table",
+      "description": "Create table to display added items.",
+      "files": ["index.html"],
+      "status": "completed"
+    },
+    {
+      "step": 6,
+      "title": "Add Total Calculation",
+      "description": "Display subtotal, tax, and total amounts.",
+      "files": ["index.html"],
+      "status": "completed"
+    },
+    {
+      "step": 7,
+      "title": "Write CSS Styles",
+      "description": "Add custom styles in style.css using @layer.",
+      "files": ["style.css"],
+      "status": "completed"
+    },
+    {
+      "step": 8,
+      "title": "Implement JavaScript Logic",
+      "description": "Handle form submission, item storage, and total updates.",
+      "files": ["script.js"],
+      "status": "completed"
+    },
+    {
+      "step": 9,
+      "title": "Add Export to PDF Placeholder",
+      "description": "Prepare button for future PDF export feature.",
+      "files": ["index.html"],
+      "status": "completed"
+    },
+    {
+      "step": 10,
+      "title": "Testing & Bug Fixes",
+      "description": "Ensure all interactions work and fix any issues.",
+      "files": [],
+      "status": "completed"
+    },
+    {
+      "step": 11,
+      "title": "Build <SimpleBillingApp>",
+      "description": "Finalize project and prepare for deployment.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
