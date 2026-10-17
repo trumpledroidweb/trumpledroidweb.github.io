@@ -1,0 +1,95 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Setup Web Project Structure and Tailwind CSS Integration",
+      "description": "Initialize standard HTML base layout with Tailwind CSS v4 CDN and glassmorphic UI container elements.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Configure App Metadata and Backend API Schema",
+      "description": "Define app identifiers, generic generic worker database collections for garage unlocks and leaderboards, and scoring business logic.",
+      "files": ["app-meta.json", "api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Design Futuristic HUD and Dynamic Dashboard UI",
+      "description": "Create responsive 3D racing HUD with digital speedometer, radial tachometer, gear display, nitro energy bar, and mini-map frame.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Implement WebGL/Canvas 3D Graphics Engine Core",
+      "description": "Develop high-performance 3D projection renderer with dynamic camera matrix, horizon clipping, road meshing, and curved terrain projection.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Build Vehicle Dynamic Physics and Control Handlers",
+      "description": "Program physics model covering engine RPM, acceleration curves, momentum, brake weight transfer, drifting, and collision bouncing.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Implement AI Competitor Racers and Collision Logic",
+      "description": "Create dynamic opponent AI cars with intelligent overtake behavior, distance tracking, and vehicle-to-vehicle physics response.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Construct Web Audio API Procedural Sound Engine",
+      "description": "Synthesize real-time engine rev audio, turbo blow-offs, tire screeching, collision thuds, nitro thrust, and retro synthwave soundscapes.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Build Dynamic Garage and Car Customization Studio",
+      "description": "Implement interactive 3D car rotation preview, color painting, spoiler dynamic tuning, wheel rim selection, and engine performance upgrades.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Create Environment Themes, Tunnels, and Weather FX",
+      "description": "Build diverse track themes including Neon Cyber City, Alpine Sunset Pass, Tokyo Coastal Highway, and Night Rain with particle spray.",
+      "files": ["script.js", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Integrate Cloud Backend Client & User Authentication",
+      "description": "Connect user login, registration, password OTP recovery, high-score cloud sync, and global leaderboard data processing.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Develop Local Offline Scoring & Statistics Calculation",
+      "description": "Implement browser-side real-time calculation for drift score bonuses, lap split times, speed averages, and race score evaluation.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Add On-Screen Touch Controls & Mobile Responsiveness",
+      "description": "Incorporate virtual steering touch wheel, analog acceleration touch pads, and responsive UI scaling for mobile devices.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Building apex3dracer",
+      "description": "Perform final performance optimization, particle pooling, canvas render loop verification, and full game release build.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
