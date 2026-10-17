@@ -1,0 +1,45 @@
+/* Custom Animations & Styles for Apex 3D Racing */
+
+@layer utilities {
+  .track-card.active {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+}
+
+/* Custom Scrollbar for Leaderboards */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.4);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.7);
+}
+
+/* Nitro Flame Particles Effect */
+@keyframes nitroGlow {
+  0% { filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0.8)); }
+  50% { filter: drop-shadow(0 0 25px rgba(6, 182, 212, 1)); }
+  100% { filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0.8)); }
+}
+
+.nitro-active {
+  animation: nitroGlow 0.3s infinite alternate;
+}
+
+/* Speed Lines Blur Effect */
+.speed-lines {
+  background: radial-gradient(circle, transparent 60%, rgba(6, 182, 212, 0.15) 100%);
+}
+
+/* Prevent unwanted mobile blue selection highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
