@@ -1,0 +1,117 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Initialize Project Structure & App Metadata",
+      "description": "Configured core application meta settings, canvas viewport layout, and basic project configuration.",
+      "files": [
+        "app-meta.json"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Define Generic API Schema & Leaderboard Rules",
+      "description": "Defined backend collections for scores, garage progress, and dynamic local calculation logic.",
+      "files": [
+        "api_schema.json"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Build HTML UI Shell & HUD Canvas Container",
+      "description": "Constructed responsive HTML structure, overlay HUD, speedometer, mini-map container, and touch control layout.",
+      "files": [
+        "index.html"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Design Tailwind CSS Styling & Neon Synthwave Theme",
+      "description": "Applied dark high-tech styling, arcade glowing UI elements, animations, and responsive screen sizing.",
+      "files": [
+        "style.css"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Implement Synthesized Web Audio API Engine",
+      "description": "Created procedural sound synthesizers for V8 engine pitch shifts, turbo whines, tire screeches, and synthwave soundtrack.",
+      "files": [
+        "script.js"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Develop Pseudo-3D Perspective Camera & Segment Renderer",
+      "description": "Built sub-pixel projection engine handling road depth, dynamic camera pitch/yaw, vertical hills, and curving tracks.",
+      "files": [
+        "script.js"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Render 3D Polygon Vehicles & Dynamic Physics Engine",
+      "description": "Implemented procedural 3D car mesh drawing with chassis roll, steering angles, suspension pitch, dynamic shadows, and tail lights.",
+      "files": [
+        "script.js"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Generate Dynamic Track Environments & Scenery",
+      "description": "Constructed multiple track tracks (Neon Cyber City, Alpine Ridge, Sunset Freeway, Canyon Run) with roadside trees, streetlights, and tunnels.",
+      "files": [
+        "script.js"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Program AI Opponents & Collision Physics",
+      "description": "Added multi-car AI traffic, dynamic lane switching, drafting mechanics, particle spark collisions, and position ranking logic.",
+      "files": [
+        "script.js"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Implement Drift Counter, Nitro Boost & Particle Systems",
+      "description": "Engineered high-speed drift accumulation, nitro exhaust flare graphics, motion blur camera shake, and score multipliers.",
+      "files": [
+        "script.js"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Integrate Garage Upgrades, Local Persistence & Cloud Leaderboards",
+      "description": "Added car purchasing, upgrade stats system, authentication module, and high-score cloud sync API.",
+      "files": [
+        "script.js"
+      ],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Building apex3dracing",
+      "description": "Performed final pre-flight checks, input bindings validation, sound balance adjustments, and performance optimizations.",
+      "files": [
+        "app-meta.json",
+        "build-steps.json",
+        "api_schema.json",
+        "index.html",
+        "style.css",
+        "script.js"
+      ],
+      "status": "pending"
+    }
+  ]
+}
