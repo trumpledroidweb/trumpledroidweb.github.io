@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100 select-none overflow-hidden">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Apex 3D Racing - Cyber Arcade</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="h-full w-full font-sans antialiased overflow-hidden bg-slate-950 flex flex-col justify-between">
+
+  <!-- MAIN CANVAS GAME CONTAINER -->
+  <div id="game-container" class="relative w-full h-full flex items-center justify-center overflow-hidden">
+    <canvas id="gameCanvas" class="w-full h-full block bg-black touch-none cursor-crosshair"></canvas>
+
+    <!-- IN-GAME HUD OVERLAY -->
+    <div id="hud-overlay" class="absolute inset-0 pointer-events-none hidden flex flex-col justify-between p-4 md:p-6 z-10">
+      <!-- TOP HUD BAR -->
+      <div class="flex justify-between items-start gap-4">
+        <!-- POSITION & LAP -->
+        <div class="flex gap-3">
+          <div class="bg-slate-900/80 backdrop-blur border border-cyan-500/40 px-4 py-2 rounded-xl shadow-lg flex flex-col items-center min-w-[90px]">
+            <span class="text-xs uppercase tracking-widest text-cyan-400 font-semibold">POS</span>
+            <div class="text-2xl md:text-3xl font-black italic text-cyan-300"><span id="hud-pos">1</span><span class="text-sm font-normal text-slate-400">/6</span></div>
+          </div>
+          <div class="bg-slate-900/80 backdrop-blur border border-purple-500/40 px-4 py-2 rounded-xl shadow-lg flex flex-col items-center min-w-[90px]">
+            <span class="text-xs uppercase tracking-widest text-purple-400 font-semibold">LAP</span>
+            <div class="text-2xl md:text-3xl font-black italic text-purple-300"><span id="hud-lap">1</span><span class="text-sm font-normal text-slate-400">/3</span></div>
+          </div>
+        </div>
+
+        <!-- DRIFT SCORE NOTIFIER -->
+        <div id="drift-notification" class="opacity-0 transform translate-y-2 transition-all duration-200 flex flex-col items-center bg-amber-500/20 backdrop-blur border border-amber-400/50 px-6 py-2 rounded-2xl shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-amber-300 animate-pulse">DRIFTING!</span>
+          <span id="drift-points" class="text-2xl md:text-3xl font-black text-amber-400 italic">+0 PTS</span>
+        </div>
+
+        <!-- LAP TIMER & TRACK MAP -->
+        <div class="flex items-center gap-3">
+          <div class="bg-slate-900/80 backdrop-blur border border-slate-700 px-4 py-2 rounded-xl text-right">
+            <span class="text-xs uppercase tracking-widest text-slate-400 font-semibold block">TIME</span>
+            <span id="hud-time" class="text-xl md:text-2xl font-mono font-bold text-emerald-400">00:00.00</span>
+            <span id="hud-best-time" class="text-[10px] text-slate-400 block font-mono">BEST: --:--.--</span>
+          </div>
+          <!-- MINI MAP CANVAS -->
+          <div class="bg-slate-900/90 border border-cyan-500/30 p-1.5 rounded-xl hidden sm:block shadow-md">
+            <canvas id="miniMapCanvas" width="90" height="90" class="rounded-lg"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM HUD BAR (SPEEDOMETER & NITRO) -->
+      <div class="flex justify-between items-end gap-4">
+        <!-- NITRO GAUGE -->
+        <div class="w-40 sm:w-56 bg-slate-900/80 backdrop-blur border border-slate-700/80 p-3 rounded-2xl shadow-xl flex flex-col gap-1.5">
+          <div class="flex justify-between items-center text-xs font-bold tracking-wider">
+            <span class="text-cyan-400 flex items-center gap-1">⚡ NITRO (SHIFT / SPACE)</span>
+            <span id="hud-nitro-val" class="text-cyan-300 font-mono">100%</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-3.5 overflow-hidden p-0.5 border border-slate-700">
+            <div id="hud-nitro-bar" class="h-full bg-gradient-to-r from-cyan-500 via-teal-300 to-cyan-400 rounded-full transition-all duration-75 shadow-[0_0_12px_rgba(6,182,212,0.8)]" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <!-- SPEEDOMETER ARC -->
+        <div class="bg-slate-900/90 backdrop-blur border border-cyan-500/50 p-4 rounded-2xl shadow-[0_0_30px_rgba(6,182,212,0.15)] flex flex-col items-center justify-center min-w-[130px] sm:min-w-[160px]">
+          <span id="hud-speed" class="text-4xl sm:text-5xl font-black italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-cyan-100 to-white">0</span>
+          <span class="text-[11px] font-bold tracking-widest text-cyan-400 uppercase">KM / H</span>
+          <div class="text-[10px] text-slate-400 font-mono mt-0.5">GEAR <span id="hud-gear" class="text-white font-bold">1</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOUCH CONTROLS OVERLAY FOR MOBILE -->
+    <div id="touch-controls" class="absolute inset-0 pointer-events-none hidden z-20 flex justify-between items-end p-4 pb-6">
+      <!-- LEFT / RIGHT STEERING BUTTONS -->
+      <div class="flex gap-3 pointer-events-auto">
+        <button id="btn-left" class="w-16 h-16 sm:w-20 sm:h-20 bg-slate-900/80 active:bg-cyan-600/60 border border-cyan-500/50 rounded-2xl flex items-center justify-center text-3xl text-cyan-300 shadow-lg active:scale-95 transition-transform">◀</button>
+        <button id="btn-right" class="w-16 h-16 sm:w-20 sm:h-20 bg-slate-900/80 active:bg-cyan-600/60 border border-cyan-500/50 rounded-2xl flex items-center justify-center text-3xl text-cyan-300 shadow-lg active:scale-95 transition-transform">▶</button>
+      </div>
+
+      <!-- BRAKE & ACCEL & NITRO BUTTONS -->
+      <div class="flex gap-3 pointer-events-auto items-end">
+        <button id="btn-brake" class="w-14 h-14 sm:w-16 sm:h-16 bg-red-950/80 active:bg-red-600/80 border border-red-500/50 rounded-2xl flex items-center justify-center text-xs font-bold text-red-300 shadow-lg active:scale-95 transition-transform">BRAKE</button>
+        <button id="btn-nitro" class="w-14 h-14 sm:w-16 sm:h-16 bg-cyan-950/80 active:bg-cyan-500/80 border border-cyan-400/50 rounded-2xl flex items-center justify-center text-xs font-bold text-cyan-300 shadow-lg active:scale-95 transition-transform">NITRO</button>
+        <button id="btn-gas" class="w-16 h-20 sm:w-20 sm:h-24 bg-emerald-950/80 active:bg-emerald-600/80 border border-emerald-500/50 rounded-2xl flex items-center justify-center text-sm font-extrabold text-emerald-300 shadow-lg active:scale-95 transition-transform">GAS</button>
+      </div>
+    </div>
+
+    <!-- MAIN MENU OVERLAY -->
+    <div id="main-menu" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 flex flex-col justify-between p-6 overflow-y-auto">
+      <!-- HEADER BAR -->
+      <div class="flex justify-between items-center max-w-5xl mx-auto w-full">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center font-black text-xl shadow-[0_0_15px_rgba(6,182,212,0.5)]">A</div>
+          <div>
+            <h1 class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-300 to-pink-500 italic">APEX 3D RACING</h1>
+            <p class="text-xs text-slate-400 tracking-widest uppercase">Next-Gen Cyber Highway Velocity</p>
+          </div>
+        </div>
+
+        <!-- AUTH & COINS DISPLAY -->
+        <div class="flex items-center gap-4">
+          <div class="bg-slate-900 border border-amber-500/40 px-4 py-1.5 rounded-xl flex items-center gap-2 shadow-md">
+            <span class="text-amber-400 text-lg">🪙</span>
+            <span id="user-coins" class="font-mono font-bold text-amber-300">1,250</span>
+          </div>
+          <button id="auth-btn" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs px-3.5 py-2 rounded-xl transition font-semibold flex items-center gap-1.5">
+            <span id="auth-status-dot" class="w-2 h-2 rounded-full bg-slate-500"></span>
+            <span id="auth-btn-text">Account Login</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT CAROUSEL & TABS -->
+      <div class="max-w-5xl mx-auto w-full my-auto py-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- LEFT: CAR PREVIEW & SELECTION -->
+        <div class="lg:col-span-7 flex flex-col items-center">
+          <!-- 3D CAR PREVIEW CARD -->
+          <div class="w-full bg-slate-900/80 border border-cyan-500/30 rounded-3xl p-6 shadow-[0_0_40px_rgba(6,182,212,0.1)] relative overflow-hidden flex flex-col items-center">
+            <div class="absolute top-4 left-4 bg-cyan-500/20 text-cyan-300 text-[10px] font-bold px-3 py-1 rounded-full border border-cyan-500/30 tracking-widest uppercase">SELECTED VEHICLE</div>
+            
+            <div class="w-full h-48 sm:h-64 my-2 relative flex items-center justify-center">
+              <canvas id="garageCarCanvas" width="340" height="220" class="max-w-full drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]"></canvas>
+            </div>
+
+            <div class="w-full flex justify-between items-end mt-2">
+              <div>
+                <h2 id="car-name" class="text-2xl font-black text-white italic tracking-wide">APEX GT SPECTRE</h2>
+                <p id="car-desc" class="text-xs text-slate-400 mt-0.5">High-revving balanced street racer engineered for tight drift lines.</p>
+              </div>
+              <div class="flex gap-2">
+                <button id="car-prev-btn" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 flex items-center justify-center text-lg transition">◀</button>
+                <button id="car-next-btn" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 flex items-center justify-center text-lg transition">▶</button>
+              </div>
+            </div>
+
+            <!-- CAR SPECS PROGRESS BARS -->
+            <div class="w-full grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-slate-800/80">
+              <div>
+                <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+                  <span>TOP SPEED</span>
+                  <span id="car-stat-speed" class="text-cyan-400">240 KM/H</span>
+                </div>
+                <div class="h-2 bg-slate-800 rounded-full overflow-hidden p-0.5"><div id="car-bar-speed" class="h-full bg-cyan-400 rounded-full" style="width: 70%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+                  <span>ACCEL</span>
+                  <span id="car-stat-accel" class="text-purple-400">3.8s</span>
+                </div>
+                <div class="h-2 bg-slate-800 rounded-full overflow-hidden p-0.5"><div id="car-bar-accel" class="h-full bg-purple-400 rounded-full" style="width: 65%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+                  <span>HANDLING</span>
+                  <span id="car-stat-handling" class="text-emerald-400">DRIFT +</span>
+                </div>
+                <div class="h-2 bg-slate-800 rounded-full overflow-hidden p-0.5"><div id="car-bar-handling" class="h-full bg-emerald-400 rounded-full" style="width: 80%"></div></div>
+              </div>
+            </div>
+
+            <!-- UPGRADE & COLOR CUSTOMIZER -->
+            <div class="w-full flex justify-between items-center mt-4">
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-slate-400 font-bold">PAINT:</span>
+                <div class="flex gap-1.5" id="color-picker-container">
+                  <button data-color="#06b6d4" class="w-6 h-6 rounded-full bg-cyan-500 ring-2 ring-white border border-black"></button>
+                  <button data-color="#ec4899" class="w-6 h-6 rounded-full bg-pink-500 border border-black"></button>
+                  <button data-color="#eab308" class="w-6 h-6 rounded-full bg-yellow-500 border border-black"></button>
+                  <button data-color="#10b981" class="w-6 h-6 rounded-full bg-emerald-500 border border-black"></button>
+                  <button data-color="#8b5cf6" class="w-6 h-6 rounded-full bg-purple-500 border border-black"></button>
+                </div>
+              </div>
+              <button id="upgrade-car-btn" class="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 text-xs px-3.5 py-1.5 rounded-xl font-bold transition flex items-center gap-1">
+                <span>⚡ UPGRADE (+10%)</span>
+                <span class="text-amber-400 font-mono">🪙 300</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: TRACK SELECTION & GAME MODES -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+          <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-5">
+            <h3 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3">1. SELECT CIRCUIT TRACK</h3>
+            <div class="grid grid-cols-1 gap-2.5" id="track-selector-list">
+              <!-- TRACK BUTTON 1 -->
+              <div data-track="0" class="track-card active bg-slate-800/90 hover:bg-slate-800 border-2 border-cyan-500 rounded-2xl p-3 cursor-pointer transition flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-sm text-white flex items-center gap-2">
+                    <span>🌃 NEON CITY CYBERWAY</span>
+                    <span class="bg-cyan-500/20 text-cyan-300 text-[9px] px-2 py-0.5 rounded-full font-bold">DEFAULT</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">3 LAPS • High Speed Straightaways & Neon Tunnels</div>
+                </div>
+                <span class="text-cyan-400 text-xl font-black">➔</span>
+              </div>
+              <!-- TRACK BUTTON 2 -->
+              <div data-track="1" class="track-card bg-slate-800/40 hover:bg-slate-800/80 border border-slate-700/80 rounded-2xl p-3 cursor-pointer transition flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-sm text-white flex items-center gap-2">
+                    <span>🏔️ ALPINE GLACIER PASS</span>
+                    <span class="bg-slate-700 text-slate-300 text-[9px] px-2 py-0.5 rounded-full font-bold">HARD</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">3 LAPS • Steep Mountain Elevations & Dynamic Curves</div>
+                </div>
+                <span class="text-slate-500 text-xl font-black">➔</span>
+              </div>
+              <!-- TRACK BUTTON 3 -->
+              <div data-track="2" class="track-card bg-slate-800/40 hover:bg-slate-800/80 border border-slate-700/80 rounded-2xl p-3 cursor-pointer transition flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-sm text-white flex items-center gap-2">
+                    <span>🌅 SUNSET COAST FREEWAY</span>
+                    <span class="bg-amber-500/20 text-amber-300 text-[9px] px-2 py-0.5 rounded-full font-bold">DRIFT SPECS</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">3 LAPS • Ocean Highway & Long Sweeping Drift Corners</div>
+                </div>
+                <span class="text-slate-500 text-xl font-black">➔</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AUDIO TOGGLE & ACTION START BUTTON -->
+          <div class="flex gap-3 items-center">
+            <button id="sound-toggle-btn" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 p-4 rounded-2xl text-xl flex items-center justify-center transition" title="Toggle Sound">
+              🔊
+            </button>
+            <button id="start-race-btn" class="flex-1 bg-gradient-to-r from-cyan-500 via-teal-400 to-cyan-500 hover:opacity-95 text-slate-950 font-black text-xl py-4 rounded-2xl shadow-[0_0_30px_rgba(6,182,212,0.4)] tracking-wider italic uppercase active:scale-95 transition-transform flex items-center justify-center gap-3">
+              <span>START RACE</span>
+              <span class="text-2xl">🏎️</span>
+            </button>
+          </div>
+
+          <!-- LEADERBOARD BUTTON -->
+          <button id="view-leaderboard-btn" class="w-full bg-slate-900/60 hover:bg-slate-900 border border-slate-700 text-slate-300 text-xs py-2.5 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+            <span>🏆 View Global Leaderboard & Records</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- FOOTER KEYBOARD HINT -->
+      <div class="max-w-5xl mx-auto w-full text-center text-xs text-slate-500 flex justify-center gap-6 py-2 border-t border-slate-800/50">
+        <span>🎮 <b>STEER:</b> WASD / Arrow Keys</span>
+        <span>⚡ <b>NITRO:</b> Shift / Space</span>
+        <span>🏁 <b>DRIFT:</b> Tap Brake (Down/S) while turning</span>
+      </div>
+    </div>
+
+    <!-- POST RACE VICTORY / SUMMARY OVERLAY -->
+    <div id="race-summary-modal" class="absolute inset-0 bg-slate-950/95 backdrop-blur-lg z-40 hidden flex items-center justify-center p-4">
+      <div class="bg-slate-900 border border-cyan-500/40 p-8 rounded-3xl max-w-md w-full shadow-[0_0_50px_rgba(6,182,212,0.2)] text-center flex flex-col items-center">
+        <div id="summary-badge" class="text-5xl mb-2">🏆</div>
+        <h2 id="summary-title" class="text-3xl font-black text-white italic tracking-wide">VICTORY! 1st PLACE</h2>
+        <p id="summary-subtitle" class="text-xs text-cyan-400 font-semibold tracking-widest mt-1">NEW CIRCUIT LAP RECORD</p>
+
+        <!-- STATS BREAKDOWN -->
+        <div class="w-full bg-slate-950/80 border border-slate-800 rounded-2xl p-4 my-6 flex flex-col gap-2.5 text-xs font-mono">
+          <div class="flex justify-between items-center text-slate-400">
+            <span>TOTAL TIME:</span>
+            <span id="summary-total-time" class="text-white font-bold text-sm">02:14.85</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-400">
+            <span>BEST LAP:</span>
+            <span id="summary-best-lap" class="text-emerald-400 font-bold text-sm">00:43.10</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-400">
+            <span>DRIFT POINTS:</span>
+            <span id="summary-drift-points" class="text-amber-400 font-bold">1,850 PTS</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-400">
+            <span>SPEED BONUS:</span>
+            <span id="summary-speed-bonus" class="text-cyan-400 font-bold">920 PTS</span>
+          </div>
+          <div class="w-full border-t border-slate-800 my-1"></div>
+          <div class="flex justify-between items-center text-slate-200 font-sans font-bold text-base">
+            <span>TOTAL SCORE:</span>
+            <span id="summary-total-score" class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-500 text-lg">2,770</span>
+          </div>
+          <div class="flex justify-between items-center text-slate-300 font-sans text-xs pt-1">
+            <span>COINS EARNED:</span>
+            <span id="summary-coins-earned" class="text-amber-400 font-bold">+🪙 450</span>
+          </div>
+        </div>
+
+        <div class="flex gap-3 w-full">
+          <button id="summary-menu-btn" class="flex-1 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 rounded-xl transition">MAIN MENU</button>
+          <button id="summary-retry-btn" class="flex-1 bg-gradient-to-r from-cyan-500 to-teal-400 hover:opacity-95 text-slate-950 font-black py-3 rounded-xl transition shadow-lg">RETRY RACE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD MODAL -->
+    <div id="leaderboard-modal" class="absolute inset-0 bg-slate-950/95 backdrop-blur-md z-40 hidden flex items-center justify-center p-4">
+      <div class="bg-slate-900 border border-purple-500/40 p-6 rounded-3xl max-w-xl w-full shadow-2xl flex flex-col h-[80vh]">
+        <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🏆</span>
+            <h2 class="text-xl font-black text-white italic">GLOBAL CIRCUIT LEADERBOARD</h2>
+          </div>
+          <button id="close-leaderboard-btn" class="text-slate-400 hover:text-white text-xl font-bold px-2">✕</button>
+        </div>
+
+        <!-- TRACK SELECT TABS FOR LEADERBOARD -->
+        <div class="flex gap-2 my-4" id="lb-track-tabs">
+          <button data-track="0" class="flex-1 bg-purple-600 text-white text-xs py-2 rounded-xl font-bold">Neon City</button>
+          <button data-track="1" class="flex-1 bg-slate-800 text-slate-400 text-xs py-2 rounded-xl font-bold hover:bg-slate-700">Alpine Pass</button>
+          <button data-track="2" class="flex-1 bg-slate-800 text-slate-400 text-xs py-2 rounded-xl font-bold hover:bg-slate-700">Sunset Coast</button>
+        </div>
+
+        <!-- LEADERBOARD TABLE -->
+        <div class="flex-1 overflow-y-auto pr-1">
+          <div class="w-full text-xs text-slate-300">
+            <div class="grid grid-cols-12 font-bold text-slate-500 pb-2 border-b border-slate-800 px-3">
+              <span class="col-span-2">RANK</span>
+              <span class="col-span-4">DRIVER</span>
+              <span class="col-span-3 text-right">LAP TIME</span>
+              <span class="col-span-3 text-right">SCORE</span>
+            </div>
+            <div id="leaderboard-rows" class="divide-y divide-slate-800/60">
+              <!-- Dynamically populated via JS -->
+              <div class="text-center py-8 text-slate-500 italic">Loading leaderboard data...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTHENTICATION MODAL -->
+    <div id="auth-modal" class="absolute inset-0 bg-slate-950/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-slate-900 border border-cyan-500/40 p-6 rounded-3xl max-w-sm w-full shadow-2xl relative">
+        <button id="close-auth-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+
+        <h2 id="auth-title" class="text-xl font-black text-white italic mb-1">PILOT ACCOUNT LOGIN</h2>
+        <p class="text-xs text-slate-400 mb-4">Sync your unlocks, coins and race records online.</p>
+
+        <form id="auth-form" class="flex flex-col gap-3">
+          <div>
+            <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">EMAIL ADDRESS</label>
+            <input type="email" id="auth-email" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500" placeholder="driver@apex.com">
+          </div>
+          <div>
+            <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">PASSWORD</label>
+            <input type="password" id="auth-password" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500" placeholder="••••••••">
+          </div>
+
+          <div id="auth-msg" class="text-[11px] font-semibold text-center min-h-[18px]"></div>
+
+          <button type="submit" id="auth-submit-btn" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-sm py-2.5 rounded-xl transition mt-1 shadow-md">
+            LOGIN TO PILOT PROFILE
+          </button>
+        </form>
+
+        <div class="flex justify-between items-center mt-4 pt-3 border-t border-slate-800 text-[11px]">
+          <button id="toggle-auth-mode-btn" class="text-cyan-400 hover:underline">Need an account? Sign Up</button>
+          <button id="forgot-pass-btn" class="text-slate-400 hover:text-slate-200">Forgot Password?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
