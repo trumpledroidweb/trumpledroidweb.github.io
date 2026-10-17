@@ -1,0 +1,37 @@
+{
+  "backend": true,
+  "api_base_url": "https://trumpledroid-api.cloudbeta28624.workers.dev",
+  "roles": {
+    "user": ["own"]
+  },
+  "collections": {
+    "leaderboards": {
+      "fields": {
+        "player_name": "string",
+        "track_id": "string",
+        "car_model": "string",
+        "score": "number",
+        "lap_time": "number",
+        "top_speed": "number"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    },
+    "garage": {
+      "fields": {
+        "car_id": "string",
+        "color": "string",
+        "spoiler": "string",
+        "engine_level": "number",
+        "handling_level": "number"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    }
+  },
+  "logic": {
+    "race_score": {
+      "type": "calculation",
+      "inputs": ["race_time_ms", "drift_points", "top_speed_mph", "collisions"],
+      "formula": "(10000 - race_time_ms / 10) + (drift_points * 2) + (top_speed_mph * 15) - (collisions * 200)"
+    }
+  }
+}
