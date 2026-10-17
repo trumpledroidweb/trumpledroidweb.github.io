@@ -1,0 +1,47 @@
+{
+  "backend": true,
+  "api_base_url": "https://trumpledroid-api.cloudbeta28624.workers.dev",
+  "roles": {
+    "user": [
+      "own"
+    ]
+  },
+  "collections": {
+    "leaderboard": {
+      "fields": {
+        "player_name": "string",
+        "track_id": "string",
+        "car_model": "string",
+        "lap_time": "number",
+        "score": "integer"
+      },
+      "operations": [
+        "create",
+        "read"
+      ]
+    },
+    "garages": {
+      "fields": {
+        "unlocked_cars": "string",
+        "coins": "integer",
+        "best_lap": "number"
+      },
+      "operations": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "logic": {
+    "total_score": {
+      "type": "calculation",
+      "inputs": [
+        "speed_bonus",
+        "drift_points",
+        "placement_multiplier"
+      ],
+      "formula": "(speed_bonus + drift_points) * placement_multiplier"
+    }
+  }
+}
