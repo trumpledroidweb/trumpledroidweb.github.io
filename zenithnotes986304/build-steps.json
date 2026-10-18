@@ -1,0 +1,74 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Define Project Architecture & Meta",
+      "description": "Initialize app-meta and API schema specifications for ZenithNotes.",
+      "files": ["app-meta.json", "api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Build Semantic HTML5 App Shell",
+      "description": "Create responsive layout including sidebar navigation, search, note feed, note editor modal, and auth modals.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Configure Tailwind Browser Runtime & Custom Typography",
+      "description": "Establish theme styling, custom scrollbars, transitions, and clean note color accents.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Implement Generic API & Auth Client",
+      "description": "Create client handler for register, login, logout, and OTP password recovery against TrumpleDroid API.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Develop Local Deterministic Calculators",
+      "description": "Implement local calculators for word counts, character counts, reading duration, and category aggregates.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "CRUD Operations for Notes",
+      "description": "Integrate create, read, update, and delete calls targeting the generic /data endpoint with fallback guest storage.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Filtering, Search & Pinning Logic",
+      "description": "Implement dynamic real-time text query filtering, tag grouping, and pinned note organization.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Interactive Note Editor & Tagging",
+      "description": "Build modern editor modal supporting color presets, tags, checklists, and auto-computed live metrics.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Password Reset OTP Modal Flow",
+      "description": "Integrate two-step OTP verification and password reset matching backend specifications.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Building zenithnotes",
+      "description": "Finalize UI wiring, state synchronizations, accessibility checks, and performance tests.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
