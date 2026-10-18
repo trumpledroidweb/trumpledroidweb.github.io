@@ -1,0 +1,88 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Project Architecture & Meta Configuration",
+      "description": "Initialize app-meta and API schema defining products, orders, and offline pricing logic.",
+      "files": ["app-meta.json", "api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Responsive Storefront Layout & Header",
+      "description": "Construct HTML5 skeleton with Tailwind CSS v4, top banner, search bar, and cart drawer toggle.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "High-Conversion Hero & Category Navigation",
+      "description": "Design dynamic category badges (Sneakers, Formal, Sports, Loafers, Boots) and promotional shoe banners.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Shoe Catalog & Dynamic Product Grid",
+      "description": "Implement responsive multi-card product grid showcasing shoe images, pricing, discount tags, and size chips.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Shoe Detail Modal & Multi-Angle Image Viewer",
+      "description": "Build interactive shoe preview with size picker (UK 6 to 10), high-res photo gallery, and stock status.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Cart & Live Price Engine",
+      "description": "Implement local cart state with dynamic subtotal, delivery calculation, discount calculation, and badge updates.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "WhatsApp One-Click Direct Ordering",
+      "description": "Generate formatted WhatsApp messages with selected shoe items, sizes, delivery address, and final total.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Backend API Client & Authentication Handlers",
+      "description": "Integrate backend endpoints for login, signup, token persistence, and forgot-password OTP recovery.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Online Checkout & Order Persistence",
+      "description": "Process orders via backend /data endpoint with Cash On Delivery & UPI simulation.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Owner Product Upload & Management Drawer",
+      "description": "Empower Nitin to add new shoe listings with photo URLs, custom sizes, prices, and instant catalog refresh.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Customer Orders History View",
+      "description": "Display previous purchases and live order tracking details for authenticated customers.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Building nitinshoesstore",
+      "description": "Finalize polish, optimize mobile responsiveness, test search and cart computations, and ship application.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
