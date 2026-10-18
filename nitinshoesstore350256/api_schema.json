@@ -1,0 +1,52 @@
+{
+  "backend": true,
+  "api_base_url": "https://trumpledroid-api.cloudbeta28624.workers.dev",
+  "roles": {
+    "user": ["own"]
+  },
+  "collections": {
+    "products": {
+      "fields": {
+        "title": "string",
+        "category": "string",
+        "price": "number",
+        "original_price": "number",
+        "image_url": "string",
+        "gallery": "string",
+        "description": "string",
+        "sizes": "string",
+        "badge": "string",
+        "in_stock": "boolean"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    },
+    "orders": {
+      "fields": {
+        "customer_name": "string",
+        "customer_phone": "string",
+        "customer_address": "string",
+        "items_summary": "string",
+        "subtotal": "number",
+        "discount": "number",
+        "delivery_fee": "number",
+        "total_amount": "number",
+        "payment_method": "string",
+        "order_status": "string",
+        "order_date": "string"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    }
+  },
+  "logic": {
+    "cart_subtotal": {
+      "type": "calculation",
+      "inputs": ["price", "quantity"],
+      "formula": "price * quantity"
+    },
+    "order_final_total": {
+      "type": "calculation",
+      "inputs": ["subtotal", "discount", "delivery_fee"],
+      "formula": "subtotal - discount + delivery_fee"
+    }
+  }
+}
