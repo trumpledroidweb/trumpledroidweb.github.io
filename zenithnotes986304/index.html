@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZenithNotes — Thoughtful Note Taking</title>
+  <!-- Tailwind CSS v4 Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-stone-50 text-stone-900 min-h-screen antialiased flex flex-col selection:bg-amber-200">
+
+  <!-- Top App Navigation Bar -->
+  <header class="sticky top-0 z-30 bg-white/85 backdrop-blur-md border-b border-stone-200/80 px-4 sm:px-6 py-3 transition-all">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-xl shadow-md shadow-amber-500/20">
+          Z
+        </div>
+        <div>
+          <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-stone-900 to-stone-700 bg-clip-text text-transparent">ZenithNotes</span>
+          <span id="syncStatusBadge" class="hidden sm:inline-flex ml-2 text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+            Offline Mode
+          </span>
+        </div>
+      </div>
+
+      <!-- Live Search Bar -->
+      <div class="flex-1 max-w-md mx-2 relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+        <input 
+          id="searchInput" 
+          type="text" 
+          placeholder="Search notes, tags, or content..." 
+          class="w-full pl-9 pr-8 py-2 text-sm bg-stone-100 hover:bg-stone-100/80 focus:bg-white border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 transition-all placeholder:text-stone-400"
+        >
+        <button id="clearSearchBtn" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-stone-400 hover:text-stone-600 text-xs">✕</button>
+      </div>
+
+      <!-- Action Items & Auth -->
+      <div class="flex items-center gap-2">
+        <button 
+          id="openNewNoteBtn" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-stone-900 hover:bg-stone-800 text-white font-medium text-sm rounded-xl transition shadow-sm hover:shadow"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+          <span class="hidden sm:inline">New Note</span>
+        </button>
+
+        <div id="userProfileSection" class="relative">
+          <button 
+            id="authActionBtn" 
+            class="px-3 py-2 text-sm font-semibold rounded-xl border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 transition"
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Work Area -->
+  <div class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 flex flex-col md:flex-row gap-6">
+
+    <!-- Sidebar Filters & Metrics -->
+    <aside class="w-full md:w-64 shrink-0 flex flex-col gap-5">
+      <!-- Quick Navigation -->
+      <div class="bg-white rounded-2xl p-3 border border-stone-200/80 shadow-xs">
+        <nav class="space-y-1">
+          <button data-filter="all" class="filter-tab w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-stone-900 bg-stone-100 transition">
+            <span class="flex items-center gap-2.5">
+              <span class="text-base">📝</span> All Notes
+            </span>
+            <span id="metricAllCount" class="text-xs bg-stone-200 text-stone-700 px-2 py-0.5 rounded-full font-mono">0</span>
+          </button>
+
+          <button data-filter="pinned" class="filter-tab w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-stone-600 hover:bg-stone-50 transition">
+            <span class="flex items-center gap-2.5">
+              <span class="text-base">📌</span> Pinned
+            </span>
+            <span id="metricPinnedCount" class="text-xs bg-stone-100 text-stone-600 px-2 py-0.5 rounded-full font-mono">0</span>
+          </button>
+
+          <button data-filter="archived" class="filter-tab w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-stone-600 hover:bg-stone-50 transition">
+            <span class="flex items-center gap-2.5">
+              <span class="text-base">📦</span> Archive
+            </span>
+            <span id="metricArchivedCount" class="text-xs bg-stone-100 text-stone-600 px-2 py-0.5 rounded-full font-mono">0</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Categories & Tags Filter -->
+      <div class="bg-white rounded-2xl p-4 border border-stone-200/80 shadow-xs">
+        <h3 class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-2.5">Categories</h3>
+        <div id="categoryListContainer" class="flex flex-wrap md:flex-col gap-1.5">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Live Offline Calculations Dashboard -->
+      <div class="bg-gradient-to-br from-amber-50 to-orange-50/50 rounded-2xl p-4 border border-amber-200/60 shadow-xs">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-xs font-bold text-amber-900 uppercase tracking-wider">Metrics & Stats</h3>
+          <span class="text-[10px] font-mono font-semibold text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">Local Engine</span>
+        </div>
+        <div class="space-y-2 text-xs text-amber-900/80">
+          <div class="flex justify-between items-center">
+            <span>Total Words</span>
+            <span id="statTotalWords" class="font-mono font-bold text-amber-950">0</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span>Total Characters</span>
+            <span id="statTotalChars" class="font-mono font-bold text-amber-950">0</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span>Estimated Reading Time</span>
+            <span id="statEstReadTime" class="font-mono font-bold text-amber-950">0 min</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-amber-200/60 pt-2 mt-2">
+            <span>Avg Words/Note</span>
+            <span id="statAvgWords" class="font-mono font-bold text-amber-950">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account Info / Cloud Badge -->
+      <div id="authAccountCard" class="bg-white rounded-2xl p-3 border border-stone-200/80 text-xs text-stone-500 hidden">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span class="font-semibold text-stone-800" id="authUserEmail">user@example.com</span>
+        </div>
+        <button id="logoutBtn" class="w-full text-center py-1.5 rounded-lg text-rose-600 bg-rose-50 hover:bg-rose-100 font-medium transition">
+          Log Out
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- Notes Display Canvas -->
+    <main class="flex-1 min-w-0">
+      
+      <!-- Pinned Notes Section (Conditional) -->
+      <div id="pinnedSection" class="mb-8 hidden">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs uppercase font-extrabold tracking-wider text-amber-600">Pinned Notes</span>
+          <div class="h-px flex-1 bg-amber-100"></div>
+        </div>
+        <div id="pinnedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Regular Notes Section -->
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span id="notesSectionTitle" class="text-xs uppercase font-extrabold tracking-wider text-stone-400">All Notes</span>
+          <span id="activeFilterBadge" class="text-xs text-stone-500 font-medium"></span>
+        </div>
+
+        <div id="notesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Injected dynamically -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyNotesState" class="hidden flex flex-col items-center justify-center py-16 text-center border-2 border-dashed border-stone-200 rounded-3xl p-8 bg-stone-50/50">
+          <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-4">
+            ✍️
+          </div>
+          <h4 class="text-base font-bold text-stone-800">No notes found</h4>
+          <p class="text-sm text-stone-500 mt-1 max-w-sm">Capture ideas, checklists, project summaries, and research points in one lightning-fast place.</p>
+          <button id="emptyStateNewNoteBtn" class="mt-4 px-4 py-2 bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs rounded-xl shadow-xs transition">
+            Create First Note
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Note Editor Modal -->
+  <div id="noteModal" class="fixed inset-0 z-50 bg-stone-950/40 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-xl w-full border border-stone-200 shadow-2xl flex flex-col overflow-hidden max-h-[90vh] animate-in">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-stone-100 flex items-center justify-between">
+        <h2 id="modalTitle" class="font-bold text-stone-800 text-lg">New Note</h2>
+        <div class="flex items-center gap-2">
+          <button id="modalPinBtn" type="button" class="p-2 rounded-xl text-stone-400 hover:text-amber-500 hover:bg-stone-100 transition" title="Toggle Pin">
+            <svg id="modalPinIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
+          </button>
+          <button id="closeModalBtn" class="p-2 rounded-xl text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body -->
+      <form id="noteForm" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <input type="hidden" id="editingNoteId" value="">
+        
+        <!-- Note Title -->
+        <div>
+          <input 
+            type="text" 
+            id="noteTitleInput" 
+            required 
+            placeholder="Title" 
+            class="w-full text-xl font-bold placeholder:text-stone-300 text-stone-900 border-none outline-none focus:ring-0 p-0"
+          >
+        </div>
+
+        <!-- Note Content -->
+        <div>
+          <textarea 
+            id="noteContentInput" 
+            rows="8" 
+            required 
+            placeholder="Write your note, thoughts, or markdown draft here..." 
+            class="w-full text-sm leading-relaxed placeholder:text-stone-300 text-stone-800 border-none outline-none focus:ring-0 p-0 resize-none font-sans"
+          ></textarea>
+        </div>
+
+        <!-- Metadata & Tag Inputs -->
+        <div class="pt-3 border-t border-stone-100 space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-stone-600 mb-1">Category / Tag</label>
+              <input 
+                type="text" 
+                id="noteCategoryInput" 
+                placeholder="e.g. Work, Ideas, Personal" 
+                class="w-full text-xs px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+              >
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-stone-600 mb-1">Color Palette</label>
+              <div class="flex items-center gap-2 pt-1">
+                <button type="button" data-color="white" class="color-picker-dot w-6 h-6 rounded-full bg-white border-2 border-stone-300 ring-2 ring-amber-500 ring-offset-1"></button>
+                <button type="button" data-color="amber" class="color-picker-dot w-6 h-6 rounded-full bg-amber-100 border border-amber-300"></button>
+                <button type="button" data-color="emerald" class="color-picker-dot w-6 h-6 rounded-full bg-emerald-100 border border-emerald-300"></button>
+                <button type="button" data-color="sky" class="color-picker-dot w-6 h-6 rounded-full bg-sky-100 border border-sky-300"></button>
+                <button type="button" data-color="rose" class="color-picker-dot w-6 h-6 rounded-full bg-rose-100 border border-rose-300"></button>
+                <button type="button" data-color="purple" class="color-picker-dot w-6 h-6 rounded-full bg-purple-100 border border-purple-300"></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Local Stats in Editor -->
+          <div class="p-3 bg-stone-50 rounded-xl flex items-center justify-between text-xs text-stone-500 font-mono">
+            <span>Words: <strong id="editorLiveWords" class="text-stone-800">0</strong></span>
+            <span>Chars: <strong id="editorLiveChars" class="text-stone-800">0</strong></span>
+            <span>Read: <strong id="editorLiveReadTime" class="text-stone-800">&lt; 1 min</strong></span>
+          </div>
+        </div>
+
+        <!-- Modal Footer Actions -->
+        <div class="flex items-center justify-between pt-3">
+          <button 
+            type="button" 
+            id="deleteNoteBtn" 
+            class="hidden px-3 py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 rounded-xl transition"
+          >
+            Delete Note
+          </button>
+          <div class="flex items-center gap-2 ml-auto">
+            <button 
+              type="button" 
+              id="cancelNoteModalBtn" 
+              class="px-4 py-2 text-xs font-semibold text-stone-600 hover:bg-stone-100 rounded-xl transition"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              class="px-5 py-2 text-xs font-bold text-white bg-amber-600 hover:bg-amber-700 rounded-xl transition shadow-xs"
+            >
+              Save Note
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Authentication Modal (Register / Login) -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-stone-950/45 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-sm w-full border border-stone-200 shadow-2xl p-6 relative">
+      <button id="closeAuthModalBtn" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600">✕</button>
+
+      <div class="text-center mb-5">
+        <h3 id="authModalTitle" class="text-xl font-black text-stone-900">Welcome to ZenithNotes</h3>
+        <p id="authModalSub" class="text-xs text-stone-500 mt-1">Sync your notes seamlessly across all devices</p>
+      </div>
+
+      <div id="authAlert" class="hidden mb-4 p-3 rounded-xl text-xs font-medium"></div>
+
+      <form id="authForm" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 mb-1">Email Address</label>
+          <input 
+            type="email" 
+            id="authEmail" 
+            required 
+            placeholder="you@example.com" 
+            class="w-full text-sm px-3.5 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+          >
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="block text-xs font-semibold text-stone-700">Password</label>
+            <button type="button" id="openForgotBtn" class="text-[11px] font-semibold text-amber-600 hover:underline">Forgot?</button>
+          </div>
+          <input 
+            type="password" 
+            id="authPassword" 
+            required 
+            placeholder="••••••••" 
+            class="w-full text-sm px-3.5 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+          >
+        </div>
+
+        <button 
+          type="submit" 
+          id="authSubmitBtn" 
+          class="w-full py-2.5 bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs rounded-xl shadow transition"
+        >
+          Sign In
+        </button>
+      </form>
+
+      <div class="mt-4 pt-4 border-t border-stone-100 text-center text-xs text-stone-500">
+        <span id="authTogglePrompt">Don't have an account?</span>
+        <button id="toggleAuthModeBtn" class="font-bold text-amber-600 hover:underline ml-1">Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Password Reset (OTP) Modal -->
+  <div id="otpModal" class="fixed inset-0 z-50 bg-stone-950/45 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-sm w-full border border-stone-200 shadow-2xl p-6 relative">
+      <button id="closeOtpModalBtn" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600">✕</button>
+
+      <div class="text-center mb-4">
+        <h3 class="text-xl font-black text-stone-900">Reset Password</h3>
+        <p class="text-xs text-stone-500 mt-1">Receive a verification OTP to your email</p>
+      </div>
+
+      <div id="otpAlert" class="hidden mb-4 p-3 rounded-xl text-xs font-medium"></div>
+
+      <!-- Step 1: Request OTP -->
+      <form id="requestOtpForm" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 mb-1">Registered Email</label>
+          <input 
+            type="email" 
+            id="otpRequestEmail" 
+            required 
+            placeholder="you@example.com" 
+            class="w-full text-sm px-3.5 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+          >
+        </div>
+        <button 
+          type="submit" 
+          id="sendOtpBtn" 
+          class="w-full py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition"
+        >
+          Send Verification Code
+        </button>
+      </form>
+
+      <!-- Step 2: Confirm OTP & New Password -->
+      <form id="verifyOtpForm" class="space-y-3 hidden">
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 mb-1">6-Digit OTP Code</label>
+          <input 
+            type="text" 
+            id="otpCodeInput" 
+            required 
+            placeholder="123456" 
+            class="w-full text-center text-lg font-mono tracking-widest px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+          >
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 mb-1">New Password</label>
+          <input 
+            type="password" 
+            id="otpNewPassword" 
+            required 
+            placeholder="New secure password" 
+            class="w-full text-sm px-3.5 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+          >
+        </div>
+        <button 
+          type="submit" 
+          id="resetPassSubmitBtn" 
+          class="w-full py-2.5 bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs rounded-xl transition"
+        >
+          Update Password
+        </button>
+      </form>
+
+      <div class="mt-4 pt-3 border-t border-stone-100 text-center">
+        <button id="backToSignInBtn" class="text-xs font-semibold text-stone-500 hover:text-stone-800">
+          ← Back to Sign In
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-stone-200/80 py-4 px-6 text-center text-xs text-stone-400">
+    ZenithNotes &bull; Instant Offline Calculations &bull; Cloud Synchronization Ready
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
