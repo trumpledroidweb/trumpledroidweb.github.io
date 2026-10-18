@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nitin Shoes Store | नितिन शू स्टोर - Best Quality Shoes</title>
+  <!-- Tailwind CSS v4 Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Font Awesome Icons for polished shop UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .hindi-text {
+      font-family: 'Tiro Devanagari Hindi', 'Plus Jakarta Sans', serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 text-white text-xs sm:text-sm font-medium py-2 px-4 text-center flex items-center justify-center gap-2 shadow-sm">
+    <span class="bg-white/20 px-2 py-0.5 rounded-full text-[11px] font-bold tracking-wide uppercase">Dhamaka Sale</span>
+    <span>🔥 Nitin Shoes Store पर सभी जूतों पर भारी छूट + All India Fast Delivery & COD उपलब्ध!</span>
+    <a href="#catalog" class="underline ml-1 font-bold hover:text-amber-200">Shop Now</a>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-slate-200 shadow-sm transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-shoe-prints text-xl rotate-[-20deg]"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors">Nitin Shoes Store</span>
+            <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Store</span>
+          </div>
+          <p class="text-xs text-slate-500 font-medium hindi-text">नितिन शू स्टोर • 100% ओरिजिनल जूते</p>
+        </div>
+      </a>
+
+      <!-- Search Input (Desktop) -->
+      <div class="hidden md:flex flex-1 max-w-md mx-6 relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="जूते खोजें (Sneakers, Sports, Loafers, Formal...)" 
+          class="w-full pl-10 pr-4 py-2 text-sm bg-slate-100/90 border border-slate-200 rounded-full focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 transition-all placeholder:text-slate-400"
+        />
+        <button id="clearSearchBtn" class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Add New Shoe (Owner Action) -->
+        <button 
+          id="openAddProductBtn" 
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition shadow-sm"
+          title="नया जूता जोड़ें (Store Owner)"
+        >
+          <i class="fa-solid fa-plus-circle"></i>
+          <span>Add Shoes</span>
+        </button>
+
+        <!-- User Profile / Auth Button -->
+        <button 
+          id="authNavBtn" 
+          class="p-2 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 hover:bg-slate-100 flex items-center gap-2 transition"
+        >
+          <i class="fa-regular fa-user text-slate-600"></i>
+          <span id="authNavText" class="hidden sm:inline">Login / Sign Up</span>
+        </button>
+
+        <!-- Orders History -->
+        <button 
+          id="myOrdersNavBtn" 
+          class="hidden p-2 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 hover:bg-slate-100 items-center gap-2 transition"
+          title="My Orders"
+        >
+          <i class="fa-solid fa-box-open text-orange-600"></i>
+          <span class="hidden sm:inline">Orders</span>
+        </button>
+
+        <!-- Cart Trigger Button -->
+        <button 
+          id="cartBtn" 
+          class="relative bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-xl flex items-center gap-2.5 font-bold shadow-md shadow-orange-600/20 active:scale-95 transition"
+        >
+          <i class="fa-solid fa-bag-shopping text-base"></i>
+          <span class="hidden sm:inline text-sm">कार्ट</span>
+          <span id="cartCountBadge" class="bg-white text-orange-600 text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center shadow-inner">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Search Bar -->
+    <div class="md:hidden px-4 pb-3">
+      <div class="relative w-full">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+          <i class="fa-solid fa-magnifying-glass text-xs"></i>
+        </div>
+        <input 
+          type="text" 
+          id="mobileSearchInput" 
+          placeholder="जूते खोजें (Search sneakers, formal, sports...)" 
+          class="w-full pl-9 pr-8 py-2 text-xs bg-slate-100 border border-slate-200 rounded-full focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition"
+        />
+        <button id="mobileClearSearchBtn" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400">
+          <i class="fa-solid fa-circle-xmark text-xs"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-b from-orange-50 via-amber-50/50 to-slate-50 py-10 sm:py-16 overflow-hidden border-b border-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-800 text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full shadow-sm">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
+            </span>
+            Nitin's Premium Footwear Collection 2025
+          </div>
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            स्टाइलिश जूते, <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-600">सबसे किफायती दामों पर!</span>
+          </h1>
+          <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 hindi-text leading-relaxed">
+            नितिन स्टोर पर आपको मिलेंगे ट्रेंडी स्नीकर्स, फॉर्मल शूज़, रनिंग जूते और कंफर्टेबल लोफर्स। असली फोटो देखें, पसंदीदा साइज चुनें और सीधा ऑनलाइन या व्हाट्सएप पर ऑर्डर करें।
+          </p>
+
+          <!-- Highlights & Quick Trust Badges -->
+          <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-slate-700">
+            <div class="flex items-center gap-1.5 bg-white px-3 py-2 rounded-xl shadow-xs border border-slate-200">
+              <i class="fa-solid fa-truck-fast text-orange-600 text-sm"></i>
+              <span>Free Delivery on ₹999+</span>
+            </div>
+            <div class="flex items-center gap-1.5 bg-white px-3 py-2 rounded-xl shadow-xs border border-slate-200">
+              <i class="fa-solid fa-arrows-rotate text-emerald-600 text-sm"></i>
+              <span>7 Days Easy Replacement</span>
+            </div>
+            <div class="flex items-center gap-1.5 bg-white px-3 py-2 rounded-xl shadow-xs border border-slate-200">
+              <i class="fa-brands fa-whatsapp text-green-600 text-sm"></i>
+              <span>WhatsApp Instant Order</span>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+            <a href="#catalog" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-center shadow-lg shadow-orange-600/30 transition transform hover:-translate-y-0.5">
+              सभी जूते देखें (Explore Shoes) <i class="fa-solid fa-arrow-down ml-1"></i>
+            </a>
+            <button id="heroWhatsAppBtn" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>व्हाट्सएप पर बात करें</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Featured Visual Showcase -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <!-- Background Glow -->
+            <div class="absolute -top-6 -left-6 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse-subtle"></div>
+            <div class="absolute -bottom-8 -right-8 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
+            
+            <!-- Main Hero Card -->
+            <div class="relative bg-white rounded-3xl p-5 shadow-2xl border border-slate-100 overflow-hidden">
+              <div class="relative h-64 sm:h-80 w-full overflow-hidden rounded-2xl bg-gradient-to-tr from-slate-900 to-slate-800 flex items-center justify-center group">
+                <img 
+                  id="heroShowcaseImg"
+                  src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Red Sport Sneaker - Nitin Store" 
+                  class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <span class="absolute top-4 left-4 bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                  🔥 Best Seller
+                </span>
+                <span class="absolute bottom-4 right-4 bg-black/70 backdrop-blur-md text-white text-xs font-medium px-3 py-1 rounded-lg">
+                  Real Product Photo
+                </span>
+              </div>
+
+              <!-- Quick spec in hero card -->
+              <div class="mt-4 flex items-center justify-between">
+                <div>
+                  <h3 class="font-extrabold text-slate-900 text-lg">Nitin Air Blaze Pro Sneakers</h3>
+                  <p class="text-xs text-slate-500">Ultra-Lightweight • Cushioned Sole</p>
+                </div>
+                <div class="text-right">
+                  <div class="text-xl font-black text-orange-600">₹1,499</div>
+                  <div class="text-xs text-slate-400 line-through">₹2,999</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter Bar & Controls -->
+  <section id="catalog" class="py-8 bg-white border-b border-slate-200 sticky top-20 z-30 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        
+        <!-- Category Pill Buttons -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar" id="categoryPills">
+          <button class="cat-pill active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap bg-orange-600 text-white shadow-sm" data-category="all">
+            <i class="fa-solid fa-border-all mr-1.5"></i> सभी जूते (All)
+          </button>
+          <button class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200" data-category="Sneakers">
+            <i class="fa-solid fa-shoe-prints mr-1.5"></i> स्नीकर्स (Sneakers)
+          </button>
+          <button class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200" data-category="Sports">
+            <i class="fa-solid fa-person-running mr-1.5"></i> स्पोर्ट्स / रनिंग
+          </button>
+          <button class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200" data-category="Formal">
+            <i class="fa-solid fa-user-tie mr-1.5"></i> फॉर्मल शूज़
+          </button>
+          <button class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200" data-category="Loafers">
+            <i class="fa-solid fa-socks mr-1.5"></i> लोफर्स / कैजुअल
+          </button>
+          <button class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200" data-category="Boots">
+            <i class="fa-solid fa-mountain mr-1.5"></i> बूट्स (Boots)
+          </button>
+        </div>
+
+        <!-- Sort By & Filters -->
+        <div class="flex items-center gap-3 self-end md:self-auto">
+          <label for="sortSelect" class="text-xs text-slate-500 font-semibold hidden sm:inline">Sort By:</label>
+          <select id="sortSelect" class="text-xs font-semibold bg-slate-100 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+            <option value="featured">Featured / लोकप्रिय</option>
+            <option value="price-low">Price: Low to High (सस्ते से महंगे)</option>
+            <option value="price-high">Price: High to Low (महंगे से सस्ते)</option>
+            <option value="rating">Top Rated (उच्च रेटिंग)</option>
+          </select>
+
+          <button id="ownerAddBtnMobile" class="sm:hidden px-3 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold flex items-center gap-1 shadow-sm">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Catalog Grid -->
+  <main class="flex-1 py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    
+    <!-- Active filters indicator & count -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+          <span>हमारे जूते संग्रह</span>
+          <span id="productTotalCount" class="text-sm font-bold text-orange-600 bg-orange-100 px-2.5 py-0.5 rounded-full">0 Products</span>
+        </h2>
+        <p class="text-xs text-slate-500 mt-0.5 hindi-text">फोटो पर क्लिक करके साइज चुनें और सीधे ऑर्डर करें</p>
+      </div>
+
+      <div id="filterInfo" class="text-xs font-medium text-slate-500 hidden">
+        Showing filtered results
+      </div>
+    </div>
+
+    <!-- Product Grid Container -->
+    <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Dynamic Product Cards injected here -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyCatalogState" class="hidden text-center py-16 px-4 bg-white rounded-3xl border border-dashed border-slate-300">
+      <div class="w-20 h-20 bg-orange-50 text-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+        <i class="fa-solid fa-shoe-prints"></i>
+      </div>
+      <h3 class="text-lg font-bold text-slate-800">कोई जूता नहीं मिला</h3>
+      <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto hindi-text">आपके खोजे अनुसार कोई प्रोडक्ट नहीं मिला। कृपया दूसरा कीवर्ड या कैटेगरी चुनकर देखें।</p>
+      <button id="resetFilterBtn" class="mt-4 px-4 py-2 bg-orange-600 text-white text-xs font-bold rounded-xl hover:bg-orange-700">
+        सभी जूते वापस देखें
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Nitin Store Features Banner -->
+  <section class="bg-white border-t border-slate-200 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+        
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+          <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl">
+            <i class="fa-solid fa-camera"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 text-sm">असली फोटो गारंटी</h4>
+          <p class="text-xs text-slate-500 mt-1 hindi-text">जो फोटो में दिखेगा, वही जूता आपके घर पहुंचेगा। नो चीटिंग!</p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+          <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 text-sm">कैश ऑन डिलीवरी (COD)</h4>
+          <p class="text-xs text-slate-500 mt-1 hindi-text">पार्सल हाथ में मिलने के बाद नकद भुगतान की सुविधा उपलब्ध।</p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl">
+            <i class="fa-solid fa-arrows-split-up-and-left"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 text-sm">आसान साइज एक्सचेंज</h4>
+          <p class="text-xs text-slate-500 mt-1 hindi-text">साइज टाइट या ढीला होने पर तुरंत दूसरा साइज भिजवाया जाएगा।</p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+          <div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 text-sm">नितिन जी से सीधा संपर्क</h4>
+          <p class="text-xs text-slate-500 mt-1 hindi-text">दुकानदार से सीधे व्हाट्सएप पर फोटो मांगें और बातचीत करें।</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-9 h-9 rounded-xl bg-orange-600 flex items-center justify-center text-white font-bold">
+              <i class="fa-solid fa-shoe-prints"></i>
+            </div>
+            <span class="text-xl font-extrabold text-white">Nitin Shoes Store</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed hindi-text">
+            नितिन शू स्टोर - भारत का भरोसेमंद ऑनलाइन जूता स्टोर। बेहतरीन क्वालिटी, आधुनिक फैशन और हर बजट में आरामदायक जूते।
+          </p>
+          <div class="mt-4 flex gap-3">
+            <a href="https://wa.me/919876543210" target="_blank" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-white hover:bg-emerald-500 transition">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+            </a>
+            <a href="tel:+919876543210" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-slate-700 transition">
+              <i class="fa-solid fa-phone text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Popular Categories</h4>
+          <ul class="text-xs space-y-2 text-slate-400">
+            <li><a href="#catalog" class="hover:text-orange-400">Sneakers for Men & Women</a></li>
+            <li><a href="#catalog" class="hover:text-orange-400">Sports & Gym Running Shoes</a></li>
+            <li><a href="#catalog" class="hover:text-orange-400">Office & Party Wear Formal Shoes</a></li>
+            <li><a href="#catalog" class="hover:text-orange-400">Casual Loafers & Slip-ons</a></li>
+            <li><a href="#catalog" class="hover:text-orange-400">Heavy Duty Boots</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Store Contact & Support</h4>
+          <div class="text-xs space-y-2 text-slate-400">
+            <p><i class="fa-solid fa-location-dot mr-2 text-orange-500"></i> Nitin Shoes Store, Main Market, India</p>
+            <p><i class="fa-solid fa-phone mr-2 text-orange-500"></i> +91 98765 43210 / WhatsApp Support</p>
+            <p><i class="fa-solid fa-envelope mr-2 text-orange-500"></i> contact@nitinshoesstore.com</p>
+            <p class="text-[11px] text-slate-500 pt-2 hindi-text">समय: सुबह 9:00 बजे से रात 9:00 बजे तक</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p>© 2025 Nitin Shoes Store. All rights reserved.</p>
+        <p class="hindi-text">आपकी पसंद, हमारा विश्वास • नितिन स्टोर</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS & DRAWERS ==================== -->
+
+  <!-- PRODUCT QUICK VIEW & SIZE SELECTOR MODAL -->
+  <div id="productDetailModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-overlay absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="closeDetailOverlay"></div>
+    <div class="modal-content relative bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between p-4 border-b border-slate-100">
+        <span class="text-xs font-bold text-orange-600 uppercase tracking-wider" id="modalProductBadge">Exclusive Shoe</span>
+        <button id="closeDetailBtn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto p-6 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <!-- Main Photo & Gallery Thumbnails -->
+          <div>
+            <div class="aspect-square w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-inner relative group">
+              <img id="modalMainImg" src="" alt="Shoe Photo" class="w-full h-full object-cover">
+            </div>
+            <!-- Thumbnails Container -->
+            <div id="modalThumbnails" class="flex gap-2 mt-3 overflow-x-auto pb-1">
+              <!-- Dynamically mapped image angles -->
+            </div>
+          </div>
+
+          <!-- Product Meta & Size Picker -->
+          <div class="space-y-4">
+            <div>
+              <span id="modalCategory" class="text-xs font-semibold bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md">Category</span>
+              <h3 id="modalTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">Product Title</h3>
+              
+              <!-- Ratings -->
+              <div class="flex items-center gap-2 mt-1.5 text-xs text-amber-500">
+                <div class="flex">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <span class="text-slate-500 font-medium">(4.8 • 180+ Reviews)</span>
+              </div>
+            </div>
+
+            <!-- Price Row -->
+            <div class="flex items-baseline gap-3">
+              <span id="modalPrice" class="text-3xl font-black text-orange-600">₹0</span>
+              <span id="modalOriginalPrice" class="text-base text-slate-400 line-through">₹0</span>
+              <span id="modalDiscountBadge" class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-0.5 rounded">50% OFF</span>
+            </div>
+
+            <p id="modalDesc" class="text-xs text-slate-600 leading-relaxed hindi-text">
+              विवरण लोड हो रहा है...
+            </p>
+
+            <!-- Size Selection (UK / India standard) -->
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold text-slate-800 mb-2">
+                <span>Select Shoe Size (UK / India Size):</span>
+                <span class="text-orange-600 font-semibold cursor-pointer underline text-[11px]" id="sizeGuideBtn">Size Chart</span>
+              </div>
+              <div class="grid grid-cols-5 gap-2" id="modalSizePills">
+                <button type="button" class="size-pill border border-slate-300 py-2 rounded-xl text-xs font-semibold text-center hover:border-slate-800" data-size="UK 6">UK 6</button>
+                <button type="button" class="size-pill border border-slate-300 py-2 rounded-xl text-xs font-semibold text-center hover:border-slate-800" data-size="UK 7">UK 7</button>
+                <button type="button" class="size-pill active border border-slate-300 py-2 rounded-xl text-xs font-semibold text-center hover:border-slate-800" data-size="UK 8">UK 8</button>
+                <button type="button" class="size-pill border border-slate-300 py-2 rounded-xl text-xs font-semibold text-center hover:border-slate-800" data-size="UK 9">UK 9</button>
+                <button type="button" class="size-pill border border-slate-300 py-2 rounded-xl text-xs font-semibold text-center hover:border-slate-800" data-size="UK 10">UK 10</button>
+              </div>
+            </div>
+
+            <!-- Action Buttons inside detail -->
+            <div class="pt-2 flex flex-col sm:flex-row gap-2">
+              <button id="modalAddToCartBtn" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-95">
+                <i class="fa-solid fa-cart-plus"></i> कार्ट में जोड़ें (Add To Cart)
+              </button>
+              <button id="modalDirectWhatsAppBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-95">
+                <i class="fa-brands fa-whatsapp text-base"></i> Buy on WhatsApp
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+    <div class="modal-overlay absolute inset-0 bg-slate-900/60 backdrop-blur-xs" id="cartOverlay"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col z-10 transition-transform duration-300">
+      
+      <!-- Cart Header -->
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-bag-shopping text-orange-600 text-lg"></i>
+          <h3 class="font-extrabold text-slate-800 text-base">आपकी कार्ट (Your Cart)</h3>
+          <span id="cartDrawerCount" class="text-xs bg-orange-100 text-orange-700 font-bold px-2 py-0.5 rounded-full">0</span>
+        </div>
+        <button id="closeCartBtn" class="w-8 h-8 rounded-full bg-white hover:bg-slate-200 border border-slate-200 flex items-center justify-center text-slate-600">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Cart Items List -->
+      <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-4 space-y-3">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Cart Empty Placeholder -->
+      <div id="cartEmptyPlaceholder" class="hidden flex-1 flex flex-col items-center justify-center p-6 text-center text-slate-400">
+        <i class="fa-solid fa-shoe-prints text-5xl mb-3 text-slate-300"></i>
+        <p class="font-bold text-slate-700">आपकी कार्ट खाली है!</p>
+        <p class="text-xs text-slate-400 mt-1 hindi-text">पसंदीदा जूते चुनें और 'Add to Cart' दबाएं।</p>
+      </div>
+
+      <!-- Live Calculation & Checkout Footer -->
+      <div id="cartFooter" class="p-4 border-t border-slate-200 bg-slate-50/90 space-y-3">
+        <!-- Coupon / Promo code -->
+        <div class="flex gap-2">
+          <input type="text" id="couponInput" placeholder="Discount Code (e.g. NITIN50)" class="flex-1 px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-orange-500 uppercase font-semibold">
+          <button id="applyCouponBtn" class="px-3 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-lg transition">Apply</button>
+        </div>
+        <div id="couponMessage" class="text-[11px] font-semibold hidden"></div>
+
+        <!-- Calculated Summary Lines -->
+        <div class="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-200">
+          <div class="flex justify-between">
+            <span>Subtotal (कुल मूल्य):</span>
+            <span id="calcSubtotal" class="font-bold text-slate-800">₹0</span>
+          </div>
+          <div class="flex justify-between text-emerald-600">
+            <span>Discount (छूट):</span>
+            <span id="calcDiscount" class="font-bold">- ₹0</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Delivery Fee (डिलीवरी शुल्क):</span>
+            <span id="calcDelivery" class="font-bold text-slate-800">FREE</span>
+          </div>
+          <div class="flex justify-between text-base font-black text-slate-900 pt-2 border-t border-slate-200">
+            <span>Final Total (कुल देय राशि):</span>
+            <span id="calcFinalTotal" class="text-orange-600">₹0</span>
+          </div>
+        </div>
+
+        <!-- Checkout Buttons -->
+        <div class="space-y-2 pt-1">
+          <button id="proceedCheckoutBtn" class="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white font-extrabold rounded-xl shadow-md text-sm flex items-center justify-center gap-2 transition">
+            <span>Order Now (ऑर्डर करें)</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+          
+          <button id="checkoutWhatsAppBtn" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>WhatsApp पर सीधी बुकिंग</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHECKOUT & ADDRESS MODAL -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-overlay absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="closeCheckoutOverlay"></div>
+    <div class="modal-content relative bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[90vh]">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between">
+        <h3 class="font-black text-slate-800 text-base flex items-center gap-2">
+          <i class="fa-solid fa-truck-ramp-box text-orange-600"></i>
+          <span>Delivery Details (डिलीवरी पता)</span>
+        </h3>
+        <button id="closeCheckoutBtn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="checkoutForm" class="p-6 overflow-y-auto space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Customer Full Name (आपका पूरा नाम) *</label>
+          <input type="text" id="orderCustName" required placeholder="जैसे: राहुल शर्मा" class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Mobile / WhatsApp Number *</label>
+          <input type="tel" id="orderCustPhone" required placeholder="जैसे: 9876543210" pattern="[0-9]{10}" class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Full Delivery Address with Pincode (पूरा पता व पिनकोड) *</label>
+          <textarea id="orderCustAddress" required rows="3" placeholder="मकान नंबर, गली, लैंडमार्क, शहर, पिनकोड" class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Payment Method (भुगतान का तरीका)</label>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <label class="flex items-center gap-2 p-3 border border-orange-500 bg-orange-50/50 rounded-xl cursor-pointer">
+              <input type="radio" name="paymentOption" value="Cash On Delivery (COD)" checked class="text-orange-600">
+              <span class="font-bold text-slate-800">Cash on Delivery (COD)</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="paymentOption" value="Online UPI / Scanner" class="text-orange-600">
+              <span class="font-semibold text-slate-700">UPI / QR Scan</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Calculated Summary Box -->
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs space-y-1">
+          <div class="flex justify-between">
+            <span class="text-slate-500">Order Amount:</span>
+            <span id="checkoutSummaryTotal" class="font-black text-orange-600">₹0</span>
+          </div>
+          <div class="text-[11px] text-slate-400">
+            * कोई भी अतिरिक्त शिपिंग चार्ज नहीं है।
+          </div>
+        </div>
+
+        <div id="checkoutStatusAlert" class="text-xs font-semibold p-2.5 rounded-lg hidden"></div>
+
+        <button type="submit" id="submitOrderBtn" class="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white font-extrabold rounded-xl shadow-lg text-sm flex items-center justify-center gap-2 transition">
+          <i class="fa-solid fa-check-circle"></i>
+          <span>Confirm & Place Order (ऑर्डर कन्फर्म करें)</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATION (LOGIN / SIGNUP) MODAL -->
+  <div id="authModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-overlay absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="closeAuthOverlay"></div>
+    <div class="modal-content relative bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-lock text-orange-600"></i>
+          <h3 id="authModalTitle" class="font-extrabold text-slate-800 text-base">Login to Nitin Store</h3>
+        </div>
+        <button id="closeAuthBtn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Auth Tabs -->
+      <div class="flex border-b border-slate-200">
+        <button id="tabLogin" class="flex-1 py-3 text-xs font-bold text-orange-600 border-b-2 border-orange-600 text-center transition">
+          Login (लॉग इन)
+        </button>
+        <button id="tabSignup" class="flex-1 py-3 text-xs font-bold text-slate-500 hover:text-slate-700 text-center transition">
+          Sign Up (नया खाता)
+        </button>
+      </div>
+
+      <!-- Form Container -->
+      <div class="p-6 space-y-4">
+        <div id="authAlert" class="text-xs font-semibold p-2.5 rounded-lg hidden"></div>
+
+        <!-- Login / Signup Form -->
+        <form id="authForm" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Email Address</label>
+            <input type="email" id="authEmail" required placeholder="your.email@gmail.com" class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Password</label>
+            <input type="password" id="authPassword" required minlength="6" placeholder="••••••••" class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+          </div>
+
+          <!-- Forgot Password Trigger -->
+          <div class="flex justify-end" id="forgotPasswordContainer">
+            <button type="button" id="openForgotModalBtn" class="text-xs text-orange-600 hover:underline font-semibold">
+              Forgot Password? (पासवर्ड भूल गए?)
+            </button>
+          </div>
+
+          <button type="submit" id="authSubmitBtn" class="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+            <span>Login Now</span>
+          </button>
+        </form>
+
+        <!-- Logged In User State / Logout -->
+        <div id="loggedInView" class="hidden space-y-4 text-center py-2">
+          <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto text-xl font-bold">
+            <i class="fa-regular fa-circle-user"></i>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400">Signed in as:</p>
+            <p id="loggedInEmail" class="text-sm font-bold text-slate-800"></p>
+          </div>
+          <div class="pt-2 flex flex-col gap-2">
+            <button id="viewOrdersModalBtn" class="py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition">
+              <i class="fa-solid fa-receipt mr-1"></i> My Orders (मेरे ऑर्डर्स)
+            </button>
+            <button id="authLogoutBtn" class="py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold rounded-xl transition">
+              <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Logout
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD OTP MODAL -->
+  <div id="forgotModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-overlay absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="closeForgotOverlay"></div>
+    <div class="modal-content relative bg-white w-full max-w-sm rounded-3xl shadow-2xl p-6 z-10 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="font-extrabold text-slate-800 text-sm">Reset Password with OTP</h3>
+        <button id="closeForgotBtn" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div id="forgotAlert" class="text-xs font-semibold p-2 rounded-lg hidden"></div>
+
+      <!-- Step 1: Request OTP -->
+      <div id="forgotStep1" class="space-y-3">
+        <p class="text-xs text-slate-500">अपना रजिस्टर्ड ईमेल दर्ज करें, आपको OTP भेजा जाएगा:</p>
+        <input type="email" id="forgotEmail" placeholder="user@example.com" class="w-full px-3.5 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+        <button id="requestOtpBtn" class="w-full py-2.5 bg-orange-600 text-white font-bold rounded-xl text-xs hover:bg-orange-700">
+          Send OTP (ओटीपी भेजें)
+        </button>
+      </div>
+
+      <!-- Step 2: Reset with OTP -->
+      <div id="forgotStep2" class="hidden space-y-3">
+        <p class="text-xs text-emerald-700 font-medium">OTP आपके ईमेल पर भेजा गया है। यहां दर्ज करें:</p>
+        <input type="text" id="forgotOtp" placeholder="6-digit OTP" class="w-full px-3.5 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+        <input type="password" id="forgotNewPass" placeholder="नया पासवर्ड (New Password)" class="w-full px-3.5 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+        <button id="resetPasswordBtn" class="w-full py-2.5 bg-emerald-600 text-white font-bold rounded-xl text-xs hover:bg-emerald-700">
+          Update Password
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OWNER ADD SHOES DRAWER / MODAL -->
+  <div id="addProductModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-overlay absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="closeAddProductOverlay"></div>
+    <div class="modal-content relative bg-white w-full max-w-lg rounded-3xl shadow-2xl p-6 z-10 max-h-[90vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between border-b pb-3 border-slate-100">
+        <div>
+          <h3 class="font-extrabold text-slate-800 text-base">नया जूता जोड़ें (Add New Shoes)</h3>
+          <p class="text-xs text-slate-500">Store Owner Nitin Management Portal</p>
+        </div>
+        <button id="closeAddProductBtn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="addProductAlert" class="text-xs font-semibold p-2.5 rounded-lg hidden"></div>
+
+      <form id="newShoeForm" class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Shoe Name / Model *</label>
+          <input type="text" id="newShoeTitle" required placeholder="जैसे: Nitin Air Zoom Max Runner" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Category *</label>
+            <select id="newShoeCategory" required class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+              <option value="Sneakers">Sneakers</option>
+              <option value="Sports">Sports / Running</option>
+              <option value="Formal">Formal</option>
+              <option value="Loafers">Loafers</option>
+              <option value="Boots">Boots</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Badge Tag</label>
+            <input type="text" id="newShoeBadge" placeholder="e.g. Best Seller, New, 40% Off" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Selling Price (₹) *</label>
+            <input type="number" id="newShoePrice" required min="1" placeholder="999" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Original Price (₹ MRP) *</label>
+            <input type="number" id="newShoeOriginalPrice" required min="1" placeholder="1999" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Main Shoe Photo URL (फोटो लिंक) *</label>
+          <input type="url" id="newShoeImgUrl" required placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Description (जूते की खासियत)</label>
+          <textarea id="newShoeDesc" rows="2" placeholder="लाइटवेट सोल, प्रीमियम कुशन, वॉटर रेसिस्टेंट..." class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:ring-2 focus:ring-orange-500 focus:outline-none"></textarea>
+        </div>
+
+        <button type="submit" id="saveShoeBtn" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Save Shoe to Store (स्टोर में जोड़ें)</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MY ORDERS MODAL -->
+  <div id="ordersModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-overlay absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="closeOrdersOverlay"></div>
+    <div class="modal-content relative bg-white w-full max-w-xl rounded-3xl shadow-2xl p-6 z-10 max-h-[90vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between border-b pb-3 border-slate-100">
+        <h3 class="font-extrabold text-slate-800 text-base flex items-center gap-2">
+          <i class="fa-solid fa-boxes-packing text-orange-600"></i>
+          <span>My Orders (मेरे ऑर्डर्स)</span>
+        </h3>
+        <button id="closeOrdersBtn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="ordersListContainer" class="space-y-3">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Size Chart Information Modal -->
+  <div id="sizeChartModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-overlay absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="closeSizeOverlay"></div>
+    <div class="modal-content relative bg-white w-full max-w-sm rounded-3xl shadow-2xl p-6 z-10 space-y-4 text-center">
+      <h3 class="font-bold text-slate-800 text-base">Indian Shoe Size Chart (UK / IND)</h3>
+      <table class="w-full text-xs text-left border border-slate-200 rounded-xl overflow-hidden">
+        <thead class="bg-slate-100 font-bold text-slate-700">
+          <tr>
+            <th class="p-2 border-b">UK/IND Size</th>
+            <th class="p-2 border-b">Foot Length (CM)</th>
+            <th class="p-2 border-b">Euro Size</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr><td class="p-2 font-bold">UK 6</td><td class="p-2">24.5 cm</td><td class="p-2">40</td></tr>
+          <tr><td class="p-2 font-bold">UK 7</td><td class="p-2">25.5 cm</td><td class="p-2">41</td></tr>
+          <tr><td class="p-2 font-bold">UK 8</td><td class="p-2">26.5 cm</td><td class="p-2">42</td></tr>
+          <tr><td class="p-2 font-bold">UK 9</td><td class="p-2">27.5 cm</td><td class="p-2">43</td></tr>
+          <tr><td class="p-2 font-bold">UK 10</td><td class="p-2">28.5 cm</td><td class="p-2">44</td></tr>
+        </tbody>
+      </table>
+      <button id="closeSizeModalBtn" class="w-full py-2 bg-slate-800 text-white rounded-xl text-xs font-bold">
+        Got it (समझ गया)
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-semibold border border-slate-700">
+      <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+      <span id="toastMessage">Action completed</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
