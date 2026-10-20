@@ -1,0 +1,45 @@
+{
+  "backend": true,
+  "api_base_url": "https://trumpledroid-api.cloudbeta28624.workers.dev",
+  "roles": {
+    "user": ["own"]
+  },
+  "collections": {
+    "appointments": {
+      "fields": {
+        "patient_name": "string",
+        "patient_email": "string",
+        "patient_phone": "string",
+        "service_name": "string",
+        "appointment_date": "string",
+        "time_slot": "string",
+        "reason_visit": "string",
+        "estimated_fee": "number",
+        "insurance_provider": "string",
+        "status": "string"
+      },
+      "operations": ["create", "read", "update", "delete"]
+    },
+    "inquiries": {
+      "fields": {
+        "full_name": "string",
+        "email": "string",
+        "phone": "string",
+        "message": "string"
+      },
+      "operations": ["create", "read"]
+    }
+  },
+  "logic": {
+    "consultation_estimate": {
+      "type": "calculation",
+      "inputs": ["base_fee", "diagnostic_fee", "insurance_coverage_pct"],
+      "formula": "(base_fee + diagnostic_fee) * (1 - (insurance_coverage_pct / 100))"
+    },
+    "bmi_risk_score": {
+      "type": "calculation",
+      "inputs": ["weight_kg", "height_cm", "systolic_bp"],
+      "formula": "(weight_kg / ((height_cm / 100) * (height_cm / 100))) + (systolic_bp > 130 ? 3 : 0)"
+    }
+  }
+}
