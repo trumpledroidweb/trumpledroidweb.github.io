@@ -1,0 +1,95 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Project Foundation & Medical Theme Layout",
+      "description": "Establish responsive Tailwind CSS layout structure, medical cyan/slate color palette, and meta tags.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Navigation & Urgent Care Announcement Bar",
+      "description": "Create sticky navigation bar with quick contact, mobile drawer, operating status, and appointment CTA.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Physician Hero Section with Verified Badges",
+      "description": "Construct high-converting hero section with doctor credentials, live clinic status, rating cards, and rapid booking trigger.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Practice Impact Metrics & Accreditations",
+      "description": "Implement animated counters for patient recoveries, board certifications, clinical trials, and hospital affiliations.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Physician Profile & Clinical Philosophy",
+      "description": "Showcase Dr. Julian Marcus's background, education, fellowships, research publications, and compassionate care ethos.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Interactive Clinical Services & Procedure Explorer",
+      "description": "Build filterable cards detailing cardiology, preventive screenings, hypertension care, ECG diagnostics, and pricing guides.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Interactive Cardiovascular Wellness & BMI Risk Calculator",
+      "description": "Develop local real-time client-side health assessment engine computing BMI, risk tier, and target cardiac zone.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Patient Consultation Fee Estimator",
+      "description": "Implement local business logic calculator that factors base consultation, selected diagnostics, and insurance copay percentage.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Multi-Step Appointment Booking Modal",
+      "description": "Assemble appointment booking flow with live calendar date picker, time slot selector, symptom notes, and instant summary.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Patient Authentication & Portal Integration",
+      "description": "Implement email/password patient login, registration, and OTP forgot password modal adhering to TrumpleDroid API guidelines.",
+      "files": ["index.html", "script.js", "api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Appointment Persistence & Patient Dashboard",
+      "description": "Enable authenticated booking saving via POST /data, status monitoring via GET /data, and cancellation via DELETE /data.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Patient Reviews, FAQs, and Clinic Location",
+      "description": "Integrate verified patient feedback carousel, interactive accordion FAQs, and clinic hours with direction guides.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Building drjulianmarcus",
+      "description": "Perform comprehensive styling, responsiveness checks, calculation testing, and end-to-end integration.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
