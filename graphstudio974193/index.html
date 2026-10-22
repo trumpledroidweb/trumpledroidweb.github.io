@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GraphStudio - Interactive Graphing Engine</title>
+  <!-- Tailwind CSS v4 via Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 flex flex-col h-screen overflow-hidden select-none font-sans">
+
+  <!-- Header -->
+  <header class="h-14 border-b border-slate-800 bg-slate-900/90 backdrop-blur px-4 flex items-center justify-between shrink-0 z-30">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-600/30">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="font-bold text-base tracking-wide text-white flex items-center gap-2">
+          GraphStudio <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 font-mono">v2.4</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Central Mode Selector -->
+    <div class="flex items-center bg-slate-800/80 p-1 rounded-lg border border-slate-700/60 text-xs font-medium">
+      <button id="mode-functions-btn" class="px-3 py-1 rounded bg-indigo-600 text-white shadow transition-all">Functions f(x)</button>
+      <button id="mode-points-btn" class="px-3 py-1 rounded text-slate-400 hover:text-white transition-all">Data Points</button>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="flex items-center gap-2">
+      <button id="btn-reset-view" title="Reset Viewport to Origin" class="px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-xs font-medium border border-slate-700 flex items-center gap-1.5 transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        Reset View
+      </button>
+      <button id="btn-export-png" class="px-3 py-1.5 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-emerald-600/20 transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        Save PNG
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Body -->
+  <div class="flex flex-1 overflow-hidden relative">
+
+    <!-- Left Control Drawer / Sidebar -->
+    <aside id="sidebar" class="w-80 md:w-96 border-r border-slate-800 bg-slate-900 flex flex-col shrink-0 z-20 transition-all duration-300">
+      
+      <!-- Panel Header Tabs -->
+      <div class="p-3 border-b border-slate-800 flex items-center justify-between bg-slate-950/40">
+        <span class="text-xs uppercase tracking-wider font-semibold text-slate-400" id="panel-title">Function Inputs</span>
+        <button id="btn-add-function" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 px-2.5 py-1 rounded border border-indigo-500/30 flex items-center gap-1 transition">
+          + Add Curve
+        </button>
+      </div>
+
+      <!-- Scrollable Controls Container -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-4" id="controls-scroll">
+        
+        <!-- FUNCTION MODE CONTAINER -->
+        <div id="function-controls" class="space-y-3">
+          <div id="functions-list" class="space-y-3">
+            <!-- Dynamic function rows inserted by JS -->
+          </div>
+
+          <!-- Preset Functions Section -->
+          <div class="pt-2 border-t border-slate-800/80">
+            <label class="text-xs font-semibold text-slate-400 block mb-2">Preset Library</label>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <button class="preset-btn p-2 rounded bg-slate-800 hover:bg-slate-700/80 text-left border border-slate-700/60" data-f1="sin(x)" data-f2="cos(2*x)">
+                <div class="font-medium text-slate-200">Trig Waves</div>
+                <div class="text-[10px] text-slate-400 truncate">sin(x), cos(2x)</div>
+              </button>
+              <button class="preset-btn p-2 rounded bg-slate-800 hover:bg-slate-700/80 text-left border border-slate-700/60" data-f1="x^3 - 3*x" data-f2="3*x^2 - 3">
+                <div class="font-medium text-slate-200">Cubic & Derivative</div>
+                <div class="text-[10px] text-slate-400 truncate">x³-3x, 3x²-3</div>
+              </button>
+              <button class="preset-btn p-2 rounded bg-slate-800 hover:bg-slate-700/80 text-left border border-slate-700/60" data-f1="exp(-x^2 / 2) / 2.506" data-f2="">
+                <div class="font-medium text-slate-200">Bell Curve</div>
+                <div class="text-[10px] text-slate-400 truncate">Gaussian Dist.</div>
+              </button>
+              <button class="preset-btn p-2 rounded bg-slate-800 hover:bg-slate-700/80 text-left border border-slate-700/60" data-f1="exp(-0.2*x)*sin(3*x)" data-f2="">
+                <div class="font-medium text-slate-200">Damped Sine</div>
+                <div class="text-[10px] text-slate-400 truncate">Harmonic decay</div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DATA POINTS MODE CONTAINER (Hidden initially) -->
+        <div id="data-controls" class="space-y-4 hidden">
+          <div class="bg-slate-800/40 p-3 rounded-lg border border-slate-800">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-300">Plot Representation</span>
+              <select id="data-plot-style" class="bg-slate-900 border border-slate-700 text-xs rounded px-2 py-1 text-slate-200">
+                <option value="line">Connected Line</option>
+                <option value="scatter" selected>Scatter Points</option>
+                <option value="bar">Bar Chart</option>
+                <option value="both">Points + Line</option>
+              </select>
+            </div>
+            <p class="text-[11px] text-slate-400 mb-2">Enter coordinates as <code class="bg-slate-900 px-1 py-0.5 rounded text-indigo-300">x, y</code> per line:</p>
+            <textarea id="data-points-input" rows="8" class="w-full bg-slate-900 border border-slate-700 rounded-md p-2 font-mono text-xs text-slate-200 focus:outline-none focus:border-indigo-500 resize-none" spellcheck="false">-5, 2.5
+-4, 1.2
+-3, -1.8
+-2, -0.5
+-1, 3.2
+0, 5.0
+1, 4.1
+2, 2.0
+3, -0.8
+4, 1.5
+5, 3.8</textarea>
+            <div class="flex gap-2 mt-2">
+              <button id="btn-apply-points" class="flex-1 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-xs font-medium transition">Update Plot</button>
+              <button id="btn-sample-points" class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded text-xs text-slate-300 transition">Sample Data</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Viewport Bounds & Axis Calibration -->
+        <div class="bg-slate-800/30 p-3 rounded-lg border border-slate-800/80 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-300">Viewport Scale (Axes)</span>
+            <button id="btn-square-aspect" title="Equalize X:Y ratio" class="text-[11px] text-indigo-400 hover:underline">1:1 Aspect</button>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div>
+              <label class="text-[10px] text-slate-400">X-Min</label>
+              <input type="number" id="bound-xmin" step="any" class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 focus:border-indigo-500">
+            </div>
+            <div>
+              <label class="text-[10px] text-slate-400">X-Max</label>
+              <input type="number" id="bound-xmax" step="any" class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 focus:border-indigo-500">
+            </div>
+            <div>
+              <label class="text-[10px] text-slate-400">Y-Min</label>
+              <input type="number" id="bound-ymin" step="any" class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 focus:border-indigo-500">
+            </div>
+            <div>
+              <label class="text-[10px] text-slate-400">Y-Max</label>
+              <input type="number" id="bound-ymax" step="any" class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 focus:border-indigo-500">
+            </div>
+          </div>
+        </div>
+
+        <!-- Render Style Settings -->
+        <div class="bg-slate-800/30 p-3 rounded-lg border border-slate-800/80 space-y-2">
+          <span class="text-xs font-semibold text-slate-300 block">Visual Options</span>
+          <div class="flex items-center justify-between text-xs">
+            <label for="toggle-grid" class="text-slate-400 cursor-pointer">Coordinate Grid</label>
+            <input type="checkbox" id="toggle-grid" checked class="accent-indigo-600 rounded">
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <label for="toggle-axis" class="text-slate-400 cursor-pointer">Major Crosshairs (0,0)</label>
+            <input type="checkbox" id="toggle-axis" checked class="accent-indigo-600 rounded">
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <label for="toggle-trace" class="text-slate-400 cursor-pointer">Hover Cursor Tracking</label>
+            <input type="checkbox" id="toggle-trace" checked class="accent-indigo-600 rounded">
+          </div>
+        </div>
+
+        <!-- Offline Math Statistics Panel -->
+        <div class="bg-slate-800/40 p-3 rounded-lg border border-slate-800 space-y-2 text-xs">
+          <span class="font-semibold text-slate-300 block">Live Math Metrics</span>
+          <div class="grid grid-cols-2 gap-2 text-[11px] font-mono">
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[9px] uppercase">Pointer X</span>
+              <span id="stat-x" class="text-indigo-300">0.000</span>
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[9px] uppercase">f₁(X) Value</span>
+              <span id="stat-y" class="text-emerald-400">0.000</span>
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[9px] uppercase">f₁'(X) Slope</span>
+              <span id="stat-slope" class="text-amber-400">0.000</span>
+            </div>
+            <div class="bg-slate-900 p-2 rounded border border-slate-800">
+              <span class="text-slate-400 block text-[9px] uppercase">Visible Bounds Area</span>
+              <span id="stat-area" class="text-cyan-400">400.00</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Syntax Guide Footer -->
+      <div class="p-3 border-t border-slate-800 text-[10px] text-slate-400 bg-slate-950/60 leading-relaxed">
+        <strong>Supported:</strong> +, -, *, /, ^, sin, cos, tan, sqrt, abs, ln, exp, pi, e.
+      </div>
+    </aside>
+
+    <!-- Canvas Container -->
+    <main class="flex-1 relative flex flex-col bg-slate-950 overflow-hidden">
+
+      <!-- Canvas Screen -->
+      <canvas id="graph-canvas" class="w-full h-full block cursor-crosshair"></canvas>
+
+      <!-- Floating Canvas Overlay Controls (Zoom Buttons & Coordinates) -->
+      <div class="absolute top-4 right-4 flex flex-col items-end gap-2 pointer-events-none">
+        
+        <!-- Live Pointer Pill -->
+        <div id="cursor-pill" class="hidden pointer-events-auto bg-slate-900/90 backdrop-blur border border-indigo-500/40 px-3 py-1.5 rounded-full text-xs font-mono shadow-xl text-slate-200">
+          <span class="text-indigo-400 font-semibold">X:</span> <span id="pill-x">0.00</span> &nbsp;|&nbsp; 
+          <span class="text-emerald-400 font-semibold">Y:</span> <span id="pill-y">0.00</span>
+        </div>
+
+        <!-- On-screen Navigation Pad -->
+        <div class="pointer-events-auto flex items-center bg-slate-900/90 backdrop-blur border border-slate-800 rounded-lg p-1 shadow-lg gap-1">
+          <button id="btn-zoom-in" title="Zoom In (+)" class="w-8 h-8 rounded bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-200 font-bold transition">
+            +
+          </button>
+          <button id="btn-zoom-out" title="Zoom Out (-)" class="w-8 h-8 rounded bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-200 font-bold transition">
+            -
+          </button>
+          <button id="btn-fit-view" title="Auto Fit Preset" class="px-2.5 h-8 rounded bg-slate-800 hover:bg-slate-700 text-[11px] font-medium text-slate-300 transition">
+            Fit
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Tooltip Overlay -->
+      <div id="graph-tooltip" class="absolute hidden pointer-events-none bg-slate-900/95 border border-slate-700 p-2 rounded shadow-2xl text-xs font-mono z-40 transition-opacity duration-75">
+        <div id="tooltip-content" class="text-slate-200"></div>
+      </div>
+
+      <!-- Bottom Floating Helper Banner -->
+      <div class="absolute bottom-3 left-4 pointer-events-none bg-slate-900/80 backdrop-blur px-3 py-1 rounded-md border border-slate-800 text-[11px] text-slate-400">
+        Pan: <kbd class="px-1 bg-slate-800 rounded text-slate-300">Click & Drag</kbd> &bull; Zoom: <kbd class="px-1 bg-slate-800 rounded text-slate-300">Scroll Wheel</kbd>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
