@@ -2,71 +2,71 @@
   "steps": [
     {
       "step": 1,
-      "title": "Configure Light Theme Root and App Metadata",
-      "description": "Set the default light theme structure, font hierarchy, and ensure meta configurations are retained.",
-      "files": ["index.html", "app-meta.json"],
+      "title": "Define App Startup Loader Structure",
+      "description": "Establish a full-screen, responsive backdrop blur overlay with branded icon and progress indicator in index.html.",
+      "files": ["index.html"],
       "status": "pending"
     },
     {
       "step": 2,
-      "title": "Redesign Ambient Background and Container for Light Mode",
-      "description": "Establish soft daylight pastel gradients, frosted-glass card surfaces, and subtle indigo drop-shadows.",
-      "files": ["index.html", "style.css"],
+      "title": "Style Preloader Keyframes and Brand Spinners",
+      "description": "Add glowing ambient pulsing effects, rotating ring borders, and smooth progress track transitions in style.css.",
+      "files": ["style.css"],
       "status": "pending"
     },
     {
       "step": 3,
-      "title": "Refine Light Theme Header & Control Icons",
-      "description": "Update top navigation bar, toggle badges, and default sun/moon state icons for light-first viewing.",
-      "files": ["index.html", "style.css"],
+      "title": "Support Theme-Aware Preloader Appearance",
+      "description": "Ensure the startup overlay seamlessly reflects both light (default) and dark themes according to persisted preferences.",
+      "files": ["style.css"],
       "status": "pending"
     },
     {
       "step": 4,
-      "title": "Tune High-Contrast Light Mode Display Screen",
-      "description": "Optimize primary and secondary calculation displays with deep slate typography and crisp badge tags.",
-      "files": ["index.html", "style.css"],
+      "title": "Implement Progress Simulation and Lifecycle in Script",
+      "description": "Add lifecycle controller to step progress realistically on launch and dismiss gracefully on document completion.",
+      "files": ["script.js"],
       "status": "pending"
     },
     {
       "step": 5,
-      "title": "Style Light Keypad, Numbers, and Function Buttons",
-      "description": "Apply clean white button tiles with tactile bevels, hover depth, and balanced slate numerals.",
-      "files": ["style.css"],
+      "title": "Configure Smooth Dissolve Transitions",
+      "description": "Implement opacity fade-out and pointer event deactivation so the calculator controls are interactive instantly after load.",
+      "files": ["index.html", "style.css", "script.js"],
       "status": "pending"
     },
     {
       "step": 6,
-      "title": "Upgrade Operator and Action Button Accents",
-      "description": "Enhance operators with bright indigo and turquoise gradients optimized for clarity on light backgrounds.",
-      "files": ["style.css"],
+      "title": "Ensure Audio & State Continuity During Load",
+      "description": "Verify Web Audio API contexts and state initialization cleanly initialize while the loader is active.",
+      "files": ["script.js"],
       "status": "pending"
     },
     {
       "step": 7,
-      "title": "Light Theme History and Converter Drawers",
-      "description": "Re-skin drawer slide-ins, input selects, borders, and history cards in clean light aesthetic.",
-      "files": ["index.html", "style.css"],
+      "title": "Verify Mobile Viewport and Screen Reader Accessibility",
+      "description": "Ensure the loader container respects aria attributes, role alert/status tags, and high-DPI displays.",
+      "files": ["index.html"],
       "status": "pending"
     },
     {
       "step": 8,
-      "title": "Update Theme Toggle Logic in Script",
-      "description": "Synchronize JavaScript theme manager to prioritize light mode as the default state with persistence.",
+      "title": "Optimize Cold Start and Cache Fallbacks",
+      "description": "Guard against hanging states with a maximum threshold timeout to guarantee dismissal under any network state.",
       "files": ["script.js"],
       "status": "pending"
     },
     {
       "step": 9,
-      "title": "Harmonize Haptic Click Feedback and Animations",
-      "description": "Fine-tune light ripple effects and audio context response on button presses.",
-      "files": ["style.css", "script.js"],
+      "title": "Harmonize Keypad and Display Interaction",
+      "description": "Confirm all calculator operations, history drawer, scientific buttons, and converters operate flawlessly post-loader.",
+      "files": ["script.js"],
       "status": "pending"
     },
     {
       "step": 10,
       "title": "Building moderncalc",
-      "description": "Perform full functional verification of calculations, unit conversion, history recall, and light UI styling.",
+      "description": "Complete final verification of the startup loader, seamless fade transition, calculation engine, and responsive UI layout.",
       "files": ["index.html", "style.css", "script.js"],
       "status": "pending"
     }
