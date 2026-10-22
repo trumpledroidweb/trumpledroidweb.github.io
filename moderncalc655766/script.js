@@ -1,10 +1,39 @@
 /**
  * ModernCalc - Advanced Web Calculator Engine
- * Clean Light Theme Optimized with Complete Offline Math & Conversion Support
+ * Resilient, Zero-Hang Startup with Complete Offline Calculation & Conversion Logic
  */
 
 (function () {
   'use strict';
+
+  // --- IMMEDIATE FAST LOADER DISMISSAL (Guarantees Page Shows Promptly) ---
+  function dismissAppLoader() {
+    const loader = document.getElementById('appLoader');
+    if (!loader) return;
+    loader.classList.add('loader-dismissed');
+    loader.style.opacity = '0';
+    loader.style.pointerEvents = 'none';
+    setTimeout(() => {
+      if (loader && loader.parentNode) {
+        loader.style.display = 'none';
+      }
+    }, 300);
+  }
+
+  // Bind immediate manual click-to-dismiss on loader
+  const initialLoader = document.getElementById('appLoader');
+  if (initialLoader) {
+    initialLoader.addEventListener('click', dismissAppLoader);
+  }
+
+  // Dismiss automatically within 250ms to prevent stuck screens
+  setTimeout(dismissAppLoader, 250);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(dismissAppLoader, 100);
+  } else {
+    window.addEventListener('DOMContentLoaded', dismissAppLoader);
+    window.addEventListener('load', dismissAppLoader);
+  }
 
   // --- STATE MANAGEMENT ---
   const state = {
@@ -17,13 +46,10 @@
     hasMemory: false,
     soundEnabled: true,
     history: [],
-    theme: 'light' // Default to light theme
+    theme: 'light'
   };
 
   // --- DOM ELEMENTS ---
-  const appLoader = document.getElementById('appLoader');
-  const loaderProgressBar = document.getElementById('loaderProgressBar');
-  const loaderStatusText = document.getElementById('loaderStatusText');
   const mainDisplay = document.getElementById('mainDisplay');
   const expressionDisplay = document.getElementById('expressionDisplay');
   const memIndicator = document.getElementById('memIndicator');
@@ -48,60 +74,7 @@
   const copyResultBtn = document.getElementById('copyResultBtn');
   const copyToast = document.getElementById('copyToast');
 
-  // --- APP OPEN LOADER LIFECYCLE ---
-  function initAppLoader() {
-    if (!appLoader) return;
-
-    let progress = 12;
-    if (loaderProgressBar) loaderProgressBar.style.width = `${progress}%`;
-
-    const progressMessages = [
-      'Loading math modules...',
-      'Calibrating precision...',
-      'Preparing workspace...',
-      'Ready'
-    ];
-    let msgIndex = 0;
-
-    const progressInterval = setInterval(() => {
-      progress += Math.floor(Math.random() * 25) + 15;
-      if (progress >= 90) {
-        progress = 90;
-        clearInterval(progressInterval);
-      }
-      if (loaderProgressBar) loaderProgressBar.style.width = `${progress}%`;
-      
-      msgIndex = (msgIndex + 1) % progressMessages.length;
-      if (loaderStatusText && progress < 90) {
-        loaderStatusText.textContent = progressMessages[msgIndex];
-      }
-    }, 120);
-
-    const completeLoader = () => {
-      clearInterval(progressInterval);
-      if (loaderProgressBar) loaderProgressBar.style.width = '100%';
-      if (loaderStatusText) loaderStatusText.textContent = 'Ready';
-
-      setTimeout(() => {
-        appLoader.classList.add('opacity-0', 'pointer-events-none');
-        setTimeout(() => {
-          appLoader.style.display = 'none';
-        }, 500);
-      }, 350);
-    };
-
-    if (document.readyState === 'complete') {
-      setTimeout(completeLoader, 450);
-    } else {
-      window.addEventListener('load', () => {
-        setTimeout(completeLoader, 450);
-      });
-      // Safety timeout so loader always dismisses cleanly
-      setTimeout(completeLoader, 1600);
-    }
-  }
-
-  // --- AUDIO SYNTHESIS FEEDBACK (Zero External Files) ---
+  // --- AUDIO SYNTHESIS FEEDBACK (Safe Web Audio API) ---
   let audioCtx = null;
   function playClickSound(freq = 600, type = 'sine') {
     if (!state.soundEnabled) return;
@@ -126,7 +99,7 @@
         osc.stop(audioCtx.currentTime + 0.045);
       }
     } catch (e) {
-      // Audio autoplay gracefully handled
+      // Audio playback safely bypassed if restricted
     }
   }
 
@@ -149,7 +122,6 @@
     } catch (e) {}
   }
 
-  // Detect saved preference or start light
   const savedTheme = (function () {
     try {
       return localStorage.getItem('moderncalc_theme') || 'light';
@@ -161,6 +133,7 @@
 
   // --- DISPLAY RENDERER ---
   function updateDisplay() {
+    if (!mainDisplay || !expressionDisplay) return;
     mainDisplay.textContent = state.currentInput;
     expressionDisplay.textContent = state.previousExpression;
 
@@ -176,10 +149,12 @@
     mainDisplay.scrollLeft = mainDisplay.scrollWidth;
     expressionDisplay.scrollLeft = expressionDisplay.scrollWidth;
 
-    if (state.hasMemory) {
-      memIndicator.classList.remove('hidden');
-    } else {
-      memIndicator.classList.add('hidden');
+    if (memIndicator) {
+      if (state.hasMemory) {
+        memIndicator.classList.remove('hidden');
+      } else {
+        memIndicator.classList.add('hidden');
+      }
     }
   }
 
@@ -609,10 +584,11 @@
     state.history.unshift({ expr, result, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
     if (state.history.length > 25) state.history.pop();
     renderHistory();
-    historyBadge.classList.remove('hidden');
+    if (historyBadge) historyBadge.classList.remove('hidden');
   }
 
   function renderHistory() {
+    if (!historyList) return;
     if (state.history.length === 0) {
       historyList.innerHTML = `<div class="text-center py-12 text-slate-400 text-xs">No previous calculations in this session.</div>`;
       return;
@@ -645,9 +621,10 @@
   }
 
   function toggleHistoryDrawer(show) {
+    if (!historyDrawer) return;
     if (show) {
       historyDrawer.classList.remove('translate-x-full');
-      historyBadge.classList.add('hidden');
+      if (historyBadge) historyBadge.classList.add('hidden');
     } else {
       historyDrawer.classList.add('translate-x-full');
     }
@@ -693,8 +670,9 @@
   const convOutputValue = document.getElementById('convOutputValue');
 
   function populateUnitDropdowns() {
+    if (!convCategory || !convFromUnit || !convToUnit) return;
     const category = convCategory.value;
-    const units = Object.keys(unitData[category]);
+    const units = Object.keys(unitData[category] || {});
     
     convFromUnit.innerHTML = units.map(u => `<option value="${u}">${capitalize(u)}</option>`).join('');
     convToUnit.innerHTML = units.map((u, i) => `<option value="${u}" ${i === 1 ? 'selected' : ''}>${capitalize(u)}</option>`).join('');
@@ -706,6 +684,7 @@
   }
 
   function calculateUnitConversion() {
+    if (!convCategory || !convInputValue || !convFromUnit || !convToUnit || !convOutputValue) return;
     const category = convCategory.value;
     const inputVal = parseFloat(convInputValue.value) || 0;
     const from = convFromUnit.value;
@@ -716,8 +695,8 @@
     if (category === 'temp') {
       output = convertTemperature(inputVal, from, to);
     } else {
-      const fromFactor = unitData[category][from] || 1;
-      const toFactor = unitData[category][to] || 1;
+      const fromFactor = (unitData[category] && unitData[category][from]) || 1;
+      const toFactor = (unitData[category] && unitData[category][to]) || 1;
       const baseValue = inputVal * fromFactor;
       output = baseValue / toFactor;
     }
@@ -736,6 +715,9 @@
     if (to === 'kelvin') return celsius + 273.15;
     return val;
   }
+
+  // Populate converter initially
+  populateUnitDropdowns();
 
   // --- BUTTON CLICKS WITH RIPPLE EFFECT ---
   document.querySelectorAll('button').forEach(btn => {
@@ -758,53 +740,56 @@
     });
   });
 
-  // --- EVENT DELEGATION FOR KEYPAD ---
-  document.getElementById('calcApp').addEventListener('click', function (e) {
-    const target = e.target.closest('button');
-    if (!target) return;
+  // --- KEYPAD EVENT DELEGATION ---
+  const calcApp = document.getElementById('calcApp');
+  if (calcApp) {
+    calcApp.addEventListener('click', function (e) {
+      const target = e.target.closest('button');
+      if (!target) return;
 
-    const action = target.getAttribute('data-action');
-    const val = target.getAttribute('data-val');
+      const action = target.getAttribute('data-action');
+      const val = target.getAttribute('data-val');
 
-    if (!action) return;
+      if (!action) return;
 
-    switch (action) {
-      case 'num':
-        inputDigit(val);
-        break;
-      case 'decimal':
-        inputDecimal();
-        break;
-      case 'op':
-        inputOperator(val);
-        break;
-      case 'equals':
-        executeEquals();
-        break;
-      case 'clear-all':
-        clearAll();
-        break;
-      case 'backspace':
-        backspace();
-        break;
-      case 'negate':
-        negateValue();
-        break;
-      case 'bracket':
-        inputParentheses();
-        break;
-      case 'sci':
-        applySciFunction(val);
-        break;
-      case 'insert':
-        if (val === '^') inputOperator('^');
-        else insertConstant(val);
-        break;
-      case 'mem':
-        handleMemory(val);
-        break;
-    }
-  });
+      switch (action) {
+        case 'num':
+          inputDigit(val);
+          break;
+        case 'decimal':
+          inputDecimal();
+          break;
+        case 'op':
+          inputOperator(val);
+          break;
+        case 'equals':
+          executeEquals();
+          break;
+        case 'clear-all':
+          clearAll();
+          break;
+        case 'backspace':
+          backspace();
+          break;
+        case 'negate':
+          negateValue();
+          break;
+        case 'bracket':
+          inputParentheses();
+          break;
+        case 'sci':
+          applySciFunction(val);
+          break;
+        case 'insert':
+          if (val === '^') inputOperator('^');
+          else insertConstant(val);
+          break;
+        case 'mem':
+          handleMemory(val);
+          break;
+      }
+    });
+  }
 
   // --- KEYBOARD SHORTCUTS ---
   window.addEventListener('keydown', function (e) {
@@ -835,101 +820,128 @@
     } else if (e.key === 'Escape') {
       clearAll();
     } else if (e.key.toLowerCase() === 'm') {
-      soundToggle.click();
+      if (soundToggle) soundToggle.click();
     } else if (e.key.toLowerCase() === 's') {
-      sciToggle.click();
+      if (sciToggle) sciToggle.click();
     } else if (e.key.toLowerCase() === 'h') {
       toggleHistoryDrawer(true);
     }
   });
 
   // --- UI TOGGLE LISTENERS ---
-  soundToggle.addEventListener('click', () => {
-    state.soundEnabled = !state.soundEnabled;
-    soundIconOn.classList.toggle('hidden', !state.soundEnabled);
-    soundIconOff.classList.toggle('hidden', state.soundEnabled);
-    if (state.soundEnabled) playClickSound(700);
-  });
+  if (soundToggle) {
+    soundToggle.addEventListener('click', () => {
+      state.soundEnabled = !state.soundEnabled;
+      if (soundIconOn) soundIconOn.classList.toggle('hidden', !state.soundEnabled);
+      if (soundIconOff) soundIconOff.classList.toggle('hidden', state.soundEnabled);
+      if (state.soundEnabled) playClickSound(700);
+    });
+  }
 
-  sciToggle.addEventListener('click', () => {
-    playClickSound(600);
-    sciDrawer.classList.toggle('hidden');
-    sciToggle.classList.toggle('bg-indigo-50');
-    sciToggle.classList.toggle('text-indigo-600');
-    sciToggle.classList.toggle('border-indigo-300');
-  });
+  if (sciToggle && sciDrawer) {
+    sciToggle.addEventListener('click', () => {
+      playClickSound(600);
+      sciDrawer.classList.toggle('hidden');
+      sciToggle.classList.toggle('bg-indigo-50');
+      sciToggle.classList.toggle('text-indigo-600');
+      sciToggle.classList.toggle('border-indigo-300');
+    });
+  }
 
-  convertToggle.addEventListener('click', () => {
-    playClickSound(600);
-    converterDrawer.classList.toggle('hidden');
-    if (!converterDrawer.classList.contains('hidden')) {
-      populateUnitDropdowns();
-    }
-  });
+  if (convertToggle && converterDrawer) {
+    convertToggle.addEventListener('click', () => {
+      playClickSound(600);
+      converterDrawer.classList.toggle('hidden');
+      if (!converterDrawer.classList.contains('hidden')) {
+        populateUnitDropdowns();
+      }
+    });
+  }
 
-  closeConverterBtn.addEventListener('click', () => {
-    converterDrawer.classList.add('hidden');
-  });
+  if (closeConverterBtn && converterDrawer) {
+    closeConverterBtn.addEventListener('click', () => {
+      converterDrawer.classList.add('hidden');
+    });
+  }
 
-  convCategory.addEventListener('change', populateUnitDropdowns);
-  convInputValue.addEventListener('input', calculateUnitConversion);
-  convFromUnit.addEventListener('change', calculateUnitConversion);
-  convToUnit.addEventListener('change', calculateUnitConversion);
+  if (convCategory) convCategory.addEventListener('change', populateUnitDropdowns);
+  if (convInputValue) convInputValue.addEventListener('input', calculateUnitConversion);
+  if (convFromUnit) convFromUnit.addEventListener('change', calculateUnitConversion);
+  if (convToUnit) convToUnit.addEventListener('change', calculateUnitConversion);
 
-  historyToggle.addEventListener('click', () => {
-    playClickSound(600);
-    toggleHistoryDrawer(true);
-  });
+  if (historyToggle) {
+    historyToggle.addEventListener('click', () => {
+      playClickSound(600);
+      toggleHistoryDrawer(true);
+    });
+  }
 
-  closeHistoryBtn.addEventListener('click', () => {
-    toggleHistoryDrawer(false);
-  });
+  if (closeHistoryBtn) {
+    closeHistoryBtn.addEventListener('click', () => {
+      toggleHistoryDrawer(false);
+    });
+  }
 
-  clearHistoryBtn.addEventListener('click', () => {
-    state.history = [];
-    renderHistory();
-    historyBadge.classList.add('hidden');
-    playClickSound(400);
-  });
+  if (clearHistoryBtn) {
+    clearHistoryBtn.addEventListener('click', () => {
+      state.history = [];
+      renderHistory();
+      if (historyBadge) historyBadge.classList.add('hidden');
+      playClickSound(400);
+    });
+  }
 
-  angleModeToggle.addEventListener('click', () => {
-    state.angleMode = state.angleMode === 'DEG' ? 'RAD' : 'DEG';
-    angleModeToggle.textContent = state.angleMode;
-    playClickSound(700);
-  });
+  if (angleModeToggle) {
+    angleModeToggle.addEventListener('click', () => {
+      state.angleMode = state.angleMode === 'DEG' ? 'RAD' : 'DEG';
+      angleModeToggle.textContent = state.angleMode;
+      playClickSound(700);
+    });
+  }
 
-  // Theme Toggle: toggles between light and dark
-  themeToggle.addEventListener('click', () => {
-    const nextTheme = state.theme === 'light' ? 'dark' : 'light';
-    applyTheme(nextTheme);
-    playClickSound(650);
-  });
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = state.theme === 'light' ? 'dark' : 'light';
+      applyTheme(nextTheme);
+      playClickSound(650);
+    });
+  }
 
   // --- COPY RESULT ---
-  copyResultBtn.addEventListener('click', () => {
-    const textToCopy = state.currentInput;
-    if (!textToCopy || textToCopy === 'Error') return;
+  if (copyResultBtn) {
+    copyResultBtn.addEventListener('click', () => {
+      const textToCopy = state.currentInput;
+      if (!textToCopy || textToCopy === 'Error') return;
 
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(textToCopy).then(() => showToast());
-    } else {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(() => showToast()).catch(() => fallbackCopy(textToCopy));
+      } else {
+        fallbackCopy(textToCopy);
+      }
+    });
+  }
+
+  function fallbackCopy(text) {
+    try {
       const textarea = document.createElement('textarea');
-      textarea.value = textToCopy;
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
       document.body.appendChild(textarea);
       textarea.select();
       document.execCommand('copy');
       textarea.remove();
       showToast();
-    }
-  });
+    } catch (e) {}
+  }
 
   function showToast() {
+    if (!copyToast) return;
     copyToast.classList.remove('opacity-0');
     playClickSound(900);
     setTimeout(() => copyToast.classList.add('opacity-0'), 1500);
   }
 
-  // --- INITIALIZE SYSTEM ---
-  initAppLoader();
+  // Render initial display
   updateDisplay();
 })();
