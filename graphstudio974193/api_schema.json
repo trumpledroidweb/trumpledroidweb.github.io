@@ -1,0 +1,22 @@
+{
+  "backend": false,
+  "roles": {},
+  "collections": {},
+  "logic": {
+    "math_evaluation": {
+      "type": "calculation",
+      "inputs": ["expression", "x"],
+      "formula": "evaluate_token_tree(expression, x)"
+    },
+    "numerical_derivative": {
+      "type": "calculation",
+      "inputs": ["y_next", "y_prev", "h"],
+      "formula": "(y_next - y_prev) / (2 * h)"
+    },
+    "trapezoidal_integral": {
+      "type": "calculation",
+      "inputs": ["samples", "step_size"],
+      "formula": "step_size * (sum(samples) - (samples[0] + samples[n])/2)"
+    }
+  }
+}
