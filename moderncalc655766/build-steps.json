@@ -2,92 +2,71 @@
   "steps": [
     {
       "step": 1,
-      "title": "Define Project Architecture and Meta",
-      "description": "Initialize app metadata and setup offline calculation structure for ModernCalc.",
-      "files": ["app-meta.json", "api_schema.json"],
+      "title": "Configure Light Theme Root and App Metadata",
+      "description": "Set the default light theme structure, font hierarchy, and ensure meta configurations are retained.",
+      "files": ["index.html", "app-meta.json"],
       "status": "pending"
     },
     {
       "step": 2,
-      "title": "Create Responsive HTML Skeleton",
-      "description": "Structure the calculator card, display panels, keypad, scientific drawer, and history drawer.",
-      "files": ["index.html"],
+      "title": "Redesign Ambient Background and Container for Light Mode",
+      "description": "Establish soft daylight pastel gradients, frosted-glass card surfaces, and subtle indigo drop-shadows.",
+      "files": ["index.html", "style.css"],
       "status": "pending"
     },
     {
       "step": 3,
-      "title": "Configure Modern Visual Themes & Typography",
-      "description": "Load Tailwind CSS v4 and establish theme variables, glassmorphic styling, and fluid display sizing.",
+      "title": "Refine Light Theme Header & Control Icons",
+      "description": "Update top navigation bar, toggle badges, and default sun/moon state icons for light-first viewing.",
       "files": ["index.html", "style.css"],
       "status": "pending"
     },
     {
       "step": 4,
-      "title": "Design Interactive Display & Mode Switcher",
-      "description": "Build high-visibility display with secondary expression tracker, memory indicators, and mode toggles.",
+      "title": "Tune High-Contrast Light Mode Display Screen",
+      "description": "Optimize primary and secondary calculation displays with deep slate typography and crisp badge tags.",
       "files": ["index.html", "style.css"],
       "status": "pending"
     },
     {
       "step": 5,
-      "title": "Implement Web Audio Feedback Engine",
-      "description": "Synthesize subtle, zero-dependency audio click feedback for tactile keypad responsiveness.",
-      "files": ["script.js"],
+      "title": "Style Light Keypad, Numbers, and Function Buttons",
+      "description": "Apply clean white button tiles with tactile bevels, hover depth, and balanced slate numerals.",
+      "files": ["style.css"],
       "status": "pending"
     },
     {
       "step": 6,
-      "title": "Develop Core Arithmetic Calculation Engine",
-      "description": "Implement precision-safe math operations, bracket precedence, percentages, and floating-point safeguards.",
-      "files": ["script.js"],
+      "title": "Upgrade Operator and Action Button Accents",
+      "description": "Enhance operators with bright indigo and turquoise gradients optimized for clarity on light backgrounds.",
+      "files": ["style.css"],
       "status": "pending"
     },
     {
       "step": 7,
-      "title": "Add Scientific Math Functions",
-      "description": "Implement trigonometry, logarithmic, exponential, powers, roots, and mathematical constants.",
-      "files": ["script.js"],
+      "title": "Light Theme History and Converter Drawers",
+      "description": "Re-skin drawer slide-ins, input selects, borders, and history cards in clean light aesthetic.",
+      "files": ["index.html", "style.css"],
       "status": "pending"
     },
     {
       "step": 8,
-      "title": "Implement Memory Registers",
-      "description": "Add memory clear (MC), recall (MR), add (M+), and subtract (M-) functionality with visual badge.",
+      "title": "Update Theme Toggle Logic in Script",
+      "description": "Synchronize JavaScript theme manager to prioritize light mode as the default state with persistence.",
       "files": ["script.js"],
       "status": "pending"
     },
     {
       "step": 9,
-      "title": "Build Calculation History System",
-      "description": "Implement persistent session history log with recall-to-display and clear actions.",
-      "files": ["index.html", "script.js"],
-      "status": "pending"
-    },
-    {
-      "step": 10,
-      "title": "Create Integrated Unit Converter",
-      "description": "Add quick switcher for unit conversions including Length, Temperature, Mass, and Data storage.",
-      "files": ["index.html", "script.js"],
-      "status": "pending"
-    },
-    {
-      "step": 11,
-      "title": "Configure Keyboard Shortcuts & Input Sanitization",
-      "description": "Map standard physical keyboard keys, numpad, escape, backspace, and brackets to calculator actions.",
-      "files": ["script.js"],
-      "status": "pending"
-    },
-    {
-      "step": 12,
-      "title": "Polish Transitions, Ripple Effects, and Clipboard Support",
-      "description": "Add tactile button animations, copy-to-clipboard toast notifications, and display shrink-to-fit.",
+      "title": "Harmonize Haptic Click Feedback and Animations",
+      "description": "Fine-tune light ripple effects and audio context response on button presses.",
       "files": ["style.css", "script.js"],
       "status": "pending"
     },
     {
-      "step": 13,
+      "step": 10,
       "title": "Building moderncalc",
-      "description": "Finalize verification of responsive layouts, offline accuracy, and visual aesthetics.",
+      "description": "Perform full functional verification of calculations, unit conversion, history recall, and light UI styling.",
       "files": ["index.html", "style.css", "script.js"],
       "status": "pending"
     }
