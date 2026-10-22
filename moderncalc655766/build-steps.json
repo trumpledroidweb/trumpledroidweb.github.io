@@ -1,0 +1,95 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "title": "Define Project Architecture and Meta",
+      "description": "Initialize app metadata and setup offline calculation structure for ModernCalc.",
+      "files": ["app-meta.json", "api_schema.json"],
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "title": "Create Responsive HTML Skeleton",
+      "description": "Structure the calculator card, display panels, keypad, scientific drawer, and history drawer.",
+      "files": ["index.html"],
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "title": "Configure Modern Visual Themes & Typography",
+      "description": "Load Tailwind CSS v4 and establish theme variables, glassmorphic styling, and fluid display sizing.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "title": "Design Interactive Display & Mode Switcher",
+      "description": "Build high-visibility display with secondary expression tracker, memory indicators, and mode toggles.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Implement Web Audio Feedback Engine",
+      "description": "Synthesize subtle, zero-dependency audio click feedback for tactile keypad responsiveness.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Develop Core Arithmetic Calculation Engine",
+      "description": "Implement precision-safe math operations, bracket precedence, percentages, and floating-point safeguards.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Add Scientific Math Functions",
+      "description": "Implement trigonometry, logarithmic, exponential, powers, roots, and mathematical constants.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Implement Memory Registers",
+      "description": "Add memory clear (MC), recall (MR), add (M+), and subtract (M-) functionality with visual badge.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "title": "Build Calculation History System",
+      "description": "Implement persistent session history log with recall-to-display and clear actions.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "title": "Create Integrated Unit Converter",
+      "description": "Add quick switcher for unit conversions including Length, Temperature, Mass, and Data storage.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "title": "Configure Keyboard Shortcuts & Input Sanitization",
+      "description": "Map standard physical keyboard keys, numpad, escape, backspace, and brackets to calculator actions.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "title": "Polish Transitions, Ripple Effects, and Clipboard Support",
+      "description": "Add tactile button animations, copy-to-clipboard toast notifications, and display shrink-to-fit.",
+      "files": ["style.css", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "title": "Building moderncalc",
+      "description": "Finalize verification of responsive layouts, offline accuracy, and visual aesthetics.",
+      "files": ["index.html", "style.css", "script.js"],
+      "status": "pending"
+    }
+  ]
+}
