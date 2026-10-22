@@ -1,0 +1,52 @@
+/* GraphStudio Custom Styling */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #020617;
+  color: #f8fafc;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Custom modern scrollbar for sidebar */
+#controls-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+#controls-scroll::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+#controls-scroll::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 3px;
+}
+#controls-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.6);
+}
+
+/* Custom interactive inputs */
+input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* Canvas cursor behavior */
+canvas.grabbing {
+  cursor: grabbing !important;
+}
+
+/* Smooth subtle transitions */
+button, input, select, textarea {
+  transition: all 0.15s ease-in-out;
+}
