@@ -2,71 +2,71 @@
   "steps": [
     {
       "step": 1,
-      "title": "Define App Startup Loader Structure",
-      "description": "Establish a full-screen, responsive backdrop blur overlay with branded icon and progress indicator in index.html.",
-      "files": ["index.html"],
+      "title": "Diagnose Loader Freeze and Page Block Root Cause",
+      "description": "Identify that the startup loader was reliant on deferred network events and an end-of-script initialization, leaving the overlay stuck if any resource delayed.",
+      "files": ["index.html", "script.js"],
       "status": "pending"
     },
     {
       "step": 2,
-      "title": "Style Preloader Keyframes and Brand Spinners",
-      "description": "Add glowing ambient pulsing effects, rotating ring borders, and smooth progress track transitions in style.css.",
-      "files": ["style.css"],
-      "status": "pending"
-    },
-    {
-      "step": 3,
-      "title": "Support Theme-Aware Preloader Appearance",
-      "description": "Ensure the startup overlay seamlessly reflects both light (default) and dark themes according to persisted preferences.",
-      "files": ["style.css"],
-      "status": "pending"
-    },
-    {
-      "step": 4,
-      "title": "Implement Progress Simulation and Lifecycle in Script",
-      "description": "Add lifecycle controller to step progress realistically on launch and dismiss gracefully on document completion.",
-      "files": ["script.js"],
-      "status": "pending"
-    },
-    {
-      "step": 5,
-      "title": "Configure Smooth Dissolve Transitions",
-      "description": "Implement opacity fade-out and pointer event deactivation so the calculator controls are interactive instantly after load.",
-      "files": ["index.html", "style.css", "script.js"],
-      "status": "pending"
-    },
-    {
-      "step": 6,
-      "title": "Ensure Audio & State Continuity During Load",
-      "description": "Verify Web Audio API contexts and state initialization cleanly initialize while the loader is active.",
-      "files": ["script.js"],
-      "status": "pending"
-    },
-    {
-      "step": 7,
-      "title": "Verify Mobile Viewport and Screen Reader Accessibility",
-      "description": "Ensure the loader container respects aria attributes, role alert/status tags, and high-DPI displays.",
+      "title": "Add Guaranteed Immediate Inline Dismissal Guard",
+      "description": "Embed a lightweight inline safety controller directly inside index.html ensuring the loader dismisses immediately within milliseconds under all conditions.",
       "files": ["index.html"],
       "status": "pending"
     },
     {
-      "step": 8,
-      "title": "Optimize Cold Start and Cache Fallbacks",
-      "description": "Guard against hanging states with a maximum threshold timeout to guarantee dismissal under any network state.",
+      "step": 3,
+      "title": "Prioritize Preloader Initialization in Script",
+      "description": "Move loader activation and dismissal to the immediate top of script.js with comprehensive try-catch wrappers so DOM execution never halts.",
       "files": ["script.js"],
       "status": "pending"
     },
     {
+      "step": 4,
+      "title": "Reinforce Non-Blocking CSS Visibility Classes",
+      "description": "Ensure style.css enforces pointer-events: none and visibility: hidden when the loader is dismissed so calculator controls are instantly accessible.",
+      "files": ["style.css"],
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "title": "Safeguard Web Audio API and LocalStorage Access",
+      "description": "Wrap localStorage theme reads and AudioContext creation in safe fallback blocks to prevent cross-origin iframe security exceptions from stalling execution.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "title": "Provide User Tap Fallback on Loader",
+      "description": "Enable instant tap-to-dismiss on the preloader overlay as a manual failsafe for zero-latency user interaction.",
+      "files": ["index.html", "script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "title": "Harden Unit Conversion and Scientific Drawer State",
+      "description": "Verify proper initialization of conversion dropdowns and drawer elements without throwing runtime errors on fresh startup.",
+      "files": ["script.js"],
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "title": "Optimize Responsive Calc Layout Rendering",
+      "description": "Ensure the main calculator container renders smoothly with zero layout shift once the preloader fades away.",
+      "files": ["index.html", "style.css"],
+      "status": "pending"
+    },
+    {
       "step": 9,
-      "title": "Harmonize Keypad and Display Interaction",
-      "description": "Confirm all calculator operations, history drawer, scientific buttons, and converters operate flawlessly post-loader.",
+      "title": "Test Theme Toggle and Offline Math Logic",
+      "description": "Verify light/dark toggle and all arithmetic/scientific operations function deterministically offline.",
       "files": ["script.js"],
       "status": "pending"
     },
     {
       "step": 10,
       "title": "Building moderncalc",
-      "description": "Complete final verification of the startup loader, seamless fade transition, calculation engine, and responsive UI layout.",
+      "description": "Complete final verification ensuring the loader cleanly vanishes immediately and the calculator page is instantly visible and interactive.",
       "files": ["index.html", "style.css", "script.js"],
       "status": "pending"
     }
