@@ -20,6 +20,87 @@
     theme: 'light' // Default to light theme
   };
 
+  // --- DOM ELEMENTS ---
+  const appLoader = document.getElementById('appLoader');
+  const loaderProgressBar = document.getElementById('loaderProgressBar');
+  const loaderStatusText = document.getElementById('loaderStatusText');
+  const mainDisplay = document.getElementById('mainDisplay');
+  const expressionDisplay = document.getElementById('expressionDisplay');
+  const memIndicator = document.getElementById('memIndicator');
+  const angleModeToggle = document.getElementById('angleModeToggle');
+  const soundToggle = document.getElementById('soundToggle');
+  const soundIconOn = document.getElementById('soundIconOn');
+  const soundIconOff = document.getElementById('soundIconOff');
+  const sciToggle = document.getElementById('sciToggle');
+  const sciDrawer = document.getElementById('sciDrawer');
+  const convertToggle = document.getElementById('convertToggle');
+  const converterDrawer = document.getElementById('converterDrawer');
+  const closeConverterBtn = document.getElementById('closeConverterBtn');
+  const historyToggle = document.getElementById('historyToggle');
+  const historyDrawer = document.getElementById('historyDrawer');
+  const closeHistoryBtn = document.getElementById('closeHistoryBtn');
+  const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+  const historyList = document.getElementById('historyList');
+  const historyBadge = document.getElementById('historyBadge');
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIconSun = document.getElementById('themeIconSun');
+  const themeIconMoon = document.getElementById('themeIconMoon');
+  const copyResultBtn = document.getElementById('copyResultBtn');
+  const copyToast = document.getElementById('copyToast');
+
+  // --- APP OPEN LOADER LIFECYCLE ---
+  function initAppLoader() {
+    if (!appLoader) return;
+
+    let progress = 12;
+    if (loaderProgressBar) loaderProgressBar.style.width = `${progress}%`;
+
+    const progressMessages = [
+      'Loading math modules...',
+      'Calibrating precision...',
+      'Preparing workspace...',
+      'Ready'
+    ];
+    let msgIndex = 0;
+
+    const progressInterval = setInterval(() => {
+      progress += Math.floor(Math.random() * 25) + 15;
+      if (progress >= 90) {
+        progress = 90;
+        clearInterval(progressInterval);
+      }
+      if (loaderProgressBar) loaderProgressBar.style.width = `${progress}%`;
+      
+      msgIndex = (msgIndex + 1) % progressMessages.length;
+      if (loaderStatusText && progress < 90) {
+        loaderStatusText.textContent = progressMessages[msgIndex];
+      }
+    }, 120);
+
+    const completeLoader = () => {
+      clearInterval(progressInterval);
+      if (loaderProgressBar) loaderProgressBar.style.width = '100%';
+      if (loaderStatusText) loaderStatusText.textContent = 'Ready';
+
+      setTimeout(() => {
+        appLoader.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+          appLoader.style.display = 'none';
+        }, 500);
+      }, 350);
+    };
+
+    if (document.readyState === 'complete') {
+      setTimeout(completeLoader, 450);
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(completeLoader, 450);
+      });
+      // Safety timeout so loader always dismisses cleanly
+      setTimeout(completeLoader, 1600);
+    }
+  }
+
   // --- AUDIO SYNTHESIS FEEDBACK (Zero External Files) ---
   let audioCtx = null;
   function playClickSound(freq = 600, type = 'sine') {
@@ -48,31 +129,6 @@
       // Audio autoplay gracefully handled
     }
   }
-
-  // --- DOM ELEMENTS ---
-  const mainDisplay = document.getElementById('mainDisplay');
-  const expressionDisplay = document.getElementById('expressionDisplay');
-  const memIndicator = document.getElementById('memIndicator');
-  const angleModeToggle = document.getElementById('angleModeToggle');
-  const soundToggle = document.getElementById('soundToggle');
-  const soundIconOn = document.getElementById('soundIconOn');
-  const soundIconOff = document.getElementById('soundIconOff');
-  const sciToggle = document.getElementById('sciToggle');
-  const sciDrawer = document.getElementById('sciDrawer');
-  const convertToggle = document.getElementById('convertToggle');
-  const converterDrawer = document.getElementById('converterDrawer');
-  const closeConverterBtn = document.getElementById('closeConverterBtn');
-  const historyToggle = document.getElementById('historyToggle');
-  const historyDrawer = document.getElementById('historyDrawer');
-  const closeHistoryBtn = document.getElementById('closeHistoryBtn');
-  const clearHistoryBtn = document.getElementById('clearHistoryBtn');
-  const historyList = document.getElementById('historyList');
-  const historyBadge = document.getElementById('historyBadge');
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIconSun = document.getElementById('themeIconSun');
-  const themeIconMoon = document.getElementById('themeIconMoon');
-  const copyResultBtn = document.getElementById('copyResultBtn');
-  const copyToast = document.getElementById('copyToast');
 
   // --- THEME INITIALIZER (LIGHT DEFAULT) ---
   function applyTheme(theme) {
@@ -873,6 +929,7 @@
     setTimeout(() => copyToast.classList.add('opacity-0'), 1500);
   }
 
-  // Initial display setup
+  // --- INITIALIZE SYSTEM ---
+  initAppLoader();
   updateDisplay();
 })();
