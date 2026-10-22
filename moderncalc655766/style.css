@@ -1,0 +1,222 @@
+/* ModernCalc Tailored Styles */
+
+:root {
+  --calc-bg: #0f172a;
+}
+
+/* Light Theme overrides via class toggle on html */
+html.light {
+  color-scheme: light;
+}
+html.light body {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+html.light #calcApp {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(226, 232, 240, 0.8);
+  box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.15);
+}
+html.light header {
+  border-color: rgba(226, 232, 240, 0.8);
+}
+html.light header span.text-slate-200 {
+  color: #0f172a;
+}
+html.light section {
+  background: linear-gradient(to bottom, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.95));
+  border-color: rgba(226, 232, 240, 0.8);
+}
+html.light #mainDisplay {
+  color: #0f172a;
+}
+html.light #expressionDisplay {
+  color: #64748b;
+}
+html.light .calc-btn-num {
+  background-color: #ffffff;
+  color: #1e293b;
+  border-color: #e2e8f0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+html.light .calc-btn-num:hover {
+  background-color: #f8fafc;
+}
+html.light .calc-btn-func {
+  background-color: #f1f5f9;
+  color: #334155;
+  border-color: #e2e8f0;
+}
+html.light .calc-btn-func:hover {
+  background-color: #e2e8f0;
+}
+html.light .calc-btn-sci {
+  background-color: #f8fafc;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+html.light .calc-btn-sci:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+html.light .calc-btn-mem {
+  background-color: #f1f5f9;
+  color: #64748b;
+  border-color: #e2e8f0;
+}
+html.light #historyDrawer {
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+}
+html.light #converterDrawer {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+html.light #convCategory, 
+html.light #convInputValue, 
+html.light #convFromUnit, 
+html.light #convToUnit {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+/* Base Keypad Buttons */
+.calc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  border-radius: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  border-width: 1px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.calc-btn:active {
+  transform: scale(0.94);
+}
+
+/* Number Button */
+.calc-btn-num {
+  background-color: rgba(30, 41, 59, 0.7);
+  border-color: rgba(51, 65, 85, 0.5);
+  color: #f8fafc;
+}
+.calc-btn-num:hover {
+  background-color: rgba(51, 65, 85, 0.8);
+  border-color: rgba(71, 85, 105, 0.7);
+}
+
+/* Function Button */
+.calc-btn-func {
+  background-color: rgba(30, 41, 59, 0.4);
+  border-color: rgba(51, 65, 85, 0.4);
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+.calc-btn-func:hover {
+  background-color: rgba(51, 65, 85, 0.6);
+  color: #f1f5f9;
+}
+
+/* Operator Button */
+.calc-btn-operator {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.85), rgba(99, 102, 241, 0.85));
+  border-color: rgba(129, 140, 248, 0.3);
+  color: #ffffff;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 12px -2px rgba(79, 70, 229, 0.3);
+}
+.calc-btn-operator:hover {
+  background: linear-gradient(135deg, rgba(67, 56, 202, 0.95), rgba(79, 70, 229, 0.95));
+  box-shadow: 0 6px 16px -2px rgba(79, 70, 229, 0.45);
+}
+
+/* Equals Button */
+.calc-btn-equals {
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #ffffff;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 14px -1px rgba(6, 182, 212, 0.4);
+}
+.calc-btn-equals:hover {
+  background: linear-gradient(135deg, #0891b2, #2563eb);
+  box-shadow: 0 6px 18px -1px rgba(6, 182, 212, 0.55);
+}
+
+/* Scientific Mini Button */
+.calc-btn-sci {
+  padding: 0.55rem 0.25rem;
+  border-radius: 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  background-color: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  color: #cbd5e1;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+.calc-btn-sci:hover {
+  background-color: rgba(79, 70, 229, 0.25);
+  border-color: rgba(99, 102, 241, 0.5);
+  color: #ffffff;
+}
+.calc-btn-sci:active {
+  transform: scale(0.92);
+}
+
+/* Memory Buttons */
+.calc-btn-mem {
+  padding: 0.35rem;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  background-color: rgba(30, 41, 59, 0.35);
+  border: 1px solid rgba(51, 65, 85, 0.35);
+  color: #64748b;
+  transition: all 0.12s ease;
+}
+.calc-btn-mem:hover {
+  color: #cbd5e1;
+  border-color: rgba(99, 102, 241, 0.4);
+}
+.calc-btn-mem:active {
+  transform: scale(0.93);
+}
+
+/* Custom Scrollbar */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Tactile Ripple Effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-anim 500ms linear;
+  background-color: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+@keyframes ripple-anim {
+  to {
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
