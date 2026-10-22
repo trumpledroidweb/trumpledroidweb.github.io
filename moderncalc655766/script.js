@@ -1,6 +1,6 @@
 /**
  * ModernCalc - Advanced Web Calculator Engine
- * Completely custom, high-precision offline calculation engine
+ * Clean Light Theme Optimized with Complete Offline Math & Conversion Support
  */
 
 (function () {
@@ -16,7 +16,8 @@
     memory: 0,
     hasMemory: false,
     soundEnabled: true,
-    history: []
+    history: [],
+    theme: 'light' // Default to light theme
   };
 
   // --- AUDIO SYNTHESIS FEEDBACK (Zero External Files) ---
@@ -36,12 +37,12 @@
         const gain = audioCtx.createGain();
         osc.type = type;
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.035, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.045);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start();
-        osc.stop(audioCtx.currentTime + 0.05);
+        osc.stop(audioCtx.currentTime + 0.045);
       }
     } catch (e) {
       // Audio autoplay gracefully handled
@@ -68,19 +69,47 @@
   const historyList = document.getElementById('historyList');
   const historyBadge = document.getElementById('historyBadge');
   const themeToggle = document.getElementById('themeToggle');
-  const themeIconDark = document.getElementById('themeIconDark');
-  const themeIconLight = document.getElementById('themeIconLight');
+  const themeIconSun = document.getElementById('themeIconSun');
+  const themeIconMoon = document.getElementById('themeIconMoon');
   const copyResultBtn = document.getElementById('copyResultBtn');
   const copyToast = document.getElementById('copyToast');
+
+  // --- THEME INITIALIZER (LIGHT DEFAULT) ---
+  function applyTheme(theme) {
+    state.theme = theme;
+    if (theme === 'dark') {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+      if (themeIconSun) themeIconSun.classList.add('hidden');
+      if (themeIconMoon) themeIconMoon.classList.remove('hidden');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      if (themeIconSun) themeIconSun.classList.remove('hidden');
+      if (themeIconMoon) themeIconMoon.classList.add('hidden');
+    }
+    try {
+      localStorage.setItem('moderncalc_theme', theme);
+    } catch (e) {}
+  }
+
+  // Detect saved preference or start light
+  const savedTheme = (function () {
+    try {
+      return localStorage.getItem('moderncalc_theme') || 'light';
+    } catch (e) {
+      return 'light';
+    }
+  })();
+  applyTheme(savedTheme);
 
   // --- DISPLAY RENDERER ---
   function updateDisplay() {
     mainDisplay.textContent = state.currentInput;
     expressionDisplay.textContent = state.previousExpression;
 
-    // Adjust font size based on string length to fit viewport smoothly
     const len = state.currentInput.length;
-    if (len > 14) {
+    if (len > 15) {
       mainDisplay.style.fontSize = '1.75rem';
     } else if (len > 10) {
       mainDisplay.style.fontSize = '2.25rem';
@@ -88,11 +117,9 @@
       mainDisplay.style.fontSize = '';
     }
 
-    // Scroll to right if overflows
     mainDisplay.scrollLeft = mainDisplay.scrollWidth;
     expressionDisplay.scrollLeft = expressionDisplay.scrollWidth;
 
-    // Memory badge
     if (state.hasMemory) {
       memIndicator.classList.remove('hidden');
     } else {
@@ -127,7 +154,6 @@
       return;
     }
 
-    // Inspect the last operand for an existing decimal
     const tokens = state.currentInput.split(/[\+\-\×\÷\^]/);
     const lastToken = tokens[tokens.length - 1];
     if (!lastToken.includes('.')) {
@@ -150,7 +176,6 @@
     const lastChar = trimmed.slice(-1);
 
     if (['+', '-', '×', '÷', '^'].includes(lastChar)) {
-      // Replace trailing operator
       state.currentInput = trimmed.slice(0, -1) + op;
     } else {
       state.currentInput += op;
@@ -167,7 +192,6 @@
       return;
     }
 
-    // Count open and close brackets
     const openBrackets = (state.currentInput.match(/\(/g) || []).length;
     const closeBrackets = (state.currentInput.match(/\)/g) || []).length;
     const lastChar = state.currentInput.slice(-1);
@@ -188,7 +212,6 @@
     playClickSound(580);
     if (state.currentInput === '0' || state.currentInput === 'Error') return;
 
-    // If evaluated, toggle directly
     if (state.isEvaluated || !/[\+\-\×\÷\^]/.test(state.currentInput)) {
       if (state.currentInput.startsWith('-')) {
         state.currentInput = state.currentInput.slice(1);
@@ -199,7 +222,6 @@
       return;
     }
 
-    // Otherwise toggle last numeric operand
     const match = state.currentInput.match(/(-?[\d.]+)$/);
     if (match) {
       const lastNum = match[0];
@@ -239,7 +261,6 @@
       let val = evaluateRawExpression(state.currentInput);
       let result;
 
-      // Degree to Radian helper
       const toRad = deg => (deg * Math.PI) / 180;
       const toDeg = rad => (rad * 180) / Math.PI;
 
@@ -303,7 +324,7 @@
   function factorial(n) {
     if (n < 0 || !Number.isInteger(n)) throw new Error('Invalid factorial');
     if (n === 0 || n === 1) return 1;
-    if (n > 170) return Infinity; // Prevent overflow
+    if (n > 170) return Infinity;
     let res = 1;
     for (let i = 2; i <= n; i++) res *= i;
     return res;
@@ -330,7 +351,6 @@
   function evaluateRawExpression(expr) {
     if (!expr || expr === 'Error') return 0;
 
-    // Normalize symbols
     let sanitized = expr
       .replace(/×/g, '*')
       .replace(/÷/g, '/')
@@ -338,14 +358,12 @@
       .replace(/π/g, Math.PI.toString())
       .replace(/e/g, Math.E.toString());
 
-    // Balance closing brackets if omitted
     const openCount = (sanitized.match(/\(/g) || []).length;
     const closeCount = (sanitized.match(/\)/g) || []).length;
     if (openCount > closeCount) {
       sanitized += ')'.repeat(openCount - closeCount);
     }
 
-    // Safely evaluate math expression without dynamic eval
     const tokens = tokenize(sanitized);
     const rpn = shuntingYard(tokens);
     return computeRPN(rpn);
@@ -361,7 +379,6 @@
         continue;
       }
 
-      // Check numbers
       if (/\d|\./.test(char)) {
         let numStr = '';
         while (i < str.length && /[\d.]/.test(str[i])) {
@@ -372,11 +389,9 @@
         continue;
       }
 
-      // Negative sign detection vs subtraction
       if (char === '-') {
         const prev = tokens[tokens.length - 1];
         if (!prev || prev.type === 'operator' || prev.val === '(') {
-          // Unary minus
           i++;
           let numStr = '-';
           while (i < str.length && /[\d.]/.test(str[i])) {
@@ -432,7 +447,7 @@
         while (operatorStack.length > 0 && operatorStack[operatorStack.length - 1].val !== '(') {
           outputQueue.push(operatorStack.pop());
         }
-        operatorStack.pop(); // discard '('
+        operatorStack.pop();
       }
     }
 
@@ -475,7 +490,6 @@
 
   function formatNumber(num) {
     if (Number.isNaN(num) || !Number.isFinite(num)) return 'Error';
-    // Remove minor precision floats like 0.1 + 0.2 = 0.30000000000000004
     const rounded = parseFloat(num.toFixed(10));
     return rounded.toString();
   }
@@ -544,22 +558,21 @@
 
   function renderHistory() {
     if (state.history.length === 0) {
-      historyList.innerHTML = `<div class="text-center py-12 text-slate-500 text-xs">No previous calculations in this session.</div>`;
+      historyList.innerHTML = `<div class="text-center py-12 text-slate-400 text-xs">No previous calculations in this session.</div>`;
       return;
     }
 
     historyList.innerHTML = state.history.map((item, idx) => `
-      <div class="p-3 rounded-xl bg-slate-800/40 hover:bg-slate-800/80 border border-slate-700/50 cursor-pointer transition flex flex-col items-end group" data-history-index="${idx}">
-        <div class="w-full flex justify-between text-[10px] text-slate-500 mb-0.5">
+      <div class="history-card p-3 rounded-xl cursor-pointer transition flex flex-col items-end group shadow-2xs" data-history-index="${idx}">
+        <div class="w-full flex justify-between text-[10px] text-slate-400 mb-0.5">
           <span>${item.time}</span>
-          <span class="opacity-0 group-hover:opacity-100 text-indigo-400 font-medium">Click to recall</span>
+          <span class="opacity-0 group-hover:opacity-100 text-indigo-600 font-semibold">Click to recall</span>
         </div>
-        <div class="text-xs text-slate-400 font-mono">${item.expr}</div>
-        <div class="text-base font-bold text-indigo-400 font-mono tracking-tight">= ${item.result}</div>
+        <div class="text-xs text-slate-500 font-mono">${item.expr}</div>
+        <div class="text-base font-bold text-indigo-600 font-mono tracking-tight">= ${item.result}</div>
       </div>
     `).join('');
 
-    // Attach click listeners
     historyList.querySelectorAll('[data-history-index]').forEach(el => {
       el.addEventListener('click', () => {
         const item = state.history[parseInt(el.getAttribute('data-history-index'))];
@@ -649,7 +662,6 @@
     } else {
       const fromFactor = unitData[category][from] || 1;
       const toFactor = unitData[category][to] || 1;
-      // Convert to base, then to target
       const baseValue = inputVal * fromFactor;
       output = baseValue / toFactor;
     }
@@ -686,7 +698,7 @@
       if (existingRipple) existingRipple.remove();
 
       this.appendChild(circle);
-      setTimeout(() => circle.remove(), 500);
+      setTimeout(() => circle.remove(), 450);
     });
   });
 
@@ -741,7 +753,7 @@
   // --- KEYBOARD SHORTCUTS ---
   window.addEventListener('keydown', function (e) {
     if (['input', 'select', 'textarea'].includes(document.activeElement.tagName.toLowerCase())) {
-      return; // Allow standard input when inside converter textfield
+      return;
     }
 
     if (e.key >= '0' && e.key <= '9') {
@@ -786,9 +798,9 @@
   sciToggle.addEventListener('click', () => {
     playClickSound(600);
     sciDrawer.classList.toggle('hidden');
-    sciToggle.classList.toggle('bg-indigo-600/30');
-    sciToggle.classList.toggle('text-indigo-400');
-    sciToggle.classList.toggle('border-indigo-500/50');
+    sciToggle.classList.toggle('bg-indigo-50');
+    sciToggle.classList.toggle('text-indigo-600');
+    sciToggle.classList.toggle('border-indigo-300');
   });
 
   convertToggle.addEventListener('click', () => {
@@ -830,11 +842,10 @@
     playClickSound(700);
   });
 
+  // Theme Toggle: toggles between light and dark
   themeToggle.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    document.documentElement.classList.toggle('light', !isDark);
-    themeIconDark.classList.toggle('hidden', !isDark);
-    themeIconLight.classList.toggle('hidden', isDark);
+    const nextTheme = state.theme === 'light' ? 'dark' : 'light';
+    applyTheme(nextTheme);
     playClickSound(650);
   });
 
