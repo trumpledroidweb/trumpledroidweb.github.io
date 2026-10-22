@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>moderncalc</title>
+  <!-- Tailwind CSS v4 Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-3 sm:p-6 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-indigo-500 selection:text-white antialiased transition-colors duration-300">
+  <!-- Dynamic Ambient Background Glow -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute top-1/2 -right-40 w-96 h-96 bg-violet-600/15 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Calculator Container Frame -->
+  <main class="w-full max-w-md sm:max-w-lg bg-slate-900/80 backdrop-blur-2xl border border-slate-800/80 rounded-3xl shadow-2xl shadow-indigo-950/50 overflow-hidden flex flex-col relative transition-all duration-300" id="calcApp">
+    
+    <!-- Top Action Bar -->
+    <header class="flex items-center justify-between px-6 pt-5 pb-3 border-b border-slate-800/40">
+      <div class="flex items-center space-x-2.5">
+        <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-indigo-500 to-cyan-400 shadow-sm shadow-indigo-500/50"></div>
+        <span class="font-bold tracking-tight text-sm uppercase text-slate-200">Modern<span class="text-indigo-400">Calc</span></span>
+      </div>
+
+      <!-- Action Toggles -->
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <!-- Sound Toggle -->
+        <button id="soundToggle" type="button" aria-label="Toggle sound effects" title="Audio Feedback (M)" class="p-2 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800/70 active:scale-95 transition">
+          <svg id="soundIconOn" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          </svg>
+          <svg id="soundIconOff" class="w-4 h-4 hidden text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+          </svg>
+        </button>
+
+        <!-- Scientific Mode Toggle -->
+        <button id="sciToggle" type="button" aria-label="Toggle Scientific Mode" title="Scientific Functions (S)" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-700/60 text-slate-300 hover:bg-slate-800 active:scale-95 transition flex items-center gap-1">
+          <span>SCI</span>
+        </button>
+
+        <!-- Converter Mode Toggle -->
+        <button id="convertToggle" type="button" aria-label="Toggle Unit Converter" title="Unit Converter (U)" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-700/60 text-slate-300 hover:bg-slate-800 active:scale-95 transition flex items-center gap-1">
+          <span>CONVERT</span>
+        </button>
+
+        <!-- History Drawer Button -->
+        <button id="historyToggle" type="button" aria-label="Open calculation history" title="Calculation History (H)" class="p-2 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800/70 active:scale-95 transition relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span id="historyBadge" class="hidden absolute top-1 right-1 w-2 h-2 rounded-full bg-indigo-500 ring-2 ring-slate-900"></span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggle" type="button" aria-label="Toggle dark/light theme" class="p-2 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800/70 active:scale-95 transition">
+          <svg id="themeIconDark" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="themeIconLight" class="w-4 h-4 hidden text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Display Screen -->
+    <section class="px-6 py-4 flex flex-col justify-end bg-gradient-to-b from-slate-900/50 to-slate-950/80 border-b border-slate-800/60 min-h-[140px] select-text relative">
+      <!-- Top meta indicators: Memory, Angle mode, Copy alert -->
+      <div class="flex items-center justify-between text-[11px] font-medium text-slate-500 mb-1">
+        <div class="flex items-center gap-2">
+          <span id="memIndicator" class="hidden px-1.5 py-0.5 rounded bg-indigo-900/50 text-indigo-300 border border-indigo-700/50 font-mono text-[10px]">M</span>
+          <button id="angleModeToggle" type="button" class="cursor-pointer hover:text-slate-300 transition uppercase tracking-wider text-[10px] font-semibold">DEG</button>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="copyToast" class="opacity-0 transition-opacity text-emerald-400 font-medium">Copied!</span>
+          <button id="copyResultBtn" type="button" title="Copy result to clipboard" class="hover:text-slate-300 transition text-[11px] flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Expression History Line -->
+      <div id="expressionDisplay" class="font-mono text-right text-slate-400 text-sm tracking-wide overflow-x-auto whitespace-nowrap min-h-[22px] scrollbar-none">
+      </div>
+
+      <!-- Main Result Display -->
+      <div id="mainDisplay" class="font-mono font-bold text-right text-4xl sm:text-5xl text-white tracking-tight overflow-x-auto whitespace-nowrap scrollbar-none transition-all duration-150 py-1">
+        0
+      </div>
+    </section>
+
+    <!-- Unit Converter Section (Collapsible) -->
+    <div id="converterDrawer" class="hidden p-4 bg-slate-900/90 border-b border-slate-800 transition-all duration-300">
+      <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+        <span>Unit Converter</span>
+        <button id="closeConverterBtn" type="button" class="text-slate-400 hover:text-white">&times;</button>
+      </div>
+      <div class="grid grid-cols-2 gap-2 mb-3">
+        <div>
+          <label class="block text-[10px] uppercase text-slate-500 font-semibold mb-1">Category</label>
+          <select id="convCategory" class="w-full bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-lg p-2 focus:ring-1 focus:ring-indigo-500 outline-none">
+            <option value="length">Length</option>
+            <option value="mass">Mass / Weight</option>
+            <option value="temp">Temperature</option>
+            <option value="data">Digital Storage</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[10px] uppercase text-slate-500 font-semibold mb-1">Value</label>
+          <input type="number" id="convInputValue" value="1" step="any" class="w-full bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-lg p-2 focus:ring-1 focus:ring-indigo-500 outline-none font-mono">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-2 mb-3">
+        <div>
+          <label class="block text-[10px] uppercase text-slate-500 font-semibold mb-1">From</label>
+          <select id="convFromUnit" class="w-full bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-lg p-2 focus:ring-1 focus:ring-indigo-500 outline-none"></select>
+        </div>
+        <div>
+          <label class="block text-[10px] uppercase text-slate-500 font-semibold mb-1">To</label>
+          <select id="convToUnit" class="w-full bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-lg p-2 focus:ring-1 focus:ring-indigo-500 outline-none"></select>
+        </div>
+      </div>
+      <div class="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between font-mono">
+        <span class="text-xs text-slate-400">Result:</span>
+        <span id="convOutputValue" class="text-indigo-400 font-bold text-sm tracking-wide">1</span>
+      </div>
+    </div>
+
+    <!-- Scientific Function Panel (Collapsible) -->
+    <div id="sciDrawer" class="hidden grid grid-cols-5 gap-1.5 p-3.5 bg-slate-950/40 border-b border-slate-800/80 transition-all">
+      <button type="button" data-action="sci" data-val="sin" class="calc-btn-sci">sin</button>
+      <button type="button" data-action="sci" data-val="cos" class="calc-btn-sci">cos</button>
+      <button type="button" data-action="sci" data-val="tan" class="calc-btn-sci">tan</button>
+      <button type="button" data-action="sci" data-val="ln" class="calc-btn-sci">ln</button>
+      <button type="button" data-action="sci" data-val="log" class="calc-btn-sci">log</button>
+
+      <button type="button" data-action="sci" data-val="asin" class="calc-btn-sci text-[11px]">sin⁻¹</button>
+      <button type="button" data-action="sci" data-val="acos" class="calc-btn-sci text-[11px]">cos⁻¹</button>
+      <button type="button" data-action="sci" data-val="atan" class="calc-btn-sci text-[11px]">tan⁻¹</button>
+      <button type="button" data-action="sci" data-val="sqrt" class="calc-btn-sci">√x</button>
+      <button type="button" data-action="sci" data-val="sq" class="calc-btn-sci">x²</button>
+
+      <button type="button" data-action="insert" data-val="^" class="calc-btn-sci">xʸ</button>
+      <button type="button" data-action="sci" data-val="fact" class="calc-btn-sci">x!</button>
+      <button type="button" data-action="insert" data-val="π" class="calc-btn-sci">π</button>
+      <button type="button" data-action="insert" data-val="e" class="calc-btn-sci">e</button>
+      <button type="button" data-action="sci" data-val="inv" class="calc-btn-sci">1/x</button>
+    </div>
+
+    <!-- Memory Function Bar -->
+    <div class="grid grid-cols-5 gap-1.5 px-4 pt-3 pb-1 text-xs">
+      <button type="button" data-action="mem" data-val="MC" class="calc-btn-mem">MC</button>
+      <button type="button" data-action="mem" data-val="MR" class="calc-btn-mem">MR</button>
+      <button type="button" data-action="mem" data-val="M+" class="calc-btn-mem">M+</button>
+      <button type="button" data-action="mem" data-val="M-" class="calc-btn-mem">M-</button>
+      <button type="button" data-action="mem" data-val="MS" class="calc-btn-mem">MS</button>
+    </div>
+
+    <!-- Standard Keypad -->
+    <div class="grid grid-cols-4 gap-2.5 p-4 sm:p-5 flex-1 select-none">
+      <!-- Row 1 -->
+      <button type="button" data-action="clear-all" class="calc-btn calc-btn-func text-rose-400 hover:text-rose-300">AC</button>
+      <button type="button" data-action="backspace" class="calc-btn calc-btn-func" aria-label="Delete last digit">
+        <svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414-6.414A2 2 0 0110.828 5H19a2 2 0 012 2v10a2 2 0 01-2 2h-8.172a2 2 0 01-1.414-.586L3 12z"/></svg>
+      </button>
+      <button type="button" data-action="bracket" class="calc-btn calc-btn-func font-mono">( )</button>
+      <button type="button" data-action="op" data-val="÷" class="calc-btn calc-btn-operator">÷</button>
+
+      <!-- Row 2 -->
+      <button type="button" data-action="num" data-val="7" class="calc-btn calc-btn-num">7</button>
+      <button type="button" data-action="num" data-val="8" class="calc-btn calc-btn-num">8</button>
+      <button type="button" data-action="num" data-val="9" class="calc-btn calc-btn-num">9</button>
+      <button type="button" data-action="op" data-val="×" class="calc-btn calc-btn-operator">×</button>
+
+      <!-- Row 3 -->
+      <button type="button" data-action="num" data-val="4" class="calc-btn calc-btn-num">4</button>
+      <button type="button" data-action="num" data-val="5" class="calc-btn calc-btn-num">5</button>
+      <button type="button" data-action="num" data-val="6" class="calc-btn calc-btn-num">6</button>
+      <button type="button" data-action="op" data-val="-" class="calc-btn calc-btn-operator">−</button>
+
+      <!-- Row 4 -->
+      <button type="button" data-action="num" data-val="1" class="calc-btn calc-btn-num">1</button>
+      <button type="button" data-action="num" data-val="2" class="calc-btn calc-btn-num">2</button>
+      <button type="button" data-action="num" data-val="3" class="calc-btn calc-btn-num">3</button>
+      <button type="button" data-action="op" data-val="+" class="calc-btn calc-btn-operator">+</button>
+
+      <!-- Row 5 -->
+      <button type="button" data-action="negate" class="calc-btn calc-btn-num">±</button>
+      <button type="button" data-action="num" data-val="0" class="calc-btn calc-btn-num">0</button>
+      <button type="button" data-action="decimal" class="calc-btn calc-btn-num">.</button>
+      <button type="button" data-action="equals" class="calc-btn calc-btn-equals">=</button>
+    </div>
+
+    <!-- Slide-in History Drawer Overlay -->
+    <div id="historyDrawer" class="absolute inset-0 bg-slate-900/95 backdrop-blur-xl z-20 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span class="font-bold text-sm tracking-tight">Calculation History</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="clearHistoryBtn" type="button" class="text-xs text-rose-400 hover:text-rose-300 transition px-2 py-1 rounded bg-rose-500/10">Clear All</button>
+          <button id="closeHistoryBtn" type="button" class="text-slate-400 hover:text-white p-1 text-lg leading-none">&times;</button>
+        </div>
+      </div>
+      <div id="historyList" class="flex-1 overflow-y-auto p-4 space-y-2.5">
+        <!-- Rendered items or empty placeholder -->
+        <div class="text-center py-12 text-slate-500 text-xs">No previous calculations in this session.</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
