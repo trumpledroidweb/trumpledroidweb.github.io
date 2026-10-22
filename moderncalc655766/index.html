@@ -13,9 +13,9 @@
 </head>
 <body class="bg-gradient-to-br from-slate-100 via-slate-50 to-indigo-50/50 text-slate-800 min-h-screen flex items-center justify-center p-3 sm:p-6 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-indigo-500 selection:text-white antialiased transition-colors duration-300 relative">
   
-  <!-- App Open Animated Loader Overlay -->
-  <aside id="appLoader" role="status" aria-live="polite" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-50/95 backdrop-blur-2xl transition-opacity duration-500 ease-out">
-    <div class="relative flex flex-col items-center">
+  <!-- App Open Animated Loader Overlay with Safe Auto-Dismiss -->
+  <aside id="appLoader" role="status" aria-live="polite" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-50/95 backdrop-blur-2xl transition-all duration-300 ease-out cursor-pointer" title="Click anywhere to skip">
+    <div class="relative flex flex-col items-center pointer-events-none">
       <!-- Brand Symbol with Ambient Glowing Rings -->
       <div class="relative w-20 h-20 mb-5 flex items-center justify-center">
         <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-indigo-500 to-cyan-400 blur-xl opacity-50 animate-pulse"></div>
@@ -32,17 +32,40 @@
       <!-- Brand Title & Loading State -->
       <div class="text-center">
         <h1 class="text-lg font-extrabold tracking-tight text-slate-800 uppercase">Modern<span class="text-indigo-600">Calc</span></h1>
-        <p id="loaderStatusText" class="text-xs font-semibold text-slate-500 mt-1 tracking-wider uppercase font-mono">Initializing engine...</p>
+        <p id="loaderStatusText" class="text-xs font-semibold text-slate-500 mt-1 tracking-wider uppercase font-mono">Ready</p>
       </div>
 
       <!-- Linear Loading Bar Track -->
       <div class="w-48 h-1.5 bg-slate-200/80 rounded-full mt-4 overflow-hidden relative shadow-inner">
-        <div id="loaderProgressBar" class="h-full bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 rounded-full transition-all duration-300 w-0"></div>
+        <div id="loaderProgressBar" class="h-full bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 rounded-full transition-all duration-200 w-1/2"></div>
       </div>
+      <p class="text-[10px] text-slate-400 mt-3 font-mono opacity-60">Tap anywhere to launch</p>
     </div>
   </aside>
 
-  <!-- Dynamic Ambient Background Glow (Daylight Warmth & Soft Violet) -->
+  <!-- Immediate Inline Failsafe Guard: Dismiss loader in max 500ms even if network lags -->
+  <script>
+    (function() {
+      function dismissLoaderInstantly() {
+        var loader = document.getElementById('appLoader');
+        if (loader && !loader.classList.contains('loader-dismissed')) {
+          loader.classList.add('loader-dismissed');
+          loader.style.opacity = '0';
+          loader.style.pointerEvents = 'none';
+          setTimeout(function() {
+            if (loader && loader.parentNode) {
+              loader.style.display = 'none';
+            }
+          }, 300);
+        }
+      }
+      // Guarantee dismiss in at most 450ms
+      setTimeout(dismissLoaderInstantly, 450);
+      window.dismissLoaderInstantly = dismissLoaderInstantly;
+    })();
+  </script>
+
+  <!-- Dynamic Ambient Background Glow -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
     <div class="ambient-glow absolute -top-32 -left-32 w-[32rem] h-[32rem] bg-indigo-300/35 rounded-full blur-3xl animate-pulse"></div>
     <div class="ambient-glow absolute top-1/2 -right-32 w-[30rem] h-[30rem] bg-sky-200/40 rounded-full blur-3xl"></div>
@@ -50,7 +73,7 @@
   </div>
 
   <!-- Calculator Container Frame -->
-  <main class="w-full max-w-md sm:max-w-lg bg-white/90 backdrop-blur-2xl border border-slate-200/90 rounded-3xl shadow-2xl shadow-indigo-900/10 overflow-hidden flex flex-col relative transition-all duration-300" id="calcApp">
+  <main class="w-full max-w-md sm:max-w-lg bg-white/95 backdrop-blur-2xl border border-slate-200/90 rounded-3xl shadow-2xl shadow-indigo-900/10 overflow-hidden flex flex-col relative transition-all duration-300" id="calcApp">
     
     <!-- Top Action Bar -->
     <header class="flex items-center justify-between px-6 pt-5 pb-3 border-b border-slate-100/90">
@@ -92,11 +115,9 @@
 
         <!-- Theme Toggle (Light Default) -->
         <button id="themeToggle" type="button" aria-label="Toggle dark/light theme" class="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 active:scale-95 transition">
-          <!-- Shown in light theme: Sun icon with amber highlight -->
           <svg id="themeIconSun" class="w-4 h-4 text-amber-500 fill-amber-500/20" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
-          <!-- Shown in dark theme: Moon icon -->
           <svg id="themeIconMoon" class="w-4 h-4 hidden text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
           </svg>
@@ -104,9 +125,8 @@
       </div>
     </header>
 
-    <!-- Display Screen (Soft Bright Slate-Glass Panel) -->
+    <!-- Display Screen -->
     <section class="calc-screen-panel px-6 py-5 flex flex-col justify-end bg-gradient-to-b from-slate-50/80 via-slate-100/70 to-slate-100/90 border-b border-slate-200/80 min-h-[148px] select-text relative">
-      <!-- Top meta indicators: Memory, Angle mode, Copy action -->
       <div class="flex items-center justify-between text-[11px] font-medium text-slate-500 mb-1.5">
         <div class="flex items-center gap-2">
           <span id="memIndicator" class="hidden px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 border border-indigo-200 font-mono text-[10px] font-semibold">M</span>
@@ -122,13 +142,10 @@
       </div>
 
       <!-- Expression History Line -->
-      <div id="expressionDisplay" class="font-mono text-right text-slate-500 text-sm tracking-wide overflow-x-auto whitespace-nowrap min-h-[22px] scrollbar-none font-medium">
-      </div>
+      <div id="expressionDisplay" class="font-mono text-right text-slate-500 text-sm tracking-wide overflow-x-auto whitespace-nowrap min-h-[22px] scrollbar-none font-medium"></div>
 
       <!-- Main Result Display -->
-      <div id="mainDisplay" class="font-mono font-bold text-right text-4xl sm:text-5xl text-slate-900 tracking-tight overflow-x-auto whitespace-nowrap scrollbar-none transition-all duration-150 py-1">
-        0
-      </div>
+      <div id="mainDisplay" class="font-mono font-bold text-right text-4xl sm:text-5xl text-slate-900 tracking-tight overflow-x-auto whitespace-nowrap scrollbar-none transition-all duration-150 py-1">0</div>
     </section>
 
     <!-- Unit Converter Section (Collapsible) -->
@@ -203,7 +220,6 @@
 
     <!-- Standard Keypad -->
     <div class="grid grid-cols-4 gap-2.5 p-4 sm:p-5 flex-1 select-none">
-      <!-- Row 1 -->
       <button type="button" data-action="clear-all" class="calc-btn calc-btn-func text-rose-600 hover:text-rose-700 font-bold">AC</button>
       <button type="button" data-action="backspace" class="calc-btn calc-btn-func" aria-label="Delete last digit">
         <svg class="w-5 h-5 mx-auto text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414-6.414A2 2 0 0110.828 5H19a2 2 0 012 2v10a2 2 0 01-2 2h-8.172a2 2 0 01-1.414-.586L3 12z"/></svg>
@@ -211,25 +227,21 @@
       <button type="button" data-action="bracket" class="calc-btn calc-btn-func font-mono">( )</button>
       <button type="button" data-action="op" data-val="÷" class="calc-btn calc-btn-operator">÷</button>
 
-      <!-- Row 2 -->
       <button type="button" data-action="num" data-val="7" class="calc-btn calc-btn-num">7</button>
       <button type="button" data-action="num" data-val="8" class="calc-btn calc-btn-num">8</button>
       <button type="button" data-action="num" data-val="9" class="calc-btn calc-btn-num">9</button>
       <button type="button" data-action="op" data-val="×" class="calc-btn calc-btn-operator">×</button>
 
-      <!-- Row 3 -->
       <button type="button" data-action="num" data-val="4" class="calc-btn calc-btn-num">4</button>
       <button type="button" data-action="num" data-val="5" class="calc-btn calc-btn-num">5</button>
       <button type="button" data-action="num" data-val="6" class="calc-btn calc-btn-num">6</button>
       <button type="button" data-action="op" data-val="-" class="calc-btn calc-btn-operator">−</button>
 
-      <!-- Row 4 -->
       <button type="button" data-action="num" data-val="1" class="calc-btn calc-btn-num">1</button>
       <button type="button" data-action="num" data-val="2" class="calc-btn calc-btn-num">2</button>
       <button type="button" data-action="num" data-val="3" class="calc-btn calc-btn-num">3</button>
       <button type="button" data-action="op" data-val="+" class="calc-btn calc-btn-operator">+</button>
 
-      <!-- Row 5 -->
       <button type="button" data-action="negate" class="calc-btn calc-btn-num text-slate-700">±</button>
       <button type="button" data-action="num" data-val="0" class="calc-btn calc-btn-num">0</button>
       <button type="button" data-action="decimal" class="calc-btn calc-btn-num font-bold">.</button>
