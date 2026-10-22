@@ -1,0 +1,22 @@
+{
+  "backend": false,
+  "roles": {},
+  "collections": {},
+  "logic": {
+    "arithmetic_evaluation": {
+      "type": "calculation",
+      "inputs": ["expression"],
+      "formula": "evaluate_expression(expression)"
+    },
+    "scientific_function": {
+      "type": "calculation",
+      "inputs": ["operand", "function_name"],
+      "formula": "math_apply(function_name, operand)"
+    },
+    "unit_conversion": {
+      "type": "calculation",
+      "inputs": ["value", "source_unit", "target_unit"],
+      "formula": "convert_unit(value, source_unit, target_unit)"
+    }
+  }
+}
