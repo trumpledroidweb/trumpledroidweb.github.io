@@ -1,0 +1,48 @@
+/* Perfect Circle Challenge Custom Styles */
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    box-sizing: border-box;
+  }
+}
+
+body {
+  background-color: #090d16;
+  background-image: radial-gradient(circle at 50% 20%, rgba(30, 41, 59, 0.45) 0%, rgba(9, 13, 22, 1) 100%);
+}
+
+/* Neon Text Glow Effect */
+.neon-glow {
+  text-shadow: 0 0 16px rgba(56, 189, 248, 0.65), 0 0 32px rgba(99, 102, 241, 0.35);
+}
+
+/* Canvas styling */
+#circle-canvas {
+  touch-action: none;
+}
+
+/* Smooth scale animation on button tap */
+.active\:scale-98:active {
+  transform: scale(0.98);
+}
+
+/* Custom scrollbar and touch behavior */
+html, body {
+  overscroll-behavior: none;
+  height: 100%;
+}
+
+/* Keyframe for subtle pulsing hint */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(6, 182, 212, 0.45);
+  }
+}
+
+.guide-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
