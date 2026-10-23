@@ -1,0 +1,12 @@
+{
+  "backend": false,
+  "roles": {},
+  "collections": {},
+  "logic": {
+    "circle_accuracy": {
+      "type": "calculation",
+      "inputs": ["radius_variance", "closure_gap", "angular_sweep"],
+      "formula": "clamp(100 - (radius_variance_ratio * 120 + closure_penalty * 35 + angle_penalty), 0, 100)"
+    }
+  }
+}
